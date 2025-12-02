@@ -1,0 +1,110 @@
+.layout-root {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #111111;
+    color: #f5f5f5;
+    transition:
+      filter 0.2s ease,
+      transform 0.2s ease,
+      opacity 0.2s ease;
+  }
+  
+  .layout-grid {
+    max-width: 1400px;
+    margin: 0 auto;
+    width: 100%;
+    padding: 0 1.5rem;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: 160px auto auto;
+    grid-template-areas:
+      "header tech"
+      "experience tech"
+      "education tech";
+    gap: 1.5rem;
+  }
+  
+  .panel {
+    border-radius: 16px;
+    border: 1px solid #2b2b2b;
+    background: #111111;
+    padding: 1.25rem 1.5rem;
+    box-sizing: border-box;
+    cursor: pointer;
+  }
+  
+  .panel-header {
+    grid-area: header;
+  }
+  
+  .panel-experience {
+    grid-area: experience;
+  }
+  
+  .panel-techstack {
+    grid-area: tech;
+    min-height: 490px;
+    height: 100%;  
+  }
+
+  @media (max-width: 900px) {
+    .layout-grid {
+      grid-template-columns: 1fr;
+      grid-template-rows: auto auto auto;
+      grid-template-areas:
+        "header"
+        "tech"
+        "experience";
+    }
+  }
+
+  .panel-overlay {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 50;
+  
+    background: rgba(0, 0, 0, 0.55);
+    backdrop-filter: blur(6px);
+  }
+  
+  .panel-overlay-content {
+    position: relative;
+    width: min(900px, 92vw);
+    max-height: 90vh;
+    padding: 2rem 2.4rem;
+    border-radius: 20px;
+    background: #12141a;
+    border: 1px solid #2d3240;
+    box-shadow: 0 24px 80px rgba(0, 0, 0, 0.85);
+    overflow-y: auto;
+  }
+  
+  .panel-overlay-close {
+    position: absolute;
+    top: 0.8rem;
+    right: 0.9rem;
+    border: 2px solid #ffffff;
+    border-radius: 8px;
+    background: #000000;
+    color: #ffffff;
+    font-size: 1.2rem;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  
+  .panel-overlay-close:hover {
+    background: #ffffff;
+    color: #000000;
+    border: 2px solid #000000;
+  }
+  
+  .layout-root--blurred {
+    filter: blur(3px) brightness(0.6);
+    transform: scale(0.98);
+    pointer-events: none;
+  }

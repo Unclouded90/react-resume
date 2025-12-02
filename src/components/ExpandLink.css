@@ -1,0 +1,38 @@
+.expand-link {
+    font-size: 0.95rem;
+    letter-spacing: 0.08em;
+    color: #ffffff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.6rem 1.4rem;
+    border-radius: 16px;
+    border: 1px solid #ffffff;
+    background: transparent;
+    color: #ffffff;
+    gap: 0.75rem;
+    font-weight: 500;
+    cursor: pointer;
+    opacity: 0.8;
+    transition: background 0.2s ease, color 0.2s ease, transform 0.1s ease;
+  }
+  
+  .expand-link:hover {
+    background: #ffffff;
+    color: #000000;
+    transform: translateY(-1px);
+  }
+  
+  .expand-link-arrow {
+    opacity: 0;
+    transform: translateX(-4px);
+    transition:
+      opacity 0.15s ease,
+      transform 0.15s ease;
+  }
+  
+  .expand-link:hover .expand-link-arrow {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  

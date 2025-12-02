@@ -1,0 +1,49 @@
+.education-panel {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .education-heading {
+    margin: 0 0 0.8rem;
+    font-size: 1.4rem;
+  }
+
+  .education-card {
+    background: #292929;
+    border-radius: 14px;
+    border: 1px solid #262626;
+    padding: 1.2rem 1.4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+  
+  .education-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline; 
+    gap: 1.5rem;
+  }
+  
+  .education-degree {
+    margin: 0;
+    font-size: 1.05rem;
+    font-weight: 600;
+  }
+  
+  .education-institution {
+    margin: 0.2rem 0 0;
+    font-size: 0.95rem;
+    opacity: 0.9;
+  }
+  
+  .education-meta-right {
+    text-align: right;
+    font-size: 0.8rem;
+  }
+  
+  .education-dates {
+    margin: 0;
+    opacity: 0.8;
+  }
+  

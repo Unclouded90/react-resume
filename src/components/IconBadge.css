@@ -1,0 +1,43 @@
+.icon-badge {
+    width: 36px;
+    height: 36px;
+    border-radius: 999px;
+    border: 1px solid #444;
+    background: #101010;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition:
+      background 0.15s ease,
+      border-color 0.15s ease,
+      transform 0.1s ease,
+      box-shadow 0.15s ease;
+    text-decoration: none;
+    color: #f5f5f5;
+  }
+  
+  .icon-badge:hover {
+    border-color: #ffffff;
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.5);
+    transform: translateY(-1px) scale(1.05);
+  }
+  
+  .icon-badge-inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 0;
+    font-size: 1.3rem;
+  }
+  
+  .icon-badge-inner svg,
+  .icon-badge-inner img {
+    display: block;
+  }
+
+  .tech-custom-icon {
+    width: 1.3rem;
+    height: 1.3rem;
+    object-fit: contain;
+  }
