@@ -5,6 +5,7 @@ import { TechStackPanel } from './components/TechStackPanel'
 import { ExperiencePanel } from './components/ExperiencePanel'
 import { ExperienceDetailsPanel, type ExperienceDetailsPanelProps } from './components/ExperienceDetailsPanel';
 import { EducationPanel } from './components/EducationPanel';
+import { EducationDetailsPanel } from './components/EducationDetailsPanel';
 import './App.css'
 
 type ActivePanel = "about" | "experience" | "tech" | "education" | null;
@@ -68,7 +69,9 @@ function App() {
                     <div
                         className={
                             "panel-overlay-content" +
-                            (activePanel === "experience" ? " panel-overlay-content--experience" : "")
+                            ((activePanel === "experience" || activePanel === "education")
+                                ? " panel-overlay-content--tallHeader"
+                                : "")
                         }
                         onClick={(e) => e.stopPropagation()}
                     >
@@ -80,7 +83,7 @@ function App() {
                         {activePanel === 'experience' && selectedJob && (
                             <ExperienceDetailsPanel {...selectedJob} />
                         )}
-                        {activePanel === "education" && <EducationPanel />}
+                        {activePanel === "education" && <EducationDetailsPanel />}
                     </div>
                 </div>
             )}
