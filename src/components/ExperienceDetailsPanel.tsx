@@ -1,8 +1,9 @@
+import type { ReactNode } from 'react';
 import './CenteredPanel.css';
 
 export type ExperienceDetailsPanelProps = {
     title: string;
-    company: string;
+    company: ReactNode;
     dates: string;
     description: string;
     bullets?: string[];

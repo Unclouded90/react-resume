@@ -114,4 +114,21 @@
   .exp-tech-label {
     font-weight: 600;
   }
+
+  .exp-company-link {
+    font-weight: 500;
+    color: #ffffff;
+    text-decoration: none;
+  }
   
+  .exp-company-link:hover {
+    text-decoration: underline;
+  }
+  
+  .exp-separator {
+    display: inline-block;
+    margin: 0 0.6rem;
+    font-size: 0.85em;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }

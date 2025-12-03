@@ -13,8 +13,17 @@ type ActivePanel = "about" | "experience" | "tech" | "education" | null;
 const jobs = [
     {
         title: "Full Stack Developer",
-        company: "Eufinity Solutions",
-        dates: "Since April 2024",
+        company: (
+            <a
+              href="https://www.eufinity.com/"
+              target="_blank"
+              rel="noreferrer"
+              className="exp-company-link"
+            >
+              Eufinity Solutions
+            </a>
+          ),
+        dates: "April 2024 - Present",
         description: "Currently working as a Full Stack Developer on Eufinity Solutions," +
             " a company focused on developing end-to-end retail and ERP (Enterprise Resource Planning) software solutions" +
             " targeting medium to large-scale retail operations.",
