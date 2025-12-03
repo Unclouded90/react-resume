@@ -4,7 +4,7 @@ export function AboutMePanel() {
           <h2>About me</h2>
           <p>
             Hello everyone, my name is Mauro. I'm currently working as a Full Stack Developer, which I enjoy
-            a lot. SInce I was young I love challenges, puzzles and logic-solving problems,
+            a lot. Since I was young I love challenges, puzzles and logic-solving problems,
             so I feel I work as an hobby for a living.
           </p>
           <p>

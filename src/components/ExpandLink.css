@@ -31,23 +31,8 @@
     color: #000000;
     transform: translateY(-1px);
   }
-  
-  .expand-link-arrow {
-    right: 0;
-    position: absolute;
-    opacity: 0;
-    transform: translateX(-4px);
-    transition:
-      opacity 0.15s ease,
-      transform 0.15s ease;
-  }
 
   .expand-link:hover .expand-link-label {
     transform: translateX(-4px);
-  }
-  
-  .expand-link:hover .expand-link-arrow {
-    opacity: 1;
-    transform: translateX(0);
   }
   

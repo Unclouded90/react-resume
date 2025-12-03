@@ -20,7 +20,6 @@ export function ExpandLink({ label, onClick, className = "" }: ExpandLinkProps) 
       onClick={handleClick}
     >
       <span className="expand-link-label">{label}</span>
-      <span className="expand-link-arrow">→</span>
     </button>
   );
 }
