@@ -1,5 +1,4 @@
 import './EducationPanel.css';
-import { ExpandLink } from './ExpandLink.tsx';
 
 type EducationPanelProps = {
     onExpand?: () => void;
@@ -10,7 +9,7 @@ export function EducationPanel({ onExpand }: EducationPanelProps) {
         <div className="education-panel">
             <h2 className="education-heading">Education</h2>
 
-            <div className="education-card">
+            <div className="education-card" onClick={onExpand}>
                 <div className="education-card-header">
                     <div>
                         <h3 className="education-degree">
@@ -20,13 +19,10 @@ export function EducationPanel({ onExpand }: EducationPanelProps) {
                             UTAD
                         </p>
                     </div>
-                    <ExpandLink
-                        label="Expand"
-                        onClick={onExpand}
-                    />
-                    <div className="education-meta-right">
-                        <p className="education-dates">Oct 2020 – Jul 2023</p>
-                    </div>
+
+                </div>
+                <div className="education-meta-right">
+                    <p className="education-dates">Oct 2020 – Jul 2023</p>
                 </div>
             </div>
         </div>

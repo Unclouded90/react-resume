@@ -1,49 +1,62 @@
 .education-panel {
     display: flex;
     flex-direction: column;
-  }
-  
-  .education-heading {
+}
+
+.education-heading {
     margin: 0 0 0.8rem;
     font-size: 1.4rem;
-  }
+}
 
-  .education-card {
-    background: #292929;
+.education-card {
+    background: #131313;
     border-radius: 14px;
     border: 1px solid #262626;
     padding: 1.2rem 1.4rem;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: stretch;
+    gap: 1.5rem;
+    position: relative;
+    cursor: pointer;
+}
+
+.education-card:hover {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 18px 45px rgba(0, 0, 0, 0.45);
+    border-color: #3a3a3a;
+}
+
+.education-card-header {
+    top: 1rem;
     display: flex;
     flex-direction: column;
-    gap: 0.6rem;
-  }
-  
-  .education-card-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline; 
-    gap: 1.5rem;
-  }
-  
-  .education-degree {
+}
+
+.education-degree {
     margin: 0;
     font-size: 1.05rem;
     font-weight: 600;
-  }
-  
-  .education-institution {
+}
+
+.education-institution {
     margin: 0.2rem 0 0;
     font-size: 0.95rem;
     opacity: 0.9;
-  }
-  
-  .education-meta-right {
-    text-align: right;
-    font-size: 0.8rem;
-  }
-  
-  .education-dates {
+}
+
+.education-meta-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: flex-end;
+}
+
+.education-dates {
     margin: 0;
+    font-size: 0.8rem;
     opacity: 0.8;
-  }
-  
+    padding-right: 0.2rem;
+}

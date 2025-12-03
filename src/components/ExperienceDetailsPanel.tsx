@@ -45,7 +45,6 @@ export function ExperienceDetailsPanel({
                 <div className="exp-card exp-card--tech">
                     <h3 className="exp-section-title">Tech</h3>
                     <p className="exp-text exp-tech-text">
-                        <span className="exp-tech-label">Tech:</span>{' '}
                         {tech.join(', ')}
                     </p>
                 </div>
