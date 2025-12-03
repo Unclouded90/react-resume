@@ -13,16 +13,19 @@
     border-radius: 14px;
     border: 1px solid #262626;
     padding: 1.2rem 1.4rem;
+  
     display: flex;
-    flex-direction: column;
-    gap: 0.6rem;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: stretch;
+    gap: 1.5rem;
+    position: relative;
   }
   
-  .experience-card-header {
+  .experience-main {
+    top: 1rem;
     display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 1.5rem;
+    flex-direction: column;
   }
   
   .experience-position {
@@ -37,15 +40,35 @@
     opacity: 0.9;
   }
   
-  .experience-meta-right {
-    text-align: right;
-    font-size: 0.8rem;
+  .experience-side {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: flex-end;
   }
   
-  .experience-location,
   .experience-dates {
     margin: 0;
+    font-size: 0.8rem;
     opacity: 0.8;
+    padding-right: 0.2rem;
   }
-
+  
+  .experience-expand-link {
+    position: absolute;
+    top: 1.1rem;         /* distance from the top edge of the card */
+    right: 1.2rem;       /* distance from the right edge of the card */
+    padding: 0;          /* no pill padding */
+    border: none;
+    background: transparent;
+    font-size: 0.6rem;
+    opacity: 0.8;
+    padding-right: 0.4rem;
+  }
+  
+  .experience-expand-link:hover {
+    background: transparent;  /* don’t show pill bg for this one */
+    color: #ffffff;
+    transform: none;
+  }
   

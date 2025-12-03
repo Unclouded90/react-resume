@@ -14,9 +14,18 @@
     font-weight: 500;
     cursor: pointer;
     opacity: 0.8;
-    transition: background 0.2s ease, color 0.2s ease, transform 0.1s ease;
+    position: relative;
+    padding-right: 1.1rem;
   }
   
+  .expand-link-label {
+    transform: translateX(0);
+    transition:
+      transform 0.2s ease,
+      color 0.2s ease,
+      opacity 0.2s ease;
+  }
+
   .expand-link:hover {
     background: #ffffff;
     color: #000000;
@@ -24,11 +33,17 @@
   }
   
   .expand-link-arrow {
+    right: 0;
+    position: absolute;
     opacity: 0;
     transform: translateX(-4px);
     transition:
       opacity 0.15s ease,
       transform 0.15s ease;
+  }
+
+  .expand-link:hover .expand-link-label {
+    transform: translateX(-4px);
   }
   
   .expand-link:hover .expand-link-arrow {
