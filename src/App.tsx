@@ -6,6 +6,8 @@ import { ExperiencePanel } from './components/ExperiencePanel'
 import { ExperienceDetailsPanel, type ExperienceDetailsPanelProps } from './components/ExperienceDetailsPanel';
 import { EducationPanel } from './components/EducationPanel';
 import { EducationDetailsPanel } from './components/EducationDetailsPanel';
+import { ProjectsPanel } from './components/ProjectsPanel';
+
 import './App.css'
 
 type ActivePanel = "about" | "experience" | "tech" | "education" | null;
@@ -15,14 +17,14 @@ const jobs = [
         title: "Full Stack Developer",
         company: (
             <a
-              href="https://www.eufinity.com/"
-              target="_blank"
-              rel="noreferrer"
-              className="exp-company-link"
+                href="https://www.eufinity.com/"
+                target="_blank"
+                rel="noreferrer"
+                className="exp-company-link"
             >
-              Eufinity Solutions
+                Eufinity Solutions
             </a>
-          ),
+        ),
         dates: "April 2024 - Present",
         description: "Currently working as a Full Stack Developer on Eufinity Solutions," +
             " a company focused on developing end-to-end retail and ERP (Enterprise Resource Planning) software solutions" +
@@ -69,6 +71,10 @@ function App() {
 
                     <section className="panel panel-education">
                         <EducationPanel onExpand={() => openPanel("education")} />
+                    </section>
+
+                    <section className="panel panel-projects">
+                        <ProjectsPanel />
                     </section>
                 </div>
             </div>
