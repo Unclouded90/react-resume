@@ -1,7 +1,6 @@
 import './HeaderPanel.css';
 import { IconBadge } from './IconBadge.tsx';
 import picCV from '../images/picCV.jpeg';
-import { ExpandLink } from './ExpandLink.tsx';
 import { SiLinkedin, SiGmail, SiGithub } from "react-icons/si";
 
 type HeaderPanelProps = {
@@ -21,10 +20,9 @@ export function HeaderPanel({ onExpand }: HeaderPanelProps) {
                 <p>Vila Real, Portugal</p>
             </div>
             <div className='about-me-row'>
-                <ExpandLink
-                    label="About me"
+                <button className='cv-button'
                     onClick={onExpand}
-                />
+                >About me</button>
             </div>
             <img className="header-photo" src={picCV} alt="Profile Picture" />
             <div className="header-actions" onClick={(e) => e.stopPropagation()}>

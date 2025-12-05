@@ -34,7 +34,7 @@
   }
   
   .project-card:hover {
-    transform: translateY(-2px) scale(1.02);
+    transform: translateY(-3px);
     box-shadow: 0 12px 30px rgba(0, 0, 0, 0.45);
     border-color: #3a3a3a;
     background: #1e1e1e;

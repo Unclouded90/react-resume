@@ -6,11 +6,21 @@ import { ExperiencePanel } from './components/ExperiencePanel'
 import { ExperienceDetailsPanel, type ExperienceDetailsPanelProps } from './components/ExperienceDetailsPanel';
 import { EducationPanel } from './components/EducationPanel';
 import { EducationDetailsPanel } from './components/EducationDetailsPanel';
-import { ProjectsPanel } from './components/ProjectsPanel';
+import { ProjectPanel } from './components/ProjectPanel';
+import { ProjectDetailsPanel, type ProjectDetailsPanelProps } from './components/ProjectDetailsPanel';
+
 
 import './App.css'
 
-type ActivePanel = "about" | "experience" | "tech" | "education" | null;
+type ActivePanel = "about" | "experience" | "tech" | "education" | "project" | null;
+
+type Project = {
+    id: number;
+    title: string;
+    subtitle?: string;
+    description?: string;
+    tech?: string[];
+};
 
 const jobs = [
     {
@@ -35,18 +45,91 @@ const jobs = [
             "Providing technical support, addressing and resolving client incidents and feature requests"
         ],
         tech: ["JavaScript", "TypeScript", "C++", "Java", "Node.js", "Angular", "Sequelize.js",
-            "PostgreSQL", "SQL Server", "Git", "ETL", "Technical Support"]
+            "PostgreSQL", "SQL Server", "MongoDB", "Git", "ETL", "Technical Support"]
+    },
+];
+
+const projects: Project[] = [
+    {
+        id: 1,
+        title: "NestJS API Template",
+        subtitle: "API starter with auth, Swagger, TypeORM & Docker'",
+        description: "A production-ready NestJS API template that includes built-in authentication, OpenAPI (Swagger), TypeORM setup, rate limiting, and other common features." +
+            " It was designed to help people start new projects quickly by focusing on actual business logic instead of boilerplate.",
+        tech: ["TypeScript", "NestJS", "PostgreSQL", "TypeORM", "Docker"],
+    },
+    {
+        id: 2,
+        title: "Developer Portfolio",
+        subtitle: "React(Vite) + Typescript single-page CV",
+        description: "",
+        tech: ["TypeScript", "React", "Vite", "HTML", "CSS", "Git"],
+    },
+    {
+        id: 3,
+        title: "Employee DB Manager",
+        subtitle: "Java Spring boot CRUD app for managing employees",
+        description: "",
+        tech: ["Java", "SQL Server"],
+    },
+    {
+        id: 4,
+        title: 'Event Ticketing Web App',
+        subtitle: 'Python platform for managing event ticket sales',
+        description: "",
+        tech: ["Python", "MongoDB"],
+    },
+    {
+        id: 5,
+        title: "Currency Converter",
+        subtitle: "WPF App for live rates conversion",
+        description: "",
+        tech: ["C#", ".NET", "SQL Server"],
+    },
+    {
+        id: 6,
+        title: "Tic-Tac-Toe Game",
+        subtitle: "WPF game of Tic Tac Toe",
+        description: "",
+        tech: ["C#", ".NET"],
+    },
+    {
+        id: 7,
+        title: "Pong",
+        subtitle: "2D local-multiplayer Pong game",
+        description: "",
+        tech: ["C#", ".NET"],
+    },
+    {
+        id: 8,
+        title: "Zig Zag Game",
+        subtitle: "3D game using Unity3D",
+        description: "",
+        tech: ["C#", ".NET"],
+    },
+    {
+        id: 9,
+        title: "Fruit Ninja Game",
+        subtitle: "Unity game for slicing fruit while dodging the bombs",
+        description: "",
+        tech: ["C#", ".NET"],
     },
 ];
 
 function App() {
     const [activePanel, setActivePanel] = useState<ActivePanel>(null);
     const [selectedJob, setSelectedJob] = useState<ExperienceDetailsPanelProps | null>(null);
+    const [selectedProject, setSelectedProject] = useState<ProjectDetailsPanelProps | null>(null);
 
     const openPanel = (panel: ActivePanel) => setActivePanel(panel);
+    const openProject = (project: Project) => {
+        setSelectedProject(project);
+        setActivePanel("project");
+    };
     const closePanel = () => {
         setActivePanel(null);
         setSelectedJob(null);
+        setSelectedProject(null);
     }
 
     return (
@@ -74,8 +157,9 @@ function App() {
                     </section>
 
                     <section className="panel panel-projects">
-                        <ProjectsPanel />
+                        <ProjectPanel projects={projects} onProjectClick={openProject} />
                     </section>
+
                 </div>
             </div>
 
@@ -84,7 +168,9 @@ function App() {
                     <div
                         className={
                             "panel-overlay-content" +
-                            ((activePanel === "experience" || activePanel === "education")
+                            ((activePanel === "experience" ||
+                                activePanel === "education" ||
+                                activePanel === "project")
                                 ? " panel-overlay-content--tallHeader"
                                 : "")
                         }
@@ -99,9 +185,13 @@ function App() {
                             <ExperienceDetailsPanel {...selectedJob} />
                         )}
                         {activePanel === "education" && <EducationDetailsPanel />}
+                        {activePanel === "project" && selectedProject && (
+                            <ProjectDetailsPanel {...selectedProject} />
+                        )}
                     </div>
-                </div>
-            )}
+                </div >
+            )
+            }
         </>
     )
 }

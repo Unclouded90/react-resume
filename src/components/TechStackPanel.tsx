@@ -11,7 +11,6 @@ import {
     SiSequelize,
     SiTypeorm,
     SiDocker,
-    SiKubernetes,
     SiGit,
     SiReact,
     SiMongodb,
@@ -22,10 +21,6 @@ import {
   import { MdSupportAgent } from "react-icons/md";
   import './TechStackPanel.css';
   import ETL from '../images/etl.png';
-  import ERP from '../images/erp.png';
-  import OOP from '../images/oop.png';
-  import DevOps from '../images/devops.png';
-  import RestApi from '../images/rest-api.png';
   import { IconBadge } from "./IconBadge.tsx";
   
   export function TechStackPanel() {
@@ -46,12 +41,10 @@ import {
         </div>
 
         <div className="tech-section">
-          <h3>Backend & Frameworks</h3>
+          <h3>Backend</h3>
           <div className="tech-badge-row">
             <IconBadge icon={<SiNodedotjs />} label="Node.js" />
             <IconBadge icon={<SiNestjs />} label="NestJS" />
-            <IconBadge icon={<img src={RestApi} alt="REST APIs" className="tech-custom-icon" />} label="REST APIs" />
-            <IconBadge icon={<img src={OOP} alt="OOP" className="tech-custom-icon" />} label="OOP" />
           </div>
         </div>
   
@@ -65,7 +58,7 @@ import {
         </div>
   
         <div className="tech-section">
-          <h3>ORMs & Data Layers</h3>
+          <h3>ORMs</h3>
           <div className="tech-badge-row">
             <IconBadge icon={<SiTypeorm />} label="TypeORM" />
             <IconBadge icon={<SiSequelize />} label="Sequelize.js" />
@@ -84,9 +77,7 @@ import {
         <div className="tech-section">
           <h3>DevOps & Practices</h3>
           <div className="tech-badge-row">
-            <IconBadge icon={<img src={DevOps} alt="DevOps" className="tech-custom-icon" />} label="DevOps" />
             <IconBadge icon={<SiDocker />} label="Docker" />
-            <IconBadge icon={<SiKubernetes />} label="Kubernetes" />
             <IconBadge icon={<SiGit />} label="Git" />
           </div>
         </div>
@@ -95,7 +86,6 @@ import {
           <h3>Other Skills</h3>
           <div className="tech-badge-row">
             <IconBadge icon={<img src={ETL} alt="ETL" className="tech-custom-icon" />} label="ETL" />
-            <IconBadge icon={<img src={ERP} alt="ERP" className="tech-custom-icon" />} label="ERP Systems" />
             <IconBadge icon={<MdSupportAgent />} label="Technical Support" />
           </div>
         </div>
