@@ -45,7 +45,7 @@ const jobs = [
             "Providing technical support, addressing and resolving client incidents and feature requests"
         ],
         tech: ["JavaScript", "TypeScript", "C++", "Java", "Node.js", "Angular", "Sequelize.js",
-            "PostgreSQL", "SQL Server", "MongoDB", "Git", "ETL", "Technical Support"]
+            "PostgreSQL", "MS SQL Server", "MongoDB", "Git", "ETL", "Technical Support"]
     },
 ];
 
@@ -62,57 +62,66 @@ const projects: Project[] = [
         id: 2,
         title: "Developer Portfolio",
         subtitle: "React(Vite) + Typescript single-page CV",
-        description: "",
+        description: "Single-page developer portfolio built with React, TypeScript and Vite. It uses a modular grid layout with reusable panels, plus overlay dialogs for " +
+            "detailed views, all styled with a custom and responsive design. This portfolio became one of the most interesting projects I have worked on, since I managed to " +
+            "learn React, which was the primary goal when I decided to develop the website, as well as to complete an objective of mine of having my own domain with my CV.",
         tech: ["TypeScript", "React", "Vite", "HTML", "CSS", "Git"],
     },
     {
         id: 3,
         title: "Employee DB Manager",
         subtitle: "Java Spring boot CRUD app for managing employees",
-        description: "",
-        tech: ["Java", "SQL Server"],
+        description: "Created a web application to manage employee records as a hands-on exercise to learn CRUD workflows, API creation, database integration, " +
+            "and basic UI development. The project strengthened my understanding of how data flows between the frontend, backend, and database layer.",
+        tech: ["Java", "MS SQL Server"],
     },
     {
         id: 4,
         title: 'Event Ticketing Web App',
         subtitle: 'Python platform for managing event ticket sales',
-        description: "",
+        description: "Developed a full-stack event booking platform to explore backend development with Python frameworks and working with NoSQL databases." + 
+            "This project helped me understand user flows, data modeling, and how to build APIs and views that interact with real application data.",
         tech: ["Python", "MongoDB"],
     },
     {
         id: 5,
         title: "Currency Converter",
         subtitle: "WPF App for live rates conversion",
-        description: "",
-        tech: ["C#", ".NET", "SQL Server"],
+        description: "Built a WPF application that performs real-time currency conversion as a way to learn API consumption, data binding, and desktop UI development." + 
+            " The project introduced concepts such as handling external HTTP requests, updating UI elements dynamically, and storing data with MS SQL Server.",
+        tech: ["C#", ".NET", "MS SQL Server"],
     },
     {
         id: 6,
         title: "Tic-Tac-Toe Game",
         subtitle: "WPF game of Tic Tac Toe",
-        description: "",
-        tech: ["C#", ".NET"],
+        description: "Created a Tic-Tac-Toe game in WPF to practice building desktop UI applications and implementing simple game logic. It helped me understand" + 
+            " state management, UI updates, and creating user-friendly interactive components.",
+        tech: ["C#", ".NET", "WPF"],
     },
     {
         id: 7,
         title: "Pong",
         subtitle: "2D local-multiplayer Pong game",
-        description: "",
-        tech: ["C#", ".NET"],
+        description: "Created a 2D Pong game in Unity as an introduction to game development fundamentals. The project taught me the basics of physics simulation," + 
+            " input handling, collision detection, and building simple interactive gameplay loops.",
+        tech: ["C#", ".NET", "Unity"],
     },
     {
         id: 8,
         title: "Zig Zag Game",
         subtitle: "3D game using Unity3D",
-        description: "",
-        tech: ["C#", ".NET"],
+        description: "Developed a 3D Zig Zag runner game to learn how to work with Unity’s 3D environment, object spawning, score tracking, and camera control." + 
+            " This project strengthened my understanding of game mechanics and real-time scene interactions.",
+        tech: ["C#", ".NET", "Unity"],
     },
     {
         id: 9,
         title: "Fruit Ninja Game",
         subtitle: "Unity game for slicing fruit while dodging the bombs",
-        description: "",
-        tech: ["C#", ".NET"],
+        description: "Built a Fruit Ninja-style game to practice gesture-based gameplay, random object generation, and game state management. It served as a" + 
+            " learning experience in creating dynamic interactions, animations, and challenge escalation.",
+        tech: ["C#", ".NET", "Unity"],
     },
 ];
 

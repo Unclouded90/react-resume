@@ -69,7 +69,7 @@ import {
           <h3>Databases</h3>
           <div className="tech-badge-row">
             <IconBadge icon={<SiPostgresql />} label="PostgreSQL" />
-            <IconBadge icon={<DiMsqlServer />} label="SQL Server" />
+            <IconBadge icon={<DiMsqlServer />} label="MS SQL Server" />
             <IconBadge icon={<SiMongodb />} label="MongoDB" />
           </div>
         </div>
