@@ -25,7 +25,7 @@
         "experience tech"
         "education tech"
         "projects projects"
-        "certificates certificates";
+        "certificates achievements";
     gap: 1.5rem;
 }
 
@@ -66,12 +66,16 @@
 @media (max-width: 900px) {
     .layout-grid {
         grid-template-columns: 1fr;
-        grid-template-rows: auto auto auto;
+        grid-template-rows: auto auto auto auto auto auto auto;
         grid-template-areas:
-            "header"
-            "tech"
-            "experience";
-    }
+          "header"
+          "tech"
+          "experience"
+          "education"
+          "projects"
+          "certificates"
+          "achievements";
+      }
 }
 
 .panel-overlay {

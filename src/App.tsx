@@ -10,12 +10,10 @@ import { ProjectPanel } from './components/ProjectPanel';
 import { ProjectDetailsPanel, type ProjectDetailsPanelProps } from './components/ProjectDetailsPanel';
 import { CertificatePanel } from './components/CertificatePanel';
 import { CertificateDetailsPanel, type CertificateDetailsPanelProps } from './components/CertificateDetailsPanel';
-
-
-
+import { AchievementPanel, type Achievement } from './components/AchievementPanel';
 import './App.css'
 
-type ActivePanel = "about" | "experience" | "tech" | "education" | "project" | "certificate" | null;
+type ActivePanel = "about" | "experience" | "tech" | "education" | "project" | "certificate" | "certificatesAll" | null;
 
 type Project = {
     id: number;
@@ -27,7 +25,7 @@ type Project = {
     extraDetails?: string[];
 };
 
-type Certificate = CertificateDetailsPanelProps & { id: number };
+type Certificate = CertificateDetailsPanelProps & { id: number, featured?: boolean };
 
 const jobs = [
     {
@@ -182,6 +180,7 @@ const certificates: Certificate[] = [
             "Serverless",
             "CI/CD",
             "Automation"],
+        featured: true,
     },
     {
         id: 2,
@@ -198,9 +197,48 @@ const certificates: Certificate[] = [
             "REST APIs",
             "Application Security",
             "Monitoring & Observability"],
+        featured: true,
     },
-    // add more as needed
+    {
+        id: 3,
+        title: "Spring Boot 3, Spring 6 & Hibernate for Beginners",
+        subtitle: "Udemy · 2023",
+        description:
+            "Enhanced my Java expertise through comprehensive training in Spring Boot 3 and Spring Framework 6, covering Spring Core, Spring MVC, RESTful CRUD APIs, " +
+            "Spring Security (with encrypted passwords), Hibernate/JPA CRUD and advanced mappings, Spring Data JPA/REST, Thymeleaf, and AOP. Developed several real-time " +
+            "projects from scratch, including secure REST APIs, MVC CRUD applications, and full OpenAPI/Swagger documentation integrated with MySQL.",
+        tools: ["Java",
+            "Spring Boot 3",
+            "Spring Framework 6",
+            "Spring Core",
+            "Spring MVC",
+            "REST API",
+            "Spring Security",
+            "Hibernate",
+            "JPA",
+            "Spring Data JPA",
+            "Spring Data REST",
+            "Thymeleaf",
+            "AOP (Aspect-Oriented Programming)",
+            "OpenAPI",
+            "Swagger",
+            "Maven",
+            "MySQL"],
+        featured: true,
+    },
 ];
+
+const achievements: Achievement[] = [
+    {
+        id: 1,
+        title: "Detection of Landmarks in X-Ray Images through Deep Learning",
+        subtitle: "Published in Springer",
+        linkUrl: "https://www.springerprofessional.de/en/detection-of-landmarks-in-x-ray-images-through-deep-learning/27270288",
+        linkLabel: "View publication",
+    },
+];
+
+const featuredCertificates = certificates.filter((c) => c.featured);
 
 function App() {
     const [activePanel, setActivePanel] = useState<ActivePanel>(null);
@@ -268,7 +306,12 @@ function App() {
                                 setSelectedCertificate(certificate);
                                 openPanel("certificate");
                             }}
+                            onViewAllClick={() => openPanel("certificatesAll")}
                         />
+                    </section>
+
+                    <section className="panel panel-achievements">
+                        <AchievementPanel achievements={achievements} />
                     </section>
 
                 </div>
@@ -282,7 +325,8 @@ function App() {
                             ((activePanel === "experience" ||
                                 activePanel === "education" ||
                                 activePanel === "project" ||
-                                activePanel === "certificate")
+                                activePanel === "certificate" ||
+                                activePanel === "certificatesAll")
                                 ? " panel-overlay-content--tallHeader"
                                 : "")
                         }
@@ -302,6 +346,16 @@ function App() {
                         )}
                         {activePanel === "certificate" && selectedCertificate && (
                             <CertificateDetailsPanel {...selectedCertificate} />
+                        )}
+                        {activePanel === "certificatesAll" && (
+                            <CertificatePanel
+                                certificates={certificates}
+                                onCertificateClick={(certificate) => {
+                                    setSelectedCertificate(certificate);
+                                    openPanel("certificate");
+                                }}
+                                title="All Certificates"
+                            />
                         )}
                     </div>
                 </div >

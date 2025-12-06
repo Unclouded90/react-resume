@@ -9,15 +9,31 @@ type Certificate = {
 type CertificatePanelProps = {
     certificates: Certificate[];
     onCertificateClick: (certificate: Certificate) => void;
+    onViewAllClick?: () => void;
+    title?: string;
 };
 
 export function CertificatePanel({
     certificates,
     onCertificateClick,
+    onViewAllClick,
+    title = "Certificates",
 }: CertificatePanelProps) {
     return (
         <div className="projects-panel">
-            <h2 className="projects-heading">Certificates</h2>
+            <div className="projects-panel-header-row">
+                <h2 className="projects-heading">{title}</h2>
+
+                {onViewAllClick && (
+                    <button
+                        type="button"
+                        className="projects-view-all-btn"
+                        onClick={onViewAllClick}
+                    >
+                        View all
+                    </button>
+                )}
+            </div>
 
             <div className="projects-grid">
                 {certificates.map((certificate) => (
