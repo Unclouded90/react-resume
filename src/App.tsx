@@ -8,11 +8,14 @@ import { EducationPanel } from './components/EducationPanel';
 import { EducationDetailsPanel } from './components/EducationDetailsPanel';
 import { ProjectPanel } from './components/ProjectPanel';
 import { ProjectDetailsPanel, type ProjectDetailsPanelProps } from './components/ProjectDetailsPanel';
+import { CertificatePanel } from './components/CertificatePanel';
+import { CertificateDetailsPanel, type CertificateDetailsPanelProps } from './components/CertificateDetailsPanel';
+
 
 
 import './App.css'
 
-type ActivePanel = "about" | "experience" | "tech" | "education" | "project" | null;
+type ActivePanel = "about" | "experience" | "tech" | "education" | "project" | "certificate" | null;
 
 type Project = {
     id: number;
@@ -23,6 +26,8 @@ type Project = {
     githubUrl?: string;
     extraDetails?: string[];
 };
+
+type Certificate = CertificateDetailsPanelProps & { id: number };
 
 const jobs = [
     {
@@ -156,10 +161,53 @@ const projects: Project[] = [
     },
 ];
 
+const certificates: Certificate[] = [
+    {
+        id: 1,
+        title: "IBM DevOps and Software Engineering Professional Certificate",
+        subtitle: "Coursera · 2023",
+        description:
+            "Professional certification given by IBM, where I acquired skills related to DevOps in a software development environment using Agile and Scrum " +
+            "methodologies. I was also trained in Cloud Native technologies, Shell Script automation, using platforms such as Github, developing applications " +
+            "using Microservices, learning about Containers (Docker/Kubernetes/OpenShift) and Serverless technologies, as well as implementing automation, CI and CD tools.",
+        tools: ["DevOps",
+            "Agile & Scrum",
+            "Cloud Native",
+            "Shell Scripting",
+            "GitHub",
+            "Microservices",
+            "Docker",
+            "Kubernetes",
+            "OpenShift",
+            "Serverless",
+            "CI/CD",
+            "Automation"],
+    },
+    {
+        id: 2,
+        title: "IBM Back-End Development Professional Certificate",
+        subtitle: "Coursera · 2023",
+        description:
+            "Professional certification given by IBM, where I deepened my knowledge of Back-End development. I applied the techniques I obtained in the previous " +
+            "certification (IBM DevOps and Software Engineering) and further developed my skills with tools such as SQL, Django, and also obtained training in " +
+            "the area of Application Security and Monitoring.",
+        tools: ["Back-End Development",
+            "SQL",
+            "Django",
+            "Python",
+            "REST APIs",
+            "Application Security",
+            "Monitoring & Observability"],
+    },
+    // add more as needed
+];
+
 function App() {
     const [activePanel, setActivePanel] = useState<ActivePanel>(null);
     const [selectedJob, setSelectedJob] = useState<ExperienceDetailsPanelProps | null>(null);
     const [selectedProject, setSelectedProject] = useState<ProjectDetailsPanelProps | null>(null);
+    const [selectedCertificate, setSelectedCertificate] = useState<Certificate | null>(null);
+
 
     const openPanel = (panel: ActivePanel) => setActivePanel(panel);
     const openProject = (project: Project) => {
@@ -170,6 +218,7 @@ function App() {
         setActivePanel(null);
         setSelectedJob(null);
         setSelectedProject(null);
+        setSelectedCertificate(null);
     }
 
     useEffect(() => {
@@ -212,6 +261,16 @@ function App() {
                         <ProjectPanel projects={projects} onProjectClick={openProject} />
                     </section>
 
+                    <section className="panel panel-certificates">
+                        <CertificatePanel
+                            certificates={certificates}
+                            onCertificateClick={(certificate) => {
+                                setSelectedCertificate(certificate);
+                                openPanel("certificate");
+                            }}
+                        />
+                    </section>
+
                 </div>
             </div>
 
@@ -222,7 +281,8 @@ function App() {
                             "panel-overlay-content" +
                             ((activePanel === "experience" ||
                                 activePanel === "education" ||
-                                activePanel === "project")
+                                activePanel === "project" ||
+                                activePanel === "certificate")
                                 ? " panel-overlay-content--tallHeader"
                                 : "")
                         }
@@ -239,6 +299,9 @@ function App() {
                         {activePanel === "education" && <EducationDetailsPanel />}
                         {activePanel === "project" && selectedProject && (
                             <ProjectDetailsPanel {...selectedProject} />
+                        )}
+                        {activePanel === "certificate" && selectedCertificate && (
+                            <CertificateDetailsPanel {...selectedCertificate} />
                         )}
                     </div>
                 </div >

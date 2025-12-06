@@ -19,12 +19,13 @@
     padding: 0 1.5rem;
     display: grid;
     grid-template-columns: 2fr 1fr;
-    grid-template-rows: 160px auto auto auto auto;
+    grid-template-rows: 160px auto auto auto auto auto;
     grid-template-areas:
         "header tech"
         "experience tech"
         "education tech"
-        "projects projects";
+        "projects projects"
+        "certificates certificates";
     gap: 1.5rem;
 }
 
