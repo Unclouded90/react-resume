@@ -13,7 +13,16 @@ import { CertificateDetailsPanel, type CertificateDetailsPanelProps } from './co
 import { AchievementPanel, type Achievement } from './components/AchievementPanel';
 import './App.css'
 
-type ActivePanel = "about" | "experience" | "tech" | "education" | "project" | "certificate" | "certificatesAll" | null;
+type ActivePanel =
+    "about"
+    | "experience"
+    | "tech"
+    | "education"
+    | "project"
+    | "projectsAll"
+    | "certificate"
+    | "certificatesAll"
+    | null;
 
 type Project = {
     id: number;
@@ -23,6 +32,7 @@ type Project = {
     tech?: string[];
     githubUrl?: string;
     extraDetails?: string[];
+    featured?: boolean;
 };
 
 type Certificate = CertificateDetailsPanelProps & { id: number, featured?: boolean };
@@ -77,8 +87,8 @@ const projects: Project[] = [
             "Documents how to add new feature modules using the Nest CLI, extending BaseService and wiring entities, DTOs, controllers and tests to follow the same conventions.",
             "Provides npm scripts for common tasks such as linting, formatting, running tests, building the app and managing migrations, keeping day-to-day workflows standardized."
         ],
-
         tech: ["TypeScript", "NestJS", "PostgreSQL", "TypeORM", "Docker"],
+        featured: true,
     },
     {
         id: 2,
@@ -100,6 +110,7 @@ const projects: Project[] = [
         ],
         tech: ["TypeScript", "React", "Vite", "HTML", "CSS", "Git"],
         githubUrl: "https://github.com/Unclouded90/react-resume",
+        featured: true,
     },
     {
         id: 3,
@@ -108,6 +119,7 @@ const projects: Project[] = [
         description: "Created a web application to manage employee records as a hands-on exercise to learn CRUD workflows, API creation, database integration, " +
             "and basic UI development. The project strengthened my understanding of how data flows between the frontend, backend, and database layer.",
         tech: ["Java", "MS SQL Server"],
+        featured: true,
     },
     {
         id: 4,
@@ -239,6 +251,8 @@ const achievements: Achievement[] = [
 ];
 
 const featuredCertificates = certificates.filter((c) => c.featured);
+const featuredProjects = projects.filter((p) => p.featured);
+const homepageProjects = featuredProjects.length > 0 ? featuredProjects : projects.slice(0, 3);
 
 function App() {
     const [activePanel, setActivePanel] = useState<ActivePanel>(null);
@@ -296,12 +310,17 @@ function App() {
                     </section>
 
                     <section className="panel panel-projects">
-                        <ProjectPanel projects={projects} onProjectClick={openProject} />
+                        <ProjectPanel
+                            projects={homepageProjects}
+                            onProjectClick={openProject}
+                            onViewAllClick={() => openPanel("projectsAll")}
+                        />
                     </section>
+
 
                     <section className="panel panel-certificates">
                         <CertificatePanel
-                            certificates={certificates}
+                            certificates={featuredCertificates}
                             onCertificateClick={(certificate) => {
                                 setSelectedCertificate(certificate);
                                 openPanel("certificate");
@@ -325,6 +344,7 @@ function App() {
                             ((activePanel === "experience" ||
                                 activePanel === "education" ||
                                 activePanel === "project" ||
+                                activePanel === "projectsAll" ||
                                 activePanel === "certificate" ||
                                 activePanel === "certificatesAll")
                                 ? " panel-overlay-content--tallHeader"
@@ -343,6 +363,13 @@ function App() {
                         {activePanel === "education" && <EducationDetailsPanel />}
                         {activePanel === "project" && selectedProject && (
                             <ProjectDetailsPanel {...selectedProject} />
+                        )}
+                        {activePanel === "projectsAll" && (
+                            <ProjectPanel
+                                projects={projects}
+                                onProjectClick={openProject}
+                                title="All Projects"
+                            />
                         )}
                         {activePanel === "certificate" && selectedCertificate && (
                             <CertificateDetailsPanel {...selectedCertificate} />
