@@ -93,3 +93,36 @@
     opacity: 0.8;
     text-align: center;
 }
+
+.tech-detail-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.9rem 0.9rem;
+    align-items: flex-start;
+}
+
+.tech-detail-column {
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+}
+
+.tech-detail-card {
+    padding: 1rem 1.6rem;
+}
+
+.tech-detail-card .tech-section {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.2rem;
+}
+
+.tech-detail-card .tech-section h3 {
+    margin: 0;
+}
+
+.tech-badge-row--detail {
+    justify-content: flex-start;
+    padding-left: 3rem;
+}
