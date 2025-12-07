@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
 import { AboutMePanel } from './components/AboutMePanel';
-import { HeaderPanel } from './components/HeaderPanel'
-import { TechStackPanel } from './components/TechStackPanel'
-import { ExperiencePanel } from './components/ExperiencePanel'
+import { HeaderPanel } from './components/HeaderPanel';
+import { TechStackPanel } from './components/TechStackPanel';
+import { TechStackDetailsPanel } from './components/TechStackDetailsPanel';
+import { ExperiencePanel } from './components/ExperiencePanel';
 import { ExperienceDetailsPanel, type ExperienceDetailsPanelProps } from './components/ExperienceDetailsPanel';
 import { EducationPanel } from './components/EducationPanel';
 import { EducationDetailsPanel } from './components/EducationDetailsPanel';
@@ -11,7 +12,7 @@ import { ProjectDetailsPanel, type ProjectDetailsPanelProps } from './components
 import { CertificatePanel } from './components/CertificatePanel';
 import { CertificateDetailsPanel, type CertificateDetailsPanelProps } from './components/CertificateDetailsPanel';
 import { AchievementPanel, type Achievement } from './components/AchievementPanel';
-import './App.css'
+import './App.css';
 
 type ActivePanel =
     "about"
@@ -376,7 +377,7 @@ function App() {
                     </section>
 
                     <section className="panel panel-techstack">
-                        <TechStackPanel />
+                        <TechStackPanel onExpand={() => openPanel("tech")} />
                     </section>
 
                     <section className="panel panel-education">
@@ -417,6 +418,7 @@ function App() {
                         className={
                             "panel-overlay-content" +
                             ((activePanel === "experience" ||
+                                activePanel === "tech" ||
                                 activePanel === "education" ||
                                 activePanel === "project" ||
                                 activePanel === "projectsAll" ||
@@ -433,6 +435,7 @@ function App() {
 
                         <div className="panel-overlay-scroll">
                             {activePanel === "about" && <AboutMePanel />}
+                            {activePanel === "tech" && <TechStackDetailsPanel />}
                             {activePanel === 'experience' && selectedJob && (
                                 <ExperienceDetailsPanel {...selectedJob} />
                             )}

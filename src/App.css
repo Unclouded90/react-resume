@@ -21,7 +21,7 @@
     grid-template-columns: 2fr 1fr;
     grid-template-rows: 160px auto auto auto auto auto;
     grid-template-areas:
-        "header tech"
+        "header header"
         "experience tech"
         "education tech"
         "projects projects"
@@ -39,6 +39,8 @@
 
 .panel-header {
     grid-area: header;
+    padding-left: 5rem;
+    padding-right: 3rem;
 }
 
 .panel-experience {
@@ -47,8 +49,6 @@
 
 .panel-techstack {
     grid-area: tech;
-    min-height: 490px;
-    height: 100%;
 }
 
 .panel-projects {
@@ -102,21 +102,21 @@
     box-shadow: 0 24px 80px rgba(0, 0, 0, 0.85);
 
     position: relative;
-    overflow: visible;         /* don't clip the close button */
-    display: flex;             /* so inner scroll can flex */
+    overflow: visible;
+    display: flex;
     flex-direction: column;
     padding: 0;
 }
 
 .panel-overlay-scroll {
-    padding: 2.5rem 2.4rem 2.4rem;  /* restores nice inner spacing */
-    max-height: calc(100vh - 6rem); /* same vertical limit as the panel */
-    overflow-y: auto;               /* scroll INSIDE here */
+    padding: 2.5rem 2.4rem 2.4rem;
+    max-height: calc(100vh - 6rem);
+    overflow-y: auto;
     box-sizing: border-box;
 
-    flex: 1;                        /* fill the panel */
-    min-height: 0;                  /* IMPORTANT: allow flex child to shrink and scroll */
-    border-radius: 20px;            /* keeps content respecting rounded corners */
+    flex: 1;
+    min-height: 0;
+    border-radius: 20px;
 }
 
 .panel-overlay-close {
