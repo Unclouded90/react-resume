@@ -238,6 +238,60 @@ const certificates: Certificate[] = [
             "MySQL"],
         featured: true,
     },
+    {
+        id: 4,
+        title: "Java Data Structures & Algorithms",
+        subtitle: "Udemy · 2023",
+        description: "Strengthened foundational problem-solving skills by learning how core data structures and algorithms work under the hood. This included analyzing time and " + 
+            "space complexity, implementing classical algorithms, and applying them in multiple coding challenges designed to improve logical reasoning.",
+        tools: [
+            "Java",
+            "Data Structures",
+            "Algorithms",
+            "Big-O Complexity"],
+    },
+    {
+        id: 5,
+        title: "Complete C# Masterclass",
+        subtitle: "Udemy · 2023",
+        description: "Expanded my knowledge of C# and the .NET ecosystem through hands-on projects, acquiring practical experience in object-oriented programming, application " + 
+            "architecture, and UI development. The course also introduced game development workflows and desktop application design.",
+        tools: [
+            "C#",
+            ".NET",
+            "OOP",
+            "ASP.NET",
+            "WPF",
+            "Unity3D"],
+    },
+    {
+        id: 6,
+        title: "Python for Everybody",
+        subtitle: "Coursera · 2021",
+        description: "Built a strong foundation in Python programming, covering everything from scripting fundamentals to working with real data. Gained experience with REST APIs, " + 
+            "data analysis techniques, and SQL integration, enabling me to work with end-to-end Python applications.",
+        tools: [
+            "Python",
+            "REST APIs",
+            "Data analysis",
+            "OOP",
+            "SQL",
+            "ORM"],
+    },
+    {
+        id: 7,
+        title: "Machine Learning",
+        subtitle: "Coursera · 2021",
+        description: "Developed a working understanding of machine learning concepts using Python, exploring supervised and unsupervised learning, neural networks, and common AI " + 
+            "workflows. Gained practical experience training models, evaluating performance, and experimenting with modern ML techniques.",
+        tools: [
+            "Python",
+            "Machine Learning (Supervised & Unsupervised)",
+            "AI fundamentals",
+            "Deep Learning",
+            "ML algorithms",
+            "ML workflows"],
+    }
 ];
 
 const achievements: Achievement[] = [
@@ -368,7 +422,7 @@ function App() {
                             <ProjectPanel
                                 projects={projects}
                                 onProjectClick={openProject}
-                                title="All Projects"
+                                title="Personal Projects"
                             />
                         )}
                         {activePanel === "certificate" && selectedCertificate && (
@@ -381,7 +435,7 @@ function App() {
                                     setSelectedCertificate(certificate);
                                     openPanel("certificate");
                                 }}
-                                title="All Certificates"
+                                title="Certificates"
                             />
                         )}
                     </div>

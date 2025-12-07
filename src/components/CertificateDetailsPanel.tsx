@@ -32,7 +32,7 @@ export function CertificateDetailsPanel({
             )}
             {tools.length > 0 && (
                 <div className="exp-card exp-card--tech">
-                    <h3 className="exp-section-title">Tools:</h3>
+                    <h3 className="exp-section-title">Tools/Topics:</h3>
                     <p className="exp-text">{tools.join(', ')}</p>
                 </div>
             )}
