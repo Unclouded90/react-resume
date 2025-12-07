@@ -242,7 +242,7 @@ const certificates: Certificate[] = [
         id: 4,
         title: "Java Data Structures & Algorithms",
         subtitle: "Udemy · 2023",
-        description: "Strengthened foundational problem-solving skills by learning how core data structures and algorithms work under the hood. This included analyzing time and " + 
+        description: "Strengthened foundational problem-solving skills by learning how core data structures and algorithms work under the hood. This included analyzing time and " +
             "space complexity, implementing classical algorithms, and applying them in multiple coding challenges designed to improve logical reasoning.",
         tools: [
             "Java",
@@ -254,7 +254,7 @@ const certificates: Certificate[] = [
         id: 5,
         title: "Complete C# Masterclass",
         subtitle: "Udemy · 2023",
-        description: "Expanded my knowledge of C# and the .NET ecosystem through hands-on projects, acquiring practical experience in object-oriented programming, application " + 
+        description: "Expanded my knowledge of C# and the .NET ecosystem through hands-on projects, acquiring practical experience in object-oriented programming, application " +
             "architecture, and UI development. The course also introduced game development workflows and desktop application design.",
         tools: [
             "C#",
@@ -268,7 +268,7 @@ const certificates: Certificate[] = [
         id: 6,
         title: "Python for Everybody",
         subtitle: "Coursera · 2021",
-        description: "Built a strong foundation in Python programming, covering everything from scripting fundamentals to working with real data. Gained experience with REST APIs, " + 
+        description: "Built a strong foundation in Python programming, covering everything from scripting fundamentals to working with real data. Gained experience with REST APIs, " +
             "data analysis techniques, and SQL integration, enabling me to work with end-to-end Python applications.",
         tools: [
             "Python",
@@ -282,7 +282,7 @@ const certificates: Certificate[] = [
         id: 7,
         title: "Machine Learning",
         subtitle: "Coursera · 2021",
-        description: "Developed a working understanding of machine learning concepts using Python, exploring supervised and unsupervised learning, neural networks, and common AI " + 
+        description: "Developed a working understanding of machine learning concepts using Python, exploring supervised and unsupervised learning, neural networks, and common AI " +
             "workflows. Gained practical experience training models, evaluating performance, and experimenting with modern ML techniques.",
         tools: [
             "Python",
@@ -310,6 +310,7 @@ const homepageProjects = featuredProjects.length > 0 ? featuredProjects : projec
 
 function App() {
     const [activePanel, setActivePanel] = useState<ActivePanel>(null);
+    const [previousPanel, setPreviousPanel] = useState<ActivePanel>(null);
     const [selectedJob, setSelectedJob] = useState<ExperienceDetailsPanelProps | null>(null);
     const [selectedProject, setSelectedProject] = useState<ProjectDetailsPanelProps | null>(null);
     const [selectedCertificate, setSelectedCertificate] = useState<Certificate | null>(null);
@@ -325,6 +326,7 @@ function App() {
         setSelectedJob(null);
         setSelectedProject(null);
         setSelectedCertificate(null);
+        setPreviousPanel(null);
     }
 
     useEffect(() => {
@@ -338,6 +340,24 @@ function App() {
             document.body.style.overflow = '';
         };
     }, [activePanel]);
+
+    const handleOverlayBackgroundClick = () => {
+        if (activePanel === "project" && previousPanel === "projectsAll") {
+            setActivePanel("projectsAll");
+            setSelectedProject(null);
+            setPreviousPanel(null);
+            return;
+        }
+
+        if (activePanel === "certificate" && previousPanel === "certificatesAll") {
+            setActivePanel("certificatesAll");
+            setSelectedCertificate(null);
+            setPreviousPanel(null);
+            return;
+        }
+
+        closePanel();
+    };
 
     return (
         <>
@@ -391,7 +411,8 @@ function App() {
             </div>
 
             {activePanel && (
-                <div className="panel-overlay" onClick={closePanel}>
+                <div className="panel-overlay" onClick={handleOverlayBackgroundClick}>
+
                     <div
                         className={
                             "panel-overlay-content" +
@@ -410,34 +431,40 @@ function App() {
                             ✕
                         </button>
 
-                        {activePanel === "about" && <AboutMePanel />}
-                        {activePanel === 'experience' && selectedJob && (
-                            <ExperienceDetailsPanel {...selectedJob} />
-                        )}
-                        {activePanel === "education" && <EducationDetailsPanel />}
-                        {activePanel === "project" && selectedProject && (
-                            <ProjectDetailsPanel {...selectedProject} />
-                        )}
-                        {activePanel === "projectsAll" && (
-                            <ProjectPanel
-                                projects={projects}
-                                onProjectClick={openProject}
-                                title="Personal Projects"
-                            />
-                        )}
-                        {activePanel === "certificate" && selectedCertificate && (
-                            <CertificateDetailsPanel {...selectedCertificate} />
-                        )}
-                        {activePanel === "certificatesAll" && (
-                            <CertificatePanel
-                                certificates={certificates}
-                                onCertificateClick={(certificate) => {
-                                    setSelectedCertificate(certificate);
-                                    openPanel("certificate");
-                                }}
-                                title="Certificates"
-                            />
-                        )}
+                        <div className="panel-overlay-scroll">
+                            {activePanel === "about" && <AboutMePanel />}
+                            {activePanel === 'experience' && selectedJob && (
+                                <ExperienceDetailsPanel {...selectedJob} />
+                            )}
+                            {activePanel === "education" && <EducationDetailsPanel />}
+                            {activePanel === "project" && selectedProject && (
+                                <ProjectDetailsPanel {...selectedProject} />
+                            )}
+                            {activePanel === "projectsAll" && (
+                                <ProjectPanel
+                                    projects={projects}
+                                    onProjectClick={(project) => {
+                                        setPreviousPanel("projectsAll");
+                                        openProject(project);
+                                    }}
+                                    title="Personal Projects"
+                                />
+                            )}
+                            {activePanel === "certificate" && selectedCertificate && (
+                                <CertificateDetailsPanel {...selectedCertificate} />
+                            )}
+                            {activePanel === "certificatesAll" && (
+                                <CertificatePanel
+                                    certificates={certificates}
+                                    onCertificateClick={(certificate) => {
+                                        setPreviousPanel("certificatesAll");
+                                        setSelectedCertificate(certificate);
+                                        openPanel("certificate");
+                                    }}
+                                    title="Certificates"
+                                />
+                            )}
+                        </div>
                     </div>
                 </div >
             )

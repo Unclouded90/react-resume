@@ -20,6 +20,10 @@ export function ProjectDetailsPanel({
 }: ProjectDetailsPanelProps) {
     const [showMore, setShowMore] = useState(false);
 
+    const hasExtraDetails = Array.isArray(extraDetails)
+        ? extraDetails.length > 0
+        : !!extraDetails;
+
     return (
         <div className="centered-panel experience-panel">
             <div className="exp-card exp-card--header">
@@ -45,7 +49,7 @@ export function ProjectDetailsPanel({
                 <div className="exp-card">
                     <h3 className="exp-section-title">Description</h3>
                     {description && <p className="exp-text">{description}</p>}
-                    {extraDetails && !showMore && (
+                    {hasExtraDetails && !showMore && (
                         <button
                             className="exp-toggle-btn"
                             onClick={() => setShowMore(true)}
@@ -57,7 +61,7 @@ export function ProjectDetailsPanel({
                 </div>
             )}
 
-            {extraDetails && showMore && (
+            {hasExtraDetails && showMore && (
                 <div className="exp-card exp-card--extra">
                     {Array.isArray(extraDetails) ? (
                         <ul className="exp-list">
@@ -78,7 +82,7 @@ export function ProjectDetailsPanel({
                     </button>
                 </div>
             )}
-            
+
             {(tech.length > 0) && (
                 <div className="exp-card exp-card--tech">
                     {tech.length > 0 && (

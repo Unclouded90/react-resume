@@ -7,6 +7,11 @@ export type CertificateDetailsPanelProps = {
     tools?: string[];
 };
 
+function splitIntoTwoColumns(items: string[]) {
+    const midpoint = Math.ceil(items.length / 2);
+    return [items.slice(0, midpoint), items.slice(midpoint)];
+}
+
 export function CertificateDetailsPanel({
     title,
     subtitle,
@@ -32,8 +37,25 @@ export function CertificateDetailsPanel({
             )}
             {tools.length > 0 && (
                 <div className="exp-card exp-card--tech">
-                    <h3 className="exp-section-title">Tools/Topics:</h3>
-                    <p className="exp-text">{tools.join(', ')}</p>
+                    <h3 className="exp-section-title">Tools / Topics</h3>
+
+                    {(() => {
+                        const [left, right] = splitIntoTwoColumns(tools);
+                        return (
+                            <div className="tech-columns">
+                                <ul className="tech-column">
+                                    {left.map((item, i) => (
+                                        <li key={i}>{item}</li>
+                                    ))}
+                                </ul>
+                                <ul className="tech-column">
+                                    {right.map((item, i) => (
+                                        <li key={i}>{item}</li>
+                                    ))}
+                                </ul>
+                            </div>
+                        );
+                    })()}
                 </div>
             )}
         </div>
