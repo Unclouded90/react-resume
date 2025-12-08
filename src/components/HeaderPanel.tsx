@@ -24,7 +24,7 @@ export function HeaderPanel({ onExpand }: HeaderPanelProps) {
                 >About me</button>
             </div>
             <img className="header-photo" 
-                src="https://media.licdn.com/dms/image/v2/D4D03AQF5MuOHjhbGUA/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1728218897508?e=1766620800&v=beta&t=grZPs3PZj5qIYMI8LaeXT2F0pnVt3cM4mB2G60chha8" 
+                src="/picCV.jpeg"
                 alt="Profile Picture" />
             <div className="header-actions" onClick={(e) => e.stopPropagation()}>
                 <div className="header-icon-row">
