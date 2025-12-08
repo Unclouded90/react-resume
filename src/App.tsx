@@ -62,7 +62,7 @@ const jobs = [
             "Integrating our software with automatic payment terminals across multiple countries",
             "Providing technical support, addressing and resolving client incidents and feature requests"
         ],
-        tech: ["JavaScript", "TypeScript", "C++", "Java", "Node.js", "Angular", "Sequelize.js",
+        tech: ["TypeScript", "C++", "JavaScript", "Java", "Node.js", "Angular", "Sequelize.js",
             "PostgreSQL", "MS SQL Server", "MongoDB", "Git", "ETL", "Technical Support"]
     },
 ];
@@ -111,7 +111,7 @@ const projects: Project[] = [
             "Responsive layout adapts naturally via CSS Grid and Flexbox.",
             "Architecture supports future additions such as theme switching and language toggling in the header."
         ],
-        tech: ["TypeScript", "React", "Vite", "HTML", "CSS", "Git"],
+        tech: ["TypeScript", "React", "HTML", "CSS", "Git"],
         githubUrl: "https://github.com/Unclouded90/react-resume",
         featured: true,
     },
@@ -138,7 +138,7 @@ const projects: Project[] = [
         subtitle: "WPF App for live rates conversion",
         description: "Built a WPF application that performs real-time currency conversion as a way to learn API consumption, data binding, and desktop UI development." +
             " The project introduced concepts such as handling external HTTP requests, updating UI elements dynamically, and storing data with MS SQL Server.",
-        tech: ["C#", ".NET", "MS SQL Server"],
+        tech: ["C#", "MS SQL Server"],
     },
     {
         id: 6,
@@ -146,7 +146,7 @@ const projects: Project[] = [
         subtitle: "WPF game of Tic Tac Toe",
         description: "Created a Tic-Tac-Toe game in WPF to practice building desktop UI applications and implementing simple game logic. It helped me understand" +
             " state management, UI updates, and creating user-friendly interactive components.",
-        tech: ["C#", ".NET", "WPF"],
+        tech: ["C#"],
     },
     {
         id: 7,
@@ -154,7 +154,7 @@ const projects: Project[] = [
         subtitle: "2D local-multiplayer Pong game",
         description: "Created a 2D Pong game in Unity as an introduction to game development fundamentals. The project taught me the basics of physics simulation," +
             " input handling, collision detection, and building simple interactive gameplay loops.",
-        tech: ["C#", ".NET", "Unity"],
+        tech: ["C#"],
     },
     {
         id: 8,
@@ -162,7 +162,7 @@ const projects: Project[] = [
         subtitle: "3D game using Unity3D",
         description: "Developed a 3D Zig Zag runner game to learn how to work with Unity’s 3D environment, object spawning, score tracking, and camera control." +
             " This project strengthened my understanding of game mechanics and real-time scene interactions.",
-        tech: ["C#", ".NET", "Unity"],
+        tech: ["C#"],
     },
     {
         id: 9,
@@ -170,7 +170,7 @@ const projects: Project[] = [
         subtitle: "Unity game for slicing fruit while dodging the bombs",
         description: "Built a Fruit Ninja-style game to practice gesture-based gameplay, random object generation, and game state management. It served as a" +
             " learning experience in creating dynamic interactions, animations, and challenge escalation.",
-        tech: ["C#", ".NET", "Unity"],
+        tech: ["C#"],
     },
 ];
 
