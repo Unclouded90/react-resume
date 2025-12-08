@@ -68,14 +68,43 @@
         grid-template-columns: 1fr;
         grid-template-rows: auto auto auto auto auto auto auto;
         grid-template-areas:
-          "header"
-          "tech"
-          "experience"
-          "education"
-          "projects"
-          "certificates"
-          "achievements";
-      }
+            "header"
+            "tech"
+            "experience"
+            "education"
+            "projects"
+            "certificates"
+            "achievements";
+        padding: 0 1rem;
+        gap: 1.25rem;
+    }
+
+    .layout-root {
+        align-items: flex-start;
+        padding: 2rem 0 2rem;
+    }
+
+
+    .panel-header {
+        padding: 1.5rem 1rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .panel-overlay-content {
+        width: 94vw;
+        max-height: calc(100vh - 3rem);
+    }
+
+    .panel-overlay-scroll {
+        padding: 1.75rem 1.5rem 1.5rem;
+    }
+
+    .panel-overlay-close {
+        top: 0.75rem;
+        right: 0.75rem;
+        border-radius: 999px;
+    }
 }
 
 .panel-overlay {
