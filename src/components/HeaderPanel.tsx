@@ -47,7 +47,7 @@ export function HeaderPanel({ onExpand }: HeaderPanelProps) {
             </div>
             <div className='cv-button-row'>
                 <a
-                    href="/Mauro_Fernandes_Resume.pdf"
+                    href="/Mauro_Fernandes_CV.pdf"
                     download
                     className="cv-button"
                 >
