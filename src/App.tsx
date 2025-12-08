@@ -12,6 +12,8 @@ import { ProjectDetailsPanel, type ProjectDetailsPanelProps } from './components
 import { CertificatePanel } from './components/CertificatePanel';
 import { CertificateDetailsPanel, type CertificateDetailsPanelProps } from './components/CertificateDetailsPanel';
 import { AchievementPanel, type Achievement } from './components/AchievementPanel';
+import { TechMiniCard } from "./components/TechMiniCard";
+import { techInfoById, type TechId, type TechInfo } from "./components/TechData";
 import './App.css';
 
 type ActivePanel =
@@ -315,7 +317,7 @@ function App() {
     const [selectedJob, setSelectedJob] = useState<ExperienceDetailsPanelProps | null>(null);
     const [selectedProject, setSelectedProject] = useState<ProjectDetailsPanelProps | null>(null);
     const [selectedCertificate, setSelectedCertificate] = useState<Certificate | null>(null);
-
+    const [activeTech, setActiveTech] = useState<TechInfo | null>(null);
 
     const openPanel = (panel: ActivePanel) => setActivePanel(panel);
     const openProject = (project: Project) => {
@@ -360,6 +362,11 @@ function App() {
         closePanel();
     };
 
+    const handleTechClick = (id: TechId) => {
+        const info = techInfoById[id];
+        if (info) setActiveTech(info);
+    };
+
     return (
         <>
             <div className={`layout-root ${activePanel ? "layout-root--blurred" : ""}`}>
@@ -377,7 +384,9 @@ function App() {
                     </section>
 
                     <section className="panel panel-techstack">
-                        <TechStackPanel onExpand={() => openPanel("tech")} />
+                        <TechStackPanel
+                            onExpand={() => openPanel("tech")}
+                        />
                     </section>
 
                     <section className="panel panel-education">
@@ -435,7 +444,7 @@ function App() {
 
                         <div className="panel-overlay-scroll">
                             {activePanel === "about" && <AboutMePanel />}
-                            {activePanel === "tech" && <TechStackDetailsPanel />}
+                            {activePanel === "tech" && <TechStackDetailsPanel onTechClick={handleTechClick} />}
                             {activePanel === 'experience' && selectedJob && (
                                 <ExperienceDetailsPanel {...selectedJob} />
                             )}
@@ -472,6 +481,10 @@ function App() {
                 </div >
             )
             }
+            {activeTech && (
+                <TechMiniCard tech={activeTech} onClose={() => setActiveTech(null)} />
+            )}
+
         </>
     )
 }

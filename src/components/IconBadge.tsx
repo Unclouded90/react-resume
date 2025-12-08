@@ -1,36 +1,48 @@
-import React from "react";
-import './IconBadge.css';
+import type { ReactNode } from "react";
+import "./IconBadge.css";
 
 type IconBadgeProps = {
-  icon: React.ReactElement;
-  label: string;
-  href?: string;
+    icon: ReactNode;
+    label: string;
+    onClick?: () => void;
+    href?: string;
+    external?: boolean;
 };
 
-export function IconBadge({ icon, label, href }: IconBadgeProps) {
-  const inner = (
-    <span className="icon-badge-inner" title={label}>
-      {icon}
-    </span>
-  );
+export function IconBadge({
+    icon,
+    label,
+    onClick,
+    href,
+    external,
+}: IconBadgeProps) {
+    const clickable = !!onClick || !!href;
 
-  if (href) {
+    if (href) {
+        return (
+            <a
+                href={href}
+                className={`icon-badge${clickable ? " icon-badge--clickable" : ""}`}
+                onClick={onClick}
+                aria-label={label}
+                title={label}
+                target={external ? "_blank" : undefined}
+                rel={external ? "noreferrer" : undefined}
+            >
+                {icon}
+            </a>
+        );
+    }
+
     return (
-      <a
-        className="icon-badge"
-        href={href}
-        target="_blank"
-        rel="noreferrer"
-        aria-label={label}
-      >
-        {inner}
-      </a>
+        <div
+            className={`icon-badge${clickable ? " icon-badge--clickable" : ""}`}
+            onClick={onClick}
+            role={clickable ? "button" : undefined}
+            aria-label={clickable ? label : undefined}
+            title={label}
+        >
+            {icon}
+        </div>
     );
-  }
-
-  return (
-    <div className="icon-badge" aria-label={label}>
-      {inner}
-    </div>
-  );
 }

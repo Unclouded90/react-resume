@@ -14,16 +14,21 @@ import {
     SiGit,
     SiReact,
     SiMongodb,
+    SiCss3,
 } from "react-icons/si";
 import { TbBrandCSharp } from "react-icons/tb";
 import { FaJava } from "react-icons/fa";
 import { DiMsqlServer } from "react-icons/di";
 import { MdSupportAgent } from "react-icons/md";
 import "./TechStackPanel.css";
-import ETL from "../images/etl.png";
 import { IconBadge } from "./IconBadge";
+import type { TechId } from "./TechData";
 
-export function TechStackDetailsPanel() {
+type TechStackDetailsPanelProps = {
+    onTechClick?: (id: TechId) => void;
+  };
+
+export function TechStackDetailsPanel({ onTechClick }: TechStackDetailsPanelProps) {
     return (
         <div className="centered-panel experience-panel">
             <div className="exp-card exp-card--header">
@@ -34,12 +39,12 @@ export function TechStackDetailsPanel() {
                 <div className="tech-section">
                     <h3>Languages</h3>
                     <div className="tech-badge-row tech-badge-row--detail">
-                        <IconBadge icon={<SiTypescript />} label="TypeScript" />
-                        <IconBadge icon={<SiCplusplus />} label="C++" />
-                        <IconBadge icon={<SiJavascript />} label="JavaScript" />
-                        <IconBadge icon={<FaJava />} label="Java" />
-                        <IconBadge icon={<SiPython />} label="Python" />
-                        <IconBadge icon={<TbBrandCSharp />} label="C#" />
+                        <IconBadge icon={<SiTypescript />} label="TypeScript" onClick={onTechClick ? () => onTechClick("TypeScript") : undefined} />
+                        <IconBadge icon={<SiCplusplus />} label="C++" onClick={onTechClick ? () => onTechClick("C++") : undefined} />
+                        <IconBadge icon={<SiJavascript />} label="JavaScript" onClick={onTechClick ? () => onTechClick("JavaScript") : undefined} />
+                        <IconBadge icon={<FaJava />} label="Java" onClick={onTechClick ? () => onTechClick("Java") : undefined} />
+                        <IconBadge icon={<SiPython />} label="Python" onClick={onTechClick ? () => onTechClick("Python") : undefined} />
+                        <IconBadge icon={<TbBrandCSharp />} label="C#" onClick={onTechClick ? () => onTechClick("C#") : undefined} />
                     </div>
                 </div>
             </div>
@@ -50,8 +55,8 @@ export function TechStackDetailsPanel() {
                         <div className="tech-section">
                             <h3>Backend</h3>
                             <div className="tech-badge-row tech-badge-row--detail">
-                                <IconBadge icon={<SiNodedotjs />} label="Node.js" />
-                                <IconBadge icon={<SiNestjs />} label="NestJS" />
+                                <IconBadge icon={<SiNodedotjs />} label="Node.js" onClick={onTechClick ? () => onTechClick("Node.js") : undefined} />
+                                <IconBadge icon={<SiNestjs />} label="NestJS" onClick={onTechClick ? () => onTechClick("NestJS") : undefined} />
                             </div>
                         </div>
                     </div>
@@ -60,8 +65,8 @@ export function TechStackDetailsPanel() {
                         <div className="tech-section">
                             <h3>ORMs</h3>
                             <div className="tech-badge-row tech-badge-row--detail">
-                                <IconBadge icon={<SiTypeorm />} label="TypeORM" />
-                                <IconBadge icon={<SiSequelize />} label="Sequelize.js" />
+                                <IconBadge icon={<SiTypeorm />} label="TypeORM" onClick={onTechClick ? () => onTechClick("TypeORM") : undefined} />
+                                <IconBadge icon={<SiSequelize />} label="Sequelize.js" onClick={onTechClick ? () => onTechClick("Sequelize.js") : undefined} />
                             </div>
                         </div>
                     </div>
@@ -70,8 +75,8 @@ export function TechStackDetailsPanel() {
                         <div className="tech-section">
                             <h3>DevOps</h3>
                             <div className="tech-badge-row tech-badge-row--detail">
-                                <IconBadge icon={<SiDocker />} label="Docker" />
-                                <IconBadge icon={<SiGit />} label="Git" />
+                                <IconBadge icon={<SiDocker />} label="Docker" onClick={onTechClick ? () => onTechClick("Docker") : undefined} />
+                                <IconBadge icon={<SiGit />} label="Git" onClick={onTechClick ? () => onTechClick("Git") : undefined} />
                             </div>
                         </div>
                     </div>
@@ -82,9 +87,10 @@ export function TechStackDetailsPanel() {
                         <div className="tech-section">
                             <h3>Frontend</h3>
                             <div className="tech-badge-row tech-badge-row--detail">
-                                <IconBadge icon={<SiAngular />} label="Angular" />
-                                <IconBadge icon={<SiReact />} label="React" />
-                                <IconBadge icon={<SiHtml5 />} label="HTML" />
+                                <IconBadge icon={<SiAngular />} label="Angular" onClick={onTechClick ? () => onTechClick("Angular") : undefined} />
+                                <IconBadge icon={<SiReact />} label="React" onClick={onTechClick ? () => onTechClick("React") : undefined} />
+                                <IconBadge icon={<SiHtml5 />} label="HTML" onClick={onTechClick ? () => onTechClick("HTML") : undefined} />
+                                <IconBadge icon={<SiCss3 />} label="CSS" onClick={onTechClick ? () => onTechClick("CSS") : undefined} />
                             </div>
                         </div>
                     </div>
@@ -93,9 +99,9 @@ export function TechStackDetailsPanel() {
                         <div className="tech-section">
                             <h3>Databases</h3>
                             <div className="tech-badge-row tech-badge-row--detail">
-                                <IconBadge icon={<SiPostgresql />} label="PostgreSQL" />
-                                <IconBadge icon={<DiMsqlServer />} label="MS SQL Server" />
-                                <IconBadge icon={<SiMongodb />} label="MongoDB" />
+                                <IconBadge icon={<SiPostgresql />} label="PostgreSQL" onClick={onTechClick ? () => onTechClick("PostgreSQL") : undefined} />
+                                <IconBadge icon={<DiMsqlServer />} label="MS SQL Server" onClick={onTechClick ? () => onTechClick("MS SQL Server") : undefined} />
+                                <IconBadge icon={<SiMongodb />} label="MongoDB" onClick={onTechClick ? () => onTechClick("MongoDB") : undefined} />
                             </div>
                         </div>
                     </div>
@@ -107,16 +113,18 @@ export function TechStackDetailsPanel() {
                                 <IconBadge
                                     icon={
                                         <img
-                                            src={ETL}
+                                            src="https://cdn-icons-png.flaticon.com/512/5708/5708950.png"
                                             alt="ETL"
                                             className="tech-custom-icon"
                                         />
                                     }
                                     label="ETL"
+                                    onClick={onTechClick ? () => onTechClick("ETL") : undefined}
                                 />
                                 <IconBadge
                                     icon={<MdSupportAgent />}
                                     label="Technical Support"
+                                    onClick={onTechClick ? () => onTechClick("Technical Support") : undefined}
                                 />
                             </div>
                         </div>
