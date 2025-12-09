@@ -212,3 +212,58 @@
 .tech-mini-close:hover {
     opacity: 1;
 }
+
+@media (max-width: 600px) {
+    .tech-detail-column {
+        display: contents;
+    }
+
+    .tech-detail-card--languages {
+        grid-column: 1 / -1;
+        order: 0;
+    }
+
+    .tech-detail-card--backend {
+        order: 1;
+    }
+
+    .tech-detail-card--orms {
+        order: 2;
+    }
+
+    .tech-detail-card--frontend {
+        order: 3;
+    }
+
+    .tech-detail-card--databases {
+        order: 4;
+    }
+
+    .tech-detail-card--devops {
+        order: 5;
+    }
+
+    .tech-detail-card--otherskills {
+        order: 6;
+    }
+
+    .tech-detail-column {
+        display: contents;
+    }
+
+    .tech-badge-row--detail {
+        display: grid !important;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        justify-items: center;
+        column-gap: 0.6rem;
+        row-gap: 0.6rem;
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .tech-badge-row.tech-badge-row--languages {
+        grid-template-columns: repeat(6, minmax(0, 1fr)) !important;
+        column-gap: 0.35rem;
+        row-gap: 0;
+    }
+}

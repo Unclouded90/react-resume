@@ -26,7 +26,7 @@ import type { TechId } from "./TechData";
 
 type TechStackDetailsPanelProps = {
     onTechClick?: (id: TechId) => void;
-  };
+};
 
 export function TechStackDetailsPanel({ onTechClick }: TechStackDetailsPanelProps) {
     return (
@@ -38,7 +38,7 @@ export function TechStackDetailsPanel({ onTechClick }: TechStackDetailsPanelProp
             <div className="exp-card tech-detail-card">
                 <div className="tech-section">
                     <h3>Languages</h3>
-                    <div className="tech-badge-row tech-badge-row--detail">
+                    <div className="tech-badge-row tech-badge-row--detail tech-badge-row--languages">
                         <IconBadge icon={<SiTypescript />} label="TypeScript" onClick={onTechClick ? () => onTechClick("TypeScript") : undefined} />
                         <IconBadge icon={<SiCplusplus />} label="C++" onClick={onTechClick ? () => onTechClick("C++") : undefined} />
                         <IconBadge icon={<SiJavascript />} label="JavaScript" onClick={onTechClick ? () => onTechClick("JavaScript") : undefined} />
@@ -51,7 +51,7 @@ export function TechStackDetailsPanel({ onTechClick }: TechStackDetailsPanelProp
 
             <div className="tech-detail-grid">
                 <div className="tech-detail-column">
-                    <div className="exp-card tech-detail-card">
+                    <div className="exp-card tech-detail-card  tech-detail-card--backend">
                         <div className="tech-section">
                             <h3>Backend</h3>
                             <div className="tech-badge-row tech-badge-row--detail">
@@ -61,7 +61,7 @@ export function TechStackDetailsPanel({ onTechClick }: TechStackDetailsPanelProp
                         </div>
                     </div>
 
-                    <div className="exp-card tech-detail-card">
+                    <div className="exp-card tech-detail-card  tech-detail-card--orms">
                         <div className="tech-section">
                             <h3>ORMs</h3>
                             <div className="tech-badge-row tech-badge-row--detail">
@@ -71,7 +71,7 @@ export function TechStackDetailsPanel({ onTechClick }: TechStackDetailsPanelProp
                         </div>
                     </div>
 
-                    <div className="exp-card tech-detail-card">
+                    <div className="exp-card tech-detail-card  tech-detail-card--devops">
                         <div className="tech-section">
                             <h3>DevOps</h3>
                             <div className="tech-badge-row tech-badge-row--detail">
@@ -83,7 +83,7 @@ export function TechStackDetailsPanel({ onTechClick }: TechStackDetailsPanelProp
                 </div>
 
                 <div className="tech-detail-column">
-                    <div className="exp-card tech-detail-card">
+                    <div className="exp-card tech-detail-card  tech-detail-card--frontend">
                         <div className="tech-section">
                             <h3>Frontend</h3>
                             <div className="tech-badge-row tech-badge-row--detail">
@@ -95,7 +95,7 @@ export function TechStackDetailsPanel({ onTechClick }: TechStackDetailsPanelProp
                         </div>
                     </div>
 
-                    <div className="exp-card tech-detail-card">
+                    <div className="exp-card tech-detail-card  tech-detail-card--databases">
                         <div className="tech-section">
                             <h3>Databases</h3>
                             <div className="tech-badge-row tech-badge-row--detail">
@@ -106,7 +106,7 @@ export function TechStackDetailsPanel({ onTechClick }: TechStackDetailsPanelProp
                         </div>
                     </div>
 
-                    <div className="exp-card tech-detail-card">
+                    <div className="exp-card tech-detail-card  tech-detail-card--otherskills">
                         <div className="tech-section">
                             <h3>Other Skills</h3>
                             <div className="tech-badge-row tech-badge-row--detail">
