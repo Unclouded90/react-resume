@@ -2,8 +2,9 @@
     width: 36px;
     height: 36px;
     border-radius: 999px;
-    border: 1px solid #444;
-    background: #101010;
+    border: 1px solid var(--border-color);
+    background: var(--bg-body);
+    color: var(--text-main);
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -14,12 +15,11 @@
       transform 0.1s ease,
       box-shadow 0.15s ease;
     text-decoration: none;
-    color: #f5f5f5;
   }
   
   .icon-badge:hover {
-    border-color: #ffffff;
-    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.5);
+    border: 1px solid var(--border-color);
+    box-shadow: 0 0 0 2px var(--hover-color);
     transform: translateY(-1px) scale(1.05);
   }
   
@@ -34,10 +34,4 @@
   .icon-badge-inner svg,
   .icon-badge-inner img {
     display: block;
-  }
-
-  .tech-custom-icon {
-    width: 1.3rem;
-    height: 1.3rem;
-    object-fit: contain;
   }

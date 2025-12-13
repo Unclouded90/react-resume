@@ -30,7 +30,7 @@ export function CertificatePanel({
                         className="projects-view-all-btn"
                         onClick={onViewAllClick}
                     >
-                        View all
+                        View all →
                     </button>
                 )}
             </div>

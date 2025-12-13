@@ -35,7 +35,7 @@
     height: 1.3rem;
     object-fit: contain;
     display: block;
-    filter: brightness(0) invert(1);
+    filter: var(--custom-icons-filter);
 }
 
 .tech-panel-header-row {
@@ -52,17 +52,17 @@
 
 .tech-view-all-btn {
     border: none;
-    background: transparent;
-    color: #ffffff;
+    color: var(--text-main);
     font-size: 0.85rem;
     opacity: 0.8;
     cursor: pointer;
-    text-decoration: underline;
+    background: none;
     padding: 0;
 }
 
 .tech-view-all-btn:hover {
     opacity: 1;
+    text-decoration: underline;
 }
 
 .tech-card-grid {
@@ -75,8 +75,9 @@
 
 .tech-card {
     border-radius: 12px;
-    border: 1px solid #2b2b2b;
-    background: #181818;
+    border: 1px solid var(--border-color);
+    background: var(--bg-card);
+    color: var(--text-main);
     padding: 0.9rem 1rem;
     display: flex;
     flex-direction: column;
@@ -151,7 +152,7 @@
     width: min(360px, 90%);
     padding: 1.1rem 1.4rem 1.3rem;
     border-radius: 14px;
-    border: 1px solid #3a3a3a;
+    border: 1px solid var(--border-color);
     background: #15161b;
     box-shadow: 0 18px 50px rgba(0, 0, 0, 0.8);
     box-sizing: border-box;

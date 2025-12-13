@@ -2,11 +2,6 @@
     font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
     line-height: 1.5;
     font-weight: 400;
-
-    color-scheme: dark;
-    color: rgba(255, 255, 255, 0.87);
-    background-color: #111111;
-
     font-synthesis: none;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
@@ -41,7 +36,7 @@ h1 {
 
 button {
     border-radius: 8px;
-    border: 1px solid transparent;
+    border: 1px solid var(--border-color);
     padding: 0.6em 1.2em;
     font-size: 1em;
     font-weight: 500;
@@ -51,26 +46,31 @@ button {
     transition: border-color 0.25s;
 }
 
-button:hover {
-    border-color: #646cff;
-}
-
 button:focus,
 button:focus-visible {
     outline: 4px auto -webkit-focus-ring-color;
 }
 
-@media (prefers-color-scheme: light) {
-    :root {
-        color: #213547;
-        background-color: #ffffff;
-    }
+:root {
+    --bg-body: #111111;
+    --bg-panel: #111111;
+    --bg-card: #181818;
+    --bg-card-alt: #151515;
+    --border-color: #2b2b2b;
+    --text-main: #f5f5f5;
+    --text-muted: #a3a3a3;
+    --hover-color: #ffffff84;
+    --custom-icons-filter: brightness(0) invert(1);
+}
 
-    a:hover {
-        color: #747bff;
-    }
-
-    button {
-        background-color: #f9f9f9;
-    }
+body.theme-light {
+    --bg-body: #d6d3d3;
+    --bg-panel: #d7d7d7;
+    --bg-card: #c7c7c7;
+    --bg-card-alt: #f3f4f6;
+    --border-color: #000000;
+    --text-main: #000000;
+    --text-muted: #4b5563;
+    --hover-color: #000000;
+    --custom-icons-filter: brightness(0) invert(0);
 }

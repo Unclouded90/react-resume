@@ -14,7 +14,11 @@ import { CertificateDetailsPanel, type CertificateDetailsPanelProps } from './co
 import { AchievementPanel, type Achievement } from './components/AchievementPanel';
 import { TechMiniCard } from "./components/TechMiniCard";
 import { techInfoById, type TechId, type TechInfo } from "./components/TechData";
+import { FaSun, FaMoon } from "react-icons/fa";
+import { IconBadge } from "./components/IconBadge";
 import './App.css';
+
+type Theme = "dark" | "light";
 
 type ActivePanel =
     "about"
@@ -312,6 +316,12 @@ const featuredProjects = projects.filter((p) => p.featured);
 const homepageProjects = featuredProjects.length > 0 ? featuredProjects : projects.slice(0, 3);
 
 function App() {
+    const [theme, setTheme] = useState<Theme>(() => {
+        if (typeof window === "undefined") return "dark";
+        const stored = localStorage.getItem("theme");
+        if (stored === "light" || stored === "dark") return stored as Theme;
+        return "dark";
+    });
     const [activePanel, setActivePanel] = useState<ActivePanel>(null);
     const [previousPanel, setPreviousPanel] = useState<ActivePanel>(null);
     const [selectedJob, setSelectedJob] = useState<ExperienceDetailsPanelProps | null>(null);
@@ -331,6 +341,17 @@ function App() {
         setSelectedCertificate(null);
         setPreviousPanel(null);
     }
+
+    useEffect(() => {
+        const body = document.body;
+        body.classList.remove("theme-dark", "theme-light");
+        body.classList.add(theme === "light" ? "theme-light" : "theme-dark");
+        localStorage.setItem("theme", theme);
+    }, [theme]);
+
+    const toggleTheme = () => {
+        setTheme((prev) => (prev === "dark" ? "light" : "dark"));
+    };
 
     useEffect(() => {
         if (activePanel) {
@@ -369,8 +390,17 @@ function App() {
 
     return (
         <>
-            <div className={`layout-root ${activePanel ? "layout-root--blurred" : ""}`}>
+            <div className={`layout-root ${(activePanel || activeTech) ? "layout-root--blurred" : ""}`}>
                 <div className="layout-grid">
+                    <section className="layout-topbar">
+                        <div className="layout-topbar-inner">
+                            <IconBadge
+                                icon={theme === "dark" ? <FaSun /> : <FaMoon />}
+                                label={theme === "dark" ? "Light mode" : "Dark mode"}
+                                onClick={toggleTheme}
+                            />
+                        </div>
+                    </section>
                     <section className="panel panel-header"
                     >
                         <HeaderPanel onExpand={() => openPanel("about")} />
@@ -386,6 +416,7 @@ function App() {
                     <section className="panel panel-techstack">
                         <TechStackPanel
                             onExpand={() => openPanel("tech")}
+                            onTechClick={handleTechClick}
                         />
                     </section>
 
@@ -438,7 +469,11 @@ function App() {
                         }
                         onClick={(e) => e.stopPropagation()}
                     >
-                        <button className="panel-overlay-close" onClick={closePanel}>
+                        <button
+                            className="tech-mini-close tech-mini-close--overlay"
+                            onClick={closePanel}
+                            aria-label="Close"
+                        >
                             ✕
                         </button>
 

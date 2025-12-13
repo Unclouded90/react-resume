@@ -1,4 +1,3 @@
-// techData.ts
 export type ProficiencyLevel = "basic" | "intermediate" | "advanced";
 
 export type TechId =

@@ -9,9 +9,10 @@
 }
 
 .experience-card {
-    background: #131313;
+    background: var(--bg-card);
+    color: var(--text-main);
     border-radius: 14px;
-    border: 1px solid #262626;
+    border: 1px solid var(--border-color);
     padding: 1.2rem 1.4rem;
 
     display: flex;
@@ -45,6 +46,7 @@
     margin: 0.2rem 0 0;
     font-size: 0.95rem;
     opacity: 0.9;
+    color: var(--text-main);
 }
 
 .experience-side {

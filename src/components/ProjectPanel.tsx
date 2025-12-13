@@ -30,7 +30,7 @@ export function ProjectPanel({
                         className="projects-view-all-btn"
                         onClick={onViewAllClick}
                     >
-                        View all
+                        View all →
                     </button>
                 )}
             </div>

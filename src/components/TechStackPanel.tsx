@@ -15,24 +15,14 @@ import {
 import { DiMsqlServer } from "react-icons/di";
 import "./TechStackPanel.css";
 import { IconBadge } from "./IconBadge";
-import { techInfoById, type TechId, type TechInfo } from "./TechData";
+import { type TechId } from "./TechData";
 
 type TechStackPanelProps = {
   onExpand?: () => void;
+  onTechClick?: (id: TechId) => void;
 };
 
-export function TechStackPanel({ onExpand }: TechStackPanelProps) {
-  const [activeTech, setActiveTech] = useState<TechInfo | null>(null);
-
-  const handleBadgeClick = (id: TechId) => {
-    const info = techInfoById[id];
-    if (info) {
-      setActiveTech(info);
-    }
-  };
-
-  const closeMiniCard = () => setActiveTech(null);
-
+export function TechStackPanel({ onExpand , onTechClick }: TechStackPanelProps) {
   return (
     <div className="tech-panel">
       <div className="tech-panel-header-row">
@@ -44,7 +34,7 @@ export function TechStackPanel({ onExpand }: TechStackPanelProps) {
             className="tech-view-all-btn"
             onClick={onExpand}
           >
-            View all
+            View all →
           </button>
         )}
       </div>
@@ -56,12 +46,12 @@ export function TechStackPanel({ onExpand }: TechStackPanelProps) {
             <IconBadge
               icon={<SiTypescript />}
               label="TypeScript"
-              onClick={() => handleBadgeClick("TypeScript")}
+              onClick={onTechClick ? () => onTechClick("TypeScript") : undefined}
             />
             <IconBadge
               icon={<SiCplusplus />}
               label="C++"
-              onClick={() => handleBadgeClick("C++")}
+              onClick={onTechClick ? () => onTechClick("C++") : undefined}
             />
           </div>
         </div>
@@ -72,12 +62,12 @@ export function TechStackPanel({ onExpand }: TechStackPanelProps) {
             <IconBadge
               icon={<SiNodedotjs />}
               label="Node.js"
-              onClick={() => handleBadgeClick("Node.js")}
+              onClick={onTechClick ? () => onTechClick("Node.js") : undefined}
             />
             <IconBadge
               icon={<SiNestjs />}
               label="NestJS"
-              onClick={() => handleBadgeClick("NestJS")}
+              onClick={onTechClick ? () => onTechClick("NestJS") : undefined}
             />
           </div>
         </div>
@@ -88,12 +78,12 @@ export function TechStackPanel({ onExpand }: TechStackPanelProps) {
             <IconBadge
               icon={<SiAngular />}
               label="Angular"
-              onClick={() => handleBadgeClick("Angular")}
+              onClick={onTechClick ? () => onTechClick("Angular") : undefined}
             />
             <IconBadge
               icon={<SiReact />}
               label="React"
-              onClick={() => handleBadgeClick("React")}
+              onClick={onTechClick ? () => onTechClick("React") : undefined}
             />
           </div>
         </div>
@@ -104,12 +94,12 @@ export function TechStackPanel({ onExpand }: TechStackPanelProps) {
             <IconBadge
               icon={<SiTypeorm />}
               label="TypeORM"
-              onClick={() => handleBadgeClick("TypeORM")}
+              onClick={onTechClick ? () => onTechClick("TypeORM") : undefined}
             />
             <IconBadge
               icon={<SiSequelize />}
               label="Sequelize.js"
-              onClick={() => handleBadgeClick("Sequelize.js")}
+              onClick={onTechClick ? () => onTechClick("Sequelize.js") : undefined}
             />
           </div>
         </div>
@@ -120,12 +110,12 @@ export function TechStackPanel({ onExpand }: TechStackPanelProps) {
             <IconBadge
               icon={<SiPostgresql />}
               label="PostgreSQL"
-              onClick={() => handleBadgeClick("PostgreSQL")}
+              onClick={onTechClick ? () => onTechClick("PostgreSQL") : undefined}
             />
             <IconBadge
               icon={<DiMsqlServer />}
               label="MS SQL Server"
-              onClick={() => handleBadgeClick("MS SQL Server")}
+              onClick={onTechClick ? () => onTechClick("MS SQL Server") : undefined}
             />
           </div>
         </div>
@@ -136,47 +126,16 @@ export function TechStackPanel({ onExpand }: TechStackPanelProps) {
             <IconBadge
               icon={<SiDocker />}
               label="Docker"
-              onClick={() => handleBadgeClick("Docker")}
+              onClick={onTechClick ? () => onTechClick("Docker") : undefined}
             />
             <IconBadge
               icon={<SiGit />}
               label="Git"
-              onClick={() => handleBadgeClick("Git")}
+              onClick={onTechClick ? () => onTechClick("Git") : undefined}
             />
           </div>
         </div>
       </div>
-
-      {activeTech && (
-        <div className="tech-mini-overlay" onClick={closeMiniCard}>
-          <div
-            className="tech-mini-card"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <button
-              type="button"
-              className="tech-mini-close"
-              onClick={closeMiniCard}
-            >
-              ✕
-            </button>
-
-            <h3 className="tech-mini-title">{activeTech.title}</h3>
-
-            <div className="tech-mini-level">
-              <span
-                className={
-                  "tech-level-badge tech-level-badge--" + activeTech.level
-                }
-              >
-                {activeTech.levelLabel}
-              </span>
-            </div>
-
-            <p className="tech-mini-text">{activeTech.description}</p>
-          </div>
-        </div>
-      )}
     </div>
   );
 }
