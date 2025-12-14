@@ -22,7 +22,7 @@ import { DiMsqlServer } from "react-icons/di";
 import { MdSupportAgent } from "react-icons/md";
 import "./TechStackPanel.css";
 import { IconBadge } from "./IconBadge";
-import type { TechId } from "./TechData";
+import type { TechId } from "../data/TechData";
 
 type TechStackDetailsPanelProps = {
     onTechClick?: (id: TechId) => void;

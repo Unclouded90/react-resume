@@ -22,7 +22,7 @@ import { DiMsqlServer } from "react-icons/di";
 import "./CenteredPanel.css";
 import "./TechStackPanel.css";
 import { IconBadge } from "./IconBadge";
-import { techInfoById, type TechId, type TechInfo } from "./TechData";
+import { techInfoById, type TechId, type TechInfo } from "../data/TechData";
 
 export type ProjectDetailsPanelProps = {
     title: string;

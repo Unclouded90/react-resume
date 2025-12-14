@@ -1,4 +1,4 @@
-import type { TechInfo } from "./TechData";
+import type { TechInfo } from "../data/TechData";
 import "./TechMiniCard.css";
 
 type TechMiniCardProps = {
