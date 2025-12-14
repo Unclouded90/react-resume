@@ -44,8 +44,11 @@ type Project = {
 
 type Certificate = CertificateDetailsPanelProps & { id: number, featured?: boolean };
 
-const jobs = [
+type Job = ExperienceDetailsPanelProps & { id: number };
+
+const jobs: Job[] = [
     {
+        id: 1,
         title: "Full Stack Developer",
         company: (
             <a
@@ -311,6 +314,42 @@ const achievements: Achievement[] = [
     },
 ];
 
+type UiHistoryState = {
+    __ui?: true;
+    panel: ActivePanel;
+    jobId: number | null;
+    projectId: number | null;
+    certificateId: number | null;
+    techId: TechId | null;
+};
+
+const UI_STATE_DEFAULT: UiHistoryState = {
+    __ui: true,
+    panel: null,
+    jobId: null,
+    projectId: null,
+    certificateId: null,
+    techId: null,
+};
+
+function getUiState(): UiHistoryState {
+    const s = window.history.state as UiHistoryState | null;
+    if (s && s.__ui) return s;
+    return UI_STATE_DEFAULT;
+}
+
+function replaceUiState(next: UiHistoryState) {
+    window.history.replaceState(next, "", window.location.href);
+}
+
+function pushUiState(next: UiHistoryState) {
+    window.history.pushState(next, "", window.location.href);
+}
+
+const jobsById = new Map<number, Job>(jobs.map((j) => [j.id, j]));
+const projectsById = new Map<number, Project>(projects.map((p) => [p.id, p]));
+const certsById = new Map<number, Certificate>(certificates.map((c) => [c.id, c]));
+
 const featuredCertificates = certificates.filter((c) => c.featured);
 const featuredProjects = projects.filter((p) => p.featured);
 const homepageProjects = featuredProjects.length > 0 ? featuredProjects : projects.slice(0, 3);
@@ -323,24 +362,29 @@ function App() {
         return "dark";
     });
     const [activePanel, setActivePanel] = useState<ActivePanel>(null);
-    const [previousPanel, setPreviousPanel] = useState<ActivePanel>(null);
     const [selectedJob, setSelectedJob] = useState<ExperienceDetailsPanelProps | null>(null);
     const [selectedProject, setSelectedProject] = useState<ProjectDetailsPanelProps | null>(null);
     const [selectedCertificate, setSelectedCertificate] = useState<Certificate | null>(null);
     const [activeTech, setActiveTech] = useState<TechInfo | null>(null);
 
-    const openPanel = (panel: ActivePanel) => setActivePanel(panel);
-    const openProject = (project: Project) => {
-        setSelectedProject(project);
-        setActivePanel("project");
-    };
-    const closePanel = () => {
-        setActivePanel(null);
-        setSelectedJob(null);
-        setSelectedProject(null);
-        setSelectedCertificate(null);
-        setPreviousPanel(null);
-    }
+    useEffect(() => {
+        const s = window.history.state as UiHistoryState | null;
+        if (!s || !s.__ui) {
+            replaceUiState(UI_STATE_DEFAULT);
+        }
+
+        const onPopState = () => {
+            const ui = getUiState();
+            setActivePanel(ui.panel);
+            setSelectedJob(ui.jobId ? jobsById.get(ui.jobId) ?? null : null);
+            setSelectedProject(ui.projectId ? projectsById.get(ui.projectId) ?? null : null);
+            setSelectedCertificate(ui.certificateId ? certsById.get(ui.certificateId) ?? null : null);
+            setActiveTech(ui.techId ? techInfoById[ui.techId] ?? null : null);
+        };
+
+        window.addEventListener("popstate", onPopState);
+        return () => window.removeEventListener("popstate", onPopState);
+    }, []);
 
     useEffect(() => {
         const body = document.body;
@@ -349,43 +393,100 @@ function App() {
         localStorage.setItem("theme", theme);
     }, [theme]);
 
-    const toggleTheme = () => {
-        setTheme((prev) => (prev === "dark" ? "light" : "dark"));
-    };
+    const toggleTheme = () => setTheme((prev) => (prev === "dark" ? "light" : "dark"));
 
     useEffect(() => {
-        if (activePanel) {
-            document.body.style.overflow = 'hidden';
-        } else {
-            document.body.style.overflow = '';
-        }
-
+        if (activePanel || activeTech) document.body.style.overflow = "hidden";
+        else document.body.style.overflow = "";
         return () => {
-            document.body.style.overflow = '';
+            document.body.style.overflow = "";
         };
-    }, [activePanel]);
+    }, [activePanel, activeTech]);
 
-    const handleOverlayBackgroundClick = () => {
-        if (activePanel === "project" && previousPanel === "projectsAll") {
-            setActivePanel("projectsAll");
-            setSelectedProject(null);
-            setPreviousPanel(null);
-            return;
-        }
-
-        if (activePanel === "certificate" && previousPanel === "certificatesAll") {
-            setActivePanel("certificatesAll");
-            setSelectedCertificate(null);
-            setPreviousPanel(null);
-            return;
-        }
-
-        closePanel();
+    const closeOverlayViaHistory = () => {
+        const ui = getUiState();
+        if (ui.panel !== null || ui.techId !== null) window.history.back();
     };
+
+    const openPanel = (panel: ActivePanel) => {
+        const current = getUiState();
+        pushUiState({
+            __ui: true,
+            panel,
+            jobId: current.jobId,
+            projectId: current.projectId,
+            certificateId: current.certificateId,
+            techId: null,
+        });
+        setActivePanel(panel);
+        setActiveTech(null);
+    };
+
+    const openExperience = (jobId: number) => {
+        pushUiState({
+            __ui: true,
+            panel: "experience",
+            jobId,
+            projectId: null,
+            certificateId: null,
+            techId: null,
+        });
+        setSelectedJob(jobsById.get(jobId) ?? null);
+        setSelectedProject(null);
+        setSelectedCertificate(null);
+        setActivePanel("experience");
+        setActiveTech(null);
+    };
+
+    const openProjectById = (projectId: number) => {
+        pushUiState({
+            __ui: true,
+            panel: "project",
+            jobId: null,
+            projectId,
+            certificateId: null,
+            techId: null,
+        });
+        setSelectedProject(projectsById.get(projectId) ?? null);
+        setSelectedJob(null);
+        setSelectedCertificate(null);
+        setActivePanel("project");
+        setActiveTech(null);
+    };
+
+    const openCertificateById = (certificateId: number) => {
+        pushUiState({
+            __ui: true,
+            panel: "certificate",
+            jobId: null,
+            projectId: null,
+            certificateId,
+            techId: null,
+        });
+        setSelectedCertificate(certsById.get(certificateId) ?? null);
+        setSelectedJob(null);
+        setSelectedProject(null);
+        setActivePanel("certificate");
+        setActiveTech(null);
+    };
+
+    const handleOverlayBackgroundClick = () => closeOverlayViaHistory();
 
     const handleTechClick = (id: TechId) => {
         const info = techInfoById[id];
-        if (info) setActiveTech(info);
+        if (!info) return;
+
+        const current = getUiState();
+        pushUiState({
+            __ui: true,
+            panel: current.panel,
+            jobId: current.jobId,
+            projectId: current.projectId,
+            certificateId: current.certificateId,
+            techId: id,
+        });
+
+        setActiveTech(info);
     };
 
     return (
@@ -401,23 +502,17 @@ function App() {
                             />
                         </div>
                     </section>
-                    <section className="panel panel-header"
-                    >
+
+                    <section className="panel panel-header">
                         <HeaderPanel onExpand={() => openPanel("about")} />
                     </section>
 
                     <section className="panel panel-experience">
-                        <ExperiencePanel onExpand={() => {
-                            setSelectedJob(jobs[0]);
-                            openPanel("experience")
-                        }} />
+                        <ExperiencePanel onExpand={() => openExperience(1)} />
                     </section>
 
                     <section className="panel panel-techstack">
-                        <TechStackPanel
-                            onExpand={() => openPanel("tech")}
-                            onTechClick={handleTechClick}
-                        />
+                        <TechStackPanel onExpand={() => openPanel("tech")} onTechClick={handleTechClick} />
                     </section>
 
                     <section className="panel panel-education">
@@ -427,19 +522,15 @@ function App() {
                     <section className="panel panel-projects">
                         <ProjectPanel
                             projects={homepageProjects}
-                            onProjectClick={openProject}
+                            onProjectClick={(p) => openProjectById(p.id)}
                             onViewAllClick={() => openPanel("projectsAll")}
                         />
                     </section>
 
-
                     <section className="panel panel-certificates">
                         <CertificatePanel
                             certificates={featuredCertificates}
-                            onCertificateClick={(certificate) => {
-                                setSelectedCertificate(certificate);
-                                openPanel("certificate");
-                            }}
+                            onCertificateClick={(c) => openCertificateById(c.id)}
                             onViewAllClick={() => openPanel("certificatesAll")}
                         />
                     </section>
@@ -447,13 +538,11 @@ function App() {
                     <section className="panel panel-achievements">
                         <AchievementPanel achievements={achievements} />
                     </section>
-
                 </div>
             </div>
 
             {activePanel && (
                 <div className="panel-overlay" onClick={handleOverlayBackgroundClick}>
-
                     <div
                         className={
                             "panel-overlay-content" +
@@ -473,56 +562,47 @@ function App() {
                             <div className="panel-overlay-topbar">
                                 <button
                                     className="tech-mini-close tech-mini-close--overlay tech-mini-close--inflow"
-                                    onClick={closePanel}
+                                    onClick={closeOverlayViaHistory}
                                     aria-label="Close"
                                 >
                                     ✕
                                 </button>
                             </div>
+
                             {activePanel === "about" && <AboutMePanel />}
                             {activePanel === "tech" && <TechStackDetailsPanel onTechClick={handleTechClick} />}
-                            {activePanel === 'experience' && selectedJob && (
-                                <ExperienceDetailsPanel {...selectedJob} />
-                            )}
+                            {activePanel === "experience" && selectedJob && <ExperienceDetailsPanel {...selectedJob} />}
                             {activePanel === "education" && <EducationDetailsPanel />}
-                            {activePanel === "project" && selectedProject && (
-                                <ProjectDetailsPanel {...selectedProject} />
-                            )}
+
+                            {activePanel === "project" && selectedProject && <ProjectDetailsPanel {...selectedProject} />}
+
                             {activePanel === "projectsAll" && (
                                 <ProjectPanel
                                     projects={projects}
-                                    onProjectClick={(project) => {
-                                        setPreviousPanel("projectsAll");
-                                        openProject(project);
-                                    }}
+                                    onProjectClick={(p) => openProjectById(p.id)}
                                     title="Personal Projects"
                                 />
                             )}
+
                             {activePanel === "certificate" && selectedCertificate && (
                                 <CertificateDetailsPanel {...selectedCertificate} />
                             )}
+
                             {activePanel === "certificatesAll" && (
                                 <CertificatePanel
                                     certificates={certificates}
-                                    onCertificateClick={(certificate) => {
-                                        setPreviousPanel("certificatesAll");
-                                        setSelectedCertificate(certificate);
-                                        openPanel("certificate");
-                                    }}
+                                    onCertificateClick={(c) => openCertificateById(c.id)}
                                     title="Certificates"
                                 />
                             )}
                         </div>
                     </div>
-                </div >
-            )
-            }
-            {activeTech && (
-                <TechMiniCard tech={activeTech} onClose={() => setActiveTech(null)} />
+                </div>
             )}
 
+            {activeTech && <TechMiniCard tech={activeTech} onClose={closeOverlayViaHistory} />}
         </>
-    )
+    );
 }
 
 export default App
