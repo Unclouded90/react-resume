@@ -165,11 +165,11 @@
     opacity: 0.85;
     font-size: 0.9rem;
     cursor: pointer;
-    text-decoration: underline;
 }
 
 .exp-toggle-btn:hover {
     opacity: 1;
+    text-decoration: underline;
 }
 
 .exp-toggle-btn--hide {
@@ -177,8 +177,7 @@
 }
 
 .exp-card--extra {
-    background: #181818;
-    border-style: dashed;
+    background: var(--bg-card);
 }
 
 .tech-columns {

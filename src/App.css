@@ -108,7 +108,7 @@
 }
 
 .panel-overlay-scroll {
-    padding: 3.5rem 2.4rem 2.4rem;
+    padding: 2.2rem 2.4rem 2.4rem;
     max-height: calc(100vh - 6rem);
     overflow-y: auto;
     box-sizing: border-box;
@@ -117,6 +117,18 @@
     flex: 1;
     min-height: 0;
     border-radius: 20px;
+}
+
+.panel-overlay-topbar {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-bottom: 0.75rem;
+}
+
+.tech-mini-close--inflow {
+    position: static !important;
+    opacity: 0.85;
 }
 
 .panel-overlay-close {
@@ -178,7 +190,7 @@
 
     .panel-overlay-scroll {
         max-height: calc(100vh - 10rem);
-        padding: 3.5rem 1.25rem 1.5rem;
+        padding: 2.2rem 1.25rem 1.5rem;
     }
 
     .panel-overlay-close {

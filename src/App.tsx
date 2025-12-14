@@ -469,15 +469,16 @@ function App() {
                         }
                         onClick={(e) => e.stopPropagation()}
                     >
-                        <button
-                            className="tech-mini-close tech-mini-close--overlay"
-                            onClick={closePanel}
-                            aria-label="Close"
-                        >
-                            ✕
-                        </button>
-
                         <div className="panel-overlay-scroll">
+                            <div className="panel-overlay-topbar">
+                                <button
+                                    className="tech-mini-close tech-mini-close--overlay tech-mini-close--inflow"
+                                    onClick={closePanel}
+                                    aria-label="Close"
+                                >
+                                    ✕
+                                </button>
+                            </div>
                             {activePanel === "about" && <AboutMePanel />}
                             {activePanel === "tech" && <TechStackDetailsPanel onTechClick={handleTechClick} />}
                             {activePanel === 'experience' && selectedJob && (
