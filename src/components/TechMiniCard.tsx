@@ -1,12 +1,22 @@
-import type { TechInfo } from "../data/TechData";
+import type { TechInfoData } from "../data/TechData";
+import { K, type I18nKey } from "../i18n/keys";
+import type { ProficiencyLevel } from "../data/TechData";
 import "./TechMiniCard.css";
 
+const levelKeyByLevel: Record<ProficiencyLevel, I18nKey> = {
+  basic: K.ui.levels.basic,
+  intermediate: K.ui.levels.intermediate,
+  advanced: K.ui.levels.advanced,
+};
+
+
 type TechMiniCardProps = {
-  tech: TechInfo;
+  tech: TechInfoData;
+  t: (k: I18nKey) => string;
   onClose: () => void;
 };
 
-export function TechMiniCard({ tech, onClose }: TechMiniCardProps) {
+export function TechMiniCard({ tech, t, onClose }: TechMiniCardProps) {
   return (
     <div className="tech-mini-overlay" onClick={onClose}>
       <div
@@ -21,7 +31,7 @@ export function TechMiniCard({ tech, onClose }: TechMiniCardProps) {
           ✕
         </button>
 
-        <h3 className="tech-mini-title">{tech.title}</h3>
+        <h3 className="tech-mini-title">{t(tech.titleKey)}</h3>
 
         <div className="tech-mini-level">
           <span
@@ -29,11 +39,11 @@ export function TechMiniCard({ tech, onClose }: TechMiniCardProps) {
               "tech-level-badge tech-level-badge--" + tech.level
             }
           >
-            {tech.levelLabel}
+            {t(levelKeyByLevel[tech.level])}
           </span>
         </div>
 
-        <p className="tech-mini-text">{tech.description}</p>
+        <p className="tech-mini-text">{t(tech.descriptionKey)}</p>
       </div>
     </div>
   );

@@ -6,6 +6,11 @@ export const K = {
         viewPublication: "ui.viewPublication",
         personalProjects: "ui.personalProjects",
         certificates: "ui.certificates",
+        levels: {
+            basic: "ui.levels.basic",
+            intermediate: "ui.levels.intermediate",
+            advanced: "ui.levels.advanced",
+          },
     },
 
     exp: {
@@ -23,6 +28,93 @@ export const K = {
             b2: "jobs.eufinity.b2",
             b3: "jobs.eufinity.b3",
             b4: "jobs.eufinity.b4",
+        },
+    },
+
+    tech: {
+        typescript: {
+            title: "tech.typescript.title",
+            description: "tech.typescript.description",
+        },
+        cplus: {
+            title: "tech.cplus.title",
+            description: "tech.cplus.description",
+        },
+        javascript: {
+            title: "tech.javascript.title",
+            description: "tech.javascript.description",
+        },
+        java: {
+            title: "tech.java.title",
+            description: "tech.java.description",
+        },
+        python: {
+            title: "tech.python.title",
+            description: "tech.python.description",
+        },
+        csharp: {
+            title: "tech.csharp.title",
+            description: "tech.csharp.description",
+        },
+        node: {
+            title: "tech.node.title",
+            description: "tech.node.description",
+        },
+        nest: {
+            title: "tech.nest.title",
+            description: "tech.nest.description",
+        },
+        angular: {
+            title: "tech.angular.title",
+            description: "tech.angular.description",
+        },
+        react: {
+            title: "tech.react.title",
+            description: "tech.react.description",
+        },
+        html: {
+            title: "tech.html.title",
+            description: "tech.html.description",
+        },
+        css: {
+            title: "tech.css.title",
+            description: "tech.css.description",
+        },
+        typeorm: {
+            title: "tech.typeorm.title",
+            description: "tech.typeorm.description",
+        },
+        sequelize: {
+            title: "tech.sequelize.title",
+            description: "tech.sequelize.description",
+        },
+        postgresql: {
+            title: "tech.postgresql.title",
+            description: "tech.postgresql.description",
+        },
+        mssql: {
+            title: "tech.mssql.title",
+            description: "tech.mssql.description",
+        },
+        mongodb: {
+            title: "tech.mongodb.title",
+            description: "tech.mongodb.description",
+        },
+        docker: {
+            title: "tech.docker.title",
+            description: "tech.docker.description",
+        },
+        git: {
+            title: "tech.git.title",
+            description: "tech.git.description",
+        },
+        etl: {
+            title: "tech.etl.title",
+            description: "tech.etl.description",
+        },
+        technicalsupport: {
+            title: "tech.technicalsupport.title",
+            description: "tech.technicalsupport.description",
         },
     },
 

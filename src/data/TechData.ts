@@ -1,3 +1,5 @@
+import { K, type I18nKey } from "../i18n/keys";
+
 export type ProficiencyLevel = "basic" | "intermediate" | "advanced";
 
 export type TechId =
@@ -23,160 +25,138 @@ export type TechId =
     | "ETL"
     | "Technical Support";
 
-export type TechInfo = {
+export type TechInfoData = {
     id: TechId;
-    title: string;
+    titleKey: I18nKey;
     level: ProficiencyLevel;
-    levelLabel: string;
-    description: string;
+    descriptionKey: I18nKey;
 };
 
-export const techInfoById: Record<TechId, TechInfo> = {
+export const techInfoById: Record<TechId, TechInfoData> = {
     TypeScript: {
         id: "TypeScript",
-        title: "TypeScript",
+        titleKey: K.tech.typescript.title,
         level: "advanced",
-        levelLabel: "Advanced",
-        description: "Used extensively in full-stack development at Eufinity Solutions and in personal projects, focusing on type-safe backend and frontend applications.",
+        descriptionKey: K.tech.typescript.description,
     },
     "C++": {
         id: "C++",
-        title: "C++",
+        titleKey: K.tech.cplus.title,
         level: "advanced",
-        levelLabel: "Advanced",
-        description: "Applied in a full-stack environment at Eufinity Solutions, including performance-critical modules and integration with existing systems.",
+        descriptionKey: K.tech.cplus.description,
     },
     JavaScript: {
         id: "JavaScript",
-        title: "JavaScript",
+        titleKey: K.tech.javascript.title,
         level: "advanced",
-        levelLabel: "Advanced",
-        description: "Used professionally at Eufinity Solutions for backend services, APIs, and application logic.",
+        descriptionKey: K.tech.javascript.description,
     },
     Java: {
         id: "Java",
-        title: "Java",
+        titleKey: K.tech.java.title,
         level: "intermediate",
-        levelLabel: "Intermediate",
-        description: "Applied in both professional work and personal projects for full-stack development; also used in certification-based learning.",
+        descriptionKey: K.tech.java.description,
     },
     Python: {
         id: "Python",
-        title: "Python",
+        titleKey: K.tech.python.title,
         level: "intermediate",
-        levelLabel: "Intermediate",
-        description: "Used in academic work, certifications, and personal projects for scripting, data processing, and automation tasks.",
+        descriptionKey: K.tech.python.description,
     },
     "C#": {
         id: "C#",
-        title: "C#",
+        titleKey: K.tech.csharp.title,
         level: "intermediate",
-        levelLabel: "Intermediate",
-        description: "Used in personal projects and certification exercises, primarily for object-oriented application development.",
+        descriptionKey: K.tech.csharp.description,
     },
     "Node.js": {
         id: "Node.js",
-        title: "Node.js",
+        titleKey: K.tech.node.title,
         level: "advanced",
-        levelLabel: "Advanced",
-        description: "Used professionally at Eufinity Solutions with JavaScript to build backend services, APIs, and system integrations.",
+        descriptionKey: K.tech.node.description,
     },
     NestJS: {
         id: "NestJS",
-        title: "NestJS",
+        titleKey: K.tech.nest.title,
         level: "advanced",
-        levelLabel: "Advanced",
-        description: "Used in personal projects as the primary backend framework, applying modular architecture, dependency injection, and TypeScript best practices.",
+        descriptionKey: K.tech.nest.description,
     },
     Angular: {
         id: "Angular",
-        title: "Angular",
+        titleKey: K.tech.angular.title,
         level: "intermediate",
-        levelLabel: "Intermediate",
-        description: "Used professionally for ERP frontends, building robust component-based UIs and working with reactive forms and stateful workflows.",
+        descriptionKey: K.tech.angular.description,
     },
     React: {
         id: "React",
-        title: "React",
+        titleKey: K.tech.react.title,
         level: "intermediate",
-        levelLabel: "Intermediate",
-        description: "Used for this portfolio and for SPA-oriented interfaces focused on reusable components, hooks, and clean UI composition.",
+        descriptionKey: K.tech.react.description,
     },
     HTML: {
         id: "HTML",
-        title: "HTML",
+        titleKey: K.tech.html.title,
         level: "advanced",
-        levelLabel: "Advanced",
-        description: "Used professionally and in personal projects to structure modern responsive interfaces.",
+        descriptionKey: K.tech.html.description,
     },
     CSS: {
-        id: "TypeScript",
-        title: "CSS",
+        id: "CSS",
+        titleKey: K.tech.css.title,
         level: "advanced",
-        levelLabel: "Advanced",
-        description: "Used professionally and in personal projects to style responsive layouts, reusable UI components, and modern web interfaces."
+        descriptionKey: K.tech.css.description,
     },
     TypeORM: {
         id: "TypeORM",
-        title: "TypeORM",
+        titleKey: K.tech.typeorm.title,
         level: "advanced",
-        levelLabel: "Advanced",
-        description: "Primary ORM in personal NestJS projects, implementing entities, relations, migrations, and consistent schema design.",
+        descriptionKey: K.tech.typeorm.description,
     },
     "Sequelize.js": {
         id: "Sequelize.js",
-        title: "Sequelize.js",
+        titleKey: K.tech.sequelize.title,
         level: "intermediate",
-        levelLabel: "Intermediate",
-        description: "Used professionally in Node.js ERP modules for relational modeling, query building, and structured data access.",
+        descriptionKey: K.tech.sequelize.description,
     },
     PostgreSQL: {
         id: "PostgreSQL",
-        title: "PostgreSQL",
+        titleKey: K.tech.postgresql.title,
         level: "advanced",
-        levelLabel: "Advanced",
-        description: "Used for backend APIs and personal projects with experience in schema design, indexing, relationships, and advanced SQL queries.",
+        descriptionKey: K.tech.postgresql.description,
     },
     "MS SQL Server": {
         id: "MS SQL Server",
-        title: "MS SQL Server",
+        titleKey: K.tech.mssql.title,
         level: "advanced",
-        levelLabel: "Advanced",
-        description: "Used professionally for ERP data storage, reporting workflows, and complex SQL logic; also used in personal projects, certifications, and academic work.",
+        descriptionKey: K.tech.mssql.description,
     },
     MongoDB: {
         id: "MongoDB",
-        title: "MongoDB",
+        titleKey: K.tech.mongodb.title,
         level: "intermediate",
-        levelLabel: "Intermediate",
-        description: "Used professionally and in personal projects for document-based modeling, aggregation, and flexible schema design.",
+        descriptionKey: K.tech.mongodb.description,
     },
     Docker: {
         id: "Docker",
-        title: "Docker",
+        titleKey: K.tech.docker.title,
         level: "intermediate",
-        levelLabel: "Intermediate",
-        description: "Used professionally and in personal projects to containerize applications, standardize development environments, and orchestrate services with Docker Compose.",
+        descriptionKey: K.tech.docker.description,
     },
     Git: {
         id: "Git",
-        title: "Git",
+        titleKey: K.tech.git.title,
         level: "advanced",
-        levelLabel: "Advanced",
-        description: "Used daily in professional team environments involving feature branches, pull requests, code reviews, and conflict resolution across GitHub and GitLab.",
+        descriptionKey: K.tech.git.description,
     },
     ETL: {
         id: "ETL",
-        title: "ETL",
+        titleKey: K.tech.etl.title,
         level: "intermediate",
-        levelLabel: "Intermediate",
-        description: "Professional experience designing and maintaining ETL pipelines for integrating, transforming, and synchronizing data between systems.",
+        descriptionKey: K.tech.etl.description,
     },
     "Technical Support": {
         id: "Technical Support",
-        title: "Technical Support",
+        titleKey: K.tech.technicalsupport.title,
         level: "advanced",
-        levelLabel: "Advanced",
-        description: "Hands-on professional experience troubleshooting production issues, analyzing logs, and supporting clients in live environments at Eufinity Solutions.",
+        descriptionKey: K.tech.technicalsupport.description,
     },
 };
