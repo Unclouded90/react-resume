@@ -61,6 +61,7 @@ button:focus-visible {
     --text-muted: #a3a3a3;
     --hover-color: #ffffff84;
     --custom-icons-filter: brightness(0) invert(1);
+    --active-color: #414141;
 }
 
 body.theme-light {
@@ -73,4 +74,5 @@ body.theme-light {
     --text-muted: #4b5563;
     --hover-color: #000000;
     --custom-icons-filter: brightness(0) invert(0);
+    --active-color: #f8f8f8;
 }
