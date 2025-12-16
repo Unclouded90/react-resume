@@ -22,7 +22,7 @@ import { DiMsqlServer } from "react-icons/di";
 import "./CenteredPanel.css";
 import "./TechStackPanel.css";
 import { IconBadge } from "./IconBadge";
-import { techInfoById, type TechId, type TechInfo } from "../data/TechData";
+import { techInfoById, type TechId, type TechInfoData } from "../data/TechData";
 
 export type ProjectDetailsPanelProps = {
     title: string;
@@ -83,7 +83,7 @@ export function ProjectDetailsPanel({
     extraDetails = [],
 }: ProjectDetailsPanelProps) {
     const [showMore, setShowMore] = useState(false);
-    const [activeTech, setActiveTech] = useState<TechInfo | null>(null);
+    const [activeTech, setActiveTech] = useState<TechInfoData | null>(null);
 
     const hasExtraDetails = Array.isArray(extraDetails)
         ? extraDetails.length > 0

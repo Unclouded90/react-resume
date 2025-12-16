@@ -1,4 +1,3 @@
-import { useState } from "react";
 import {
     SiJavascript,
     SiTypescript,
@@ -16,7 +15,9 @@ import { MdSupportAgent } from "react-icons/md";
 import "./CenteredPanel.css";
 import "./TechStackPanel.css";
 import { IconBadge } from "./IconBadge";
-import { techInfoById, type TechId, type TechInfo } from "../data/TechData";
+import type { TechId } from "../data/TechData";
+import type { I18nKey } from "../i18n/keys";
+import { K } from "../i18n/keys";
 
 export type ExperienceDetailsPanelProps = {
     title: string;
@@ -26,6 +27,11 @@ export type ExperienceDetailsPanelProps = {
     description: string;
     bullets?: string[];
     tech?: string[];
+    onTechClick?: (id: TechId) => void;
+};
+
+export type ExperienceDetailsPanelI18nProps = {
+    t: (k: I18nKey) => string;
 };
 
 function getTechIcon(name: string) {
@@ -73,16 +79,9 @@ export function ExperienceDetailsPanel({
     description,
     bullets = [],
     tech = [],
-}: ExperienceDetailsPanelProps) {
-    const [activeTech, setActiveTech] = useState<TechInfo | null>(null);
-
-    const handleTechClick = (id: TechId) => {
-        const info = techInfoById[id];
-        if (info) setActiveTech(info);
-    };
-
-    const closeMiniCard = () => setActiveTech(null);
-
+    onTechClick,
+    t,
+}: ExperienceDetailsPanelProps & ExperienceDetailsPanelI18nProps) {
     return (
         <div className="centered-panel experience-panel tech-detail-root">
             <div className="exp-card exp-card--header">
@@ -108,7 +107,7 @@ export function ExperienceDetailsPanel({
             </div>
 
             <div className="exp-card">
-                <h3 className="exp-section-title">Role overview</h3>
+                <h3 className="exp-section-title">{t(K.exp.roleOverview)}</h3>
                 <p className="exp-text">{description}</p>
 
                 {bullets.length > 0 && (
@@ -122,52 +121,23 @@ export function ExperienceDetailsPanel({
 
             {tech.length > 0 && (
                 <div className="exp-card exp-card--tech">
-                    <h3 className="exp-section-title">Tech</h3>
+                    <h3 className="exp-section-title">{t(K.exp.tech)}</h3>
                     <div className="tech-badge-row">
-                        {tech.map((t) => {
-                            const icon = getTechIcon(t);
+                        {tech.map((techName) => {
+                            const icon = getTechIcon(techName);
                             if (!icon) return null;
 
                             return (
                                 <IconBadge
-                                    key={t}
+                                    key={techName}
                                     icon={icon}
-                                    label={t}
-                                    onClick={() => handleTechClick(t as TechId)}
+                                    label={techName}
+                                    onClick={
+                                        onTechClick ? () => onTechClick(techName as TechId) : undefined
+                                    }
                                 />
                             );
                         })}
-                    </div>
-                </div>
-            )}
-
-            {activeTech && (
-                <div className="tech-mini-overlay" onClick={closeMiniCard}>
-                    <div
-                        className="tech-mini-card"
-                        onClick={(e) => e.stopPropagation()}
-                    >
-                        <button
-                            type="button"
-                            className="tech-mini-close"
-                            onClick={closeMiniCard}
-                        >
-                            ✕
-                        </button>
-
-                        <h3 className="tech-mini-title">{activeTech.title}</h3>
-
-                        <div className="tech-mini-level">
-                            <span
-                                className={
-                                    "tech-level-badge tech-level-badge--" + activeTech.level
-                                }
-                            >
-                                {activeTech.levelLabel}
-                            </span>
-                        </div>
-
-                        <p className="tech-mini-text">{activeTech.description}</p>
                     </div>
                 </div>
             )}

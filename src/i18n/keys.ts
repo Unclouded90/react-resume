@@ -4,6 +4,9 @@ export const K = {
         darkMode: "ui.darkMode",
         close: "ui.close",
         viewPublication: "ui.viewPublication",
+        downloadResume: "ui.downloadResume",
+        viewAll: "ui.viewAll",
+        experience: "ui.experience",
         personalProjects: "ui.personalProjects",
         certificates: "ui.certificates",
         levels: {
@@ -12,6 +15,20 @@ export const K = {
             advanced: "ui.levels.advanced",
           },
     },
+
+    about: {
+        title: "about.title",
+        tagline: "about.tagline",
+        languagesLabel: "about.languagesLabel",
+        languagesValue: "about.languagesValue",
+        whoTitle: "about.whoTitle",
+        whoP1: "about.whoP1",
+        whoP2: "about.whoP2",
+        whoP3: "about.whoP3",
+        hobbiesTitle: "about.hobbiesTitle",
+        hobbies: "about.hobbies",
+        more: "about.more",
+      },
 
     exp: {
         roleOverview: "exp.roleOverview",
@@ -32,6 +49,10 @@ export const K = {
     },
 
     tech: {
+        title: "tech.title",
+        languages: "tech.languages",
+        databases: "tech.databases",
+        other: "tech.otherSkills",
         typescript: {
             title: "tech.typescript.title",
             description: "tech.typescript.description",
@@ -118,7 +139,22 @@ export const K = {
         },
     },
 
+    educations : {
+        title: "educations.title",
+        degreeTitle: "educations.degreeTitle",
+        dates: "educations.dates",
+    },
+
+    projects: {
+        title: "projects.title",
+    },
+
+    certificates: {
+        title: "certificates.title",
+    },
+
     achievements: {
+        title: "achievements.title",
         springer: {
             title: "achievements.springer.title",
             subtitle: "achievements.springer.subtitle",

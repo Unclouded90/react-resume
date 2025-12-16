@@ -5,11 +5,30 @@ export const en: Record<I18nKey, string> = {
     "ui.darkMode": "Dark mode",
     "ui.close": "Close",
     "ui.viewPublication": "View publication",
+    "ui.downloadResume": "Download resume",
+    "ui.viewAll": "View All",
+    "ui.experience": "Experience",
     "ui.personalProjects": "Personal Projects",
     "ui.certificates": "Certificates",
     "ui.levels.basic": "Basic",
     "ui.levels.intermediate": "Intermediate",
     "ui.levels.advanced": "Advanced",
+
+    "about.title": "About me",
+    "about.tagline": "Full Stack Developer · Enjoys solving problems",
+    "about.languagesLabel": "Languages:",
+    "about.languagesValue": "Portuguese (Native), English (Professional)",
+    "about.whoTitle": "Who am I?",
+    "about.whoP1": "Hello, my name is Mauro. I'm currently working as a Full Stack Developer, a role I truly enjoy. Since I was young, I've " + 
+        "loved challenges, puzzles, and logic-based problems, so it often feels like I'm turning a hobby into a career.",
+    "about.whoP2": "I'm very enthusiastic about everything I do and constantly strive to improve myself. This website, for example, exists " + 
+        "because I wanted to learn React — and here we are.",
+    "about.whoP3": "I consider myself a friendly, easy-going person and a loyal friend. In the workplace, I value being part of a team with " + 
+        "the same spirit — one that grows together, supports each other, and motivates everyone to be the best version of themselves.",
+    "about.hobbiesTitle": "Hobbies",
+    "about.hobbies": "When I'm not working, I'm usually learning something new, just like when I decided I wanted to learn " + 
+                    "React. I also game a lot, love listening to music, and enjoy watching series and movies with my wife.",
+    "about.more": "If you'd like to know more, feel free to reach out by email or connect with me on LinkedIn — I would be happy to talk.",
 
     "exp.roleOverview": "Role overview",
     "exp.tech": "Tech",
@@ -18,15 +37,30 @@ export const en: Record<I18nKey, string> = {
     "jobs.eufinity.companyName": "Eufinity Solutions",
     "jobs.eufinity.dates": "April 2024 - Present",
     "jobs.eufinity.description":
-        "Currently working as a Full Stack Developer on Eufinity Solutions, a company focused on developing end-to-end retail and ERP (Enterprise Resource Planning) software solutions targeting medium to large-scale retail operations.",
+        "Currently working as a Full Stack Developer on Eufinity Solutions, a company focused on developing end-to-end" + 
+        " retail and ERP (Enterprise Resource Planning) software solutions targeting medium to large-scale retail operations.",
     "jobs.eufinity.b1": "Full-stack development of ERP systems, responsible for both back-end and front-end features",
     "jobs.eufinity.b2": "Implementing SAF-T (PT) solutions in full compliance with Portuguese fiscal legislation",
     "jobs.eufinity.b3": "Integrating our software with automatic payment terminals across multiple countries",
     "jobs.eufinity.b4": "Providing technical support, addressing and resolving client incidents and feature requests",
 
+    "educations.title": "Education",
+    "educations.degreeTitle": "Bachelor's Degree in Biomedical Engineering",
+    "educations.dates": "Oct 2020 – Jul 2023",
+
+    "projects.title": "Personal Projects",
+
+    "certificates.title": "Certificates",
+
+    "achievements.title": "Achievements",
     "achievements.springer.title": "Detection of Landmarks in X-Ray Images through Deep Learning",
     "achievements.springer.subtitle": "Published in Springer",
     "achievements.springer.linkLabel": "View publication",
+
+    "tech.title": "Tech Stack",
+    "tech.languages": "Languages",
+    "tech.databases": "Databases",
+    "tech.otherSkills": "Other Skills",
 
     "tech.typescript.title": "TypeScript",
     "tech.typescript.description": "Used extensively in full-stack development at Eufinity Solutions and in personal projects, focusing on type-safe backend and frontend applications.",

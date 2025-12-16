@@ -339,19 +339,19 @@ function App() {
                     </section>
 
                     <section className="panel panel-header">
-                        <HeaderPanel onExpand={() => openPanel("about")} />
+                        <HeaderPanel onExpand={() => openPanel("about")} t={t} />
                     </section>
 
                     <section className="panel panel-experience">
-                        <ExperiencePanel onExpand={() => openExperience(1)} />
+                        <ExperiencePanel onExpand={() => openExperience(1)} t={t} />
                     </section>
 
                     <section className="panel panel-techstack">
-                        <TechStackPanel onExpand={() => openPanel("tech")} onTechClick={handleTechClick} />
+                        <TechStackPanel onExpand={() => openPanel("tech")} onTechClick={handleTechClick} t={t} />
                     </section>
 
                     <section className="panel panel-education">
-                        <EducationPanel onExpand={() => openPanel("education")} />
+                        <EducationPanel onExpand={() => openPanel("education")} t={t} />
                     </section>
 
                     <section className="panel panel-projects">
@@ -359,6 +359,7 @@ function App() {
                             projects={homepageProjects}
                             onProjectClick={(p) => openProjectById(p.id)}
                             onViewAllClick={() => openPanel("projectsAll")}
+                            t={t}
                         />
                     </section>
 
@@ -367,11 +368,12 @@ function App() {
                             certificates={featuredCertificates}
                             onCertificateClick={(c) => openCertificateById(c.id)}
                             onViewAllClick={() => openPanel("certificatesAll")}
+                            t={t}
                         />
                     </section>
 
                     <section className="panel panel-achievements">
-                        <AchievementPanel achievements={translatedAchievements} />
+                        <AchievementPanel achievements={translatedAchievements} t={t} />
                     </section>
                 </div>
             </div>
@@ -404,14 +406,15 @@ function App() {
                                 </button>
                             </div>
 
-                            {activePanel === "about" && <AboutMePanel />}
-                            {activePanel === "tech" && <TechStackDetailsPanel onTechClick={handleTechClick} />}
-                            {activePanel === "experience" && experienceProps && <ExperienceDetailsPanel {...experienceProps} />}
+                            {activePanel === "about" && <AboutMePanel t={t} />}
+                            {activePanel === "tech" && <TechStackDetailsPanel onTechClick={handleTechClick} t={t} />}
+                            {activePanel === "experience" && experienceProps &&
+                                <ExperienceDetailsPanel {...experienceProps} t={t} onTechClick={handleTechClick} />}
                             {activePanel === "education" && <EducationDetailsPanel />}
                             {activePanel === "project" && selectedProject && <ProjectDetailsPanel {...selectedProject} />}
 
                             {activePanel === "projectsAll" && (
-                                <ProjectPanel projects={projects} onProjectClick={(p) => openProjectById(p.id)} title="Personal Projects" />
+                                <ProjectPanel projects={projects} onProjectClick={(p) => openProjectById(p.id)} title="Personal Projects" t={t} />
                             )}
 
                             {activePanel === "certificate" && selectedCertificate && <CertificateDetailsPanel {...selectedCertificate} />}
@@ -421,6 +424,7 @@ function App() {
                                     certificates={certificates}
                                     onCertificateClick={(c) => openCertificateById(c.id)}
                                     title="Certificates"
+                                    t={t}
                                 />
                             )}
                         </div>

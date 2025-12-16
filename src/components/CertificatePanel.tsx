@@ -1,4 +1,6 @@
-import './ProjectPanel.css';
+import "./ProjectPanel.css";
+import type { I18nKey } from "../i18n/keys";
+import { K } from "../i18n/keys";
 
 type Certificate = {
     id: number;
@@ -11,18 +13,20 @@ type CertificatePanelProps = {
     onCertificateClick: (certificate: Certificate) => void;
     onViewAllClick?: () => void;
     title?: string;
+    t: (k: I18nKey) => string;
 };
 
 export function CertificatePanel({
     certificates,
     onCertificateClick,
     onViewAllClick,
-    title = "Certificates",
+    title,
+    t,
 }: CertificatePanelProps) {
     return (
         <div className="projects-panel">
             <div className="projects-panel-header-row">
-                <h2 className="projects-heading">{title}</h2>
+                <h2 className="projects-heading">{title ?? t(K.certificates.title)}</h2>
 
                 {onViewAllClick && (
                     <button
@@ -30,7 +34,7 @@ export function CertificatePanel({
                         className="projects-view-all-btn"
                         onClick={onViewAllClick}
                     >
-                        View all →
+                        {t(K.ui.viewAll)} →
                     </button>
                 )}
             </div>

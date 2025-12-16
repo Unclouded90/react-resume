@@ -5,11 +5,30 @@ export const pt: Record<I18nKey, string> = {
     "ui.darkMode": "Modo escuro",
     "ui.close": "Fechar",
     "ui.viewPublication": "Ver publicação",
+    "ui.downloadResume": "Download do CV",
+    "ui.viewAll": "Ver tudo",
+    "ui.experience": "Experiência",
     "ui.personalProjects": "Projetos Pessoais",
     "ui.certificates": "Certificados",
     "ui.levels.basic": "Iniciante",
     "ui.levels.intermediate": "Intermédio",
     "ui.levels.advanced": "Avançado",
+
+    "about.title": "Sobre mim",
+    "about.tagline": "Full Stack Developer · Gosto de resolver problemas",
+    "about.languagesLabel": "Idiomas:",
+    "about.languagesValue": "Português (Nativo), Inglês (Profissional)",
+    "about.whoTitle": "Quem sou eu?",
+    "about.whoP1": "Olá, o meu nome é Mauro. Actualmente trabalho como Full Stack Developer, uma função que realmente adoro. Desde jovem que gosto de desafios, " + 
+        "puzzles e problemas de lógica, pelo que muitas vezes sinto que transformei um hobby numa profissão.",
+    "about.whoP2": "Sou muito entusiasta em tudo o que faço e estou constantemente à procura de evoluir e melhorar. Este website, por exemplo, existe porque quis " + 
+        "aprender React — e aqui estamos.",
+    "about.whoP3": "Considero-me uma pessoa acessível, bem-disposta e um amigo leal. No contexto profissional, valorizo fazer parte de uma equipa com esse mesmo " + 
+        "espírito — uma equipa que cresce em conjunto, se apoia mutuamente e motiva todos a serem a melhor versão de si próprios.",
+    "about.hobbiesTitle": "Hobbies",
+    "about.hobbies": "Quando não estou a trabalhar, normalmente estou a aprender algo novo, tal como quando decidi aprender React. Também gosto bastante de jogar," + 
+        " ouvir música e ver séries e filmes com a minha esposa.",
+    "about.more": "Se quiser saber mais, sinta-se à vontade para entrar em contacto por email ou conectar-se no LinkedIn — terei todo o gosto em conversar.",
 
     "exp.roleOverview": "Descrição da função",
     "exp.tech": "Tecnologias",
@@ -18,15 +37,30 @@ export const pt: Record<I18nKey, string> = {
     "jobs.eufinity.companyName": "Eufinity Solutions",
     "jobs.eufinity.dates": "Abril 2024 - Presente",
     "jobs.eufinity.description":
-        "Atualmente trabalho como Programador Full Stack na Eufinity Solutions, uma empresa focada em desenvolver soluções completas de retalho e ERP (Enterprise Resource Planning) para operações de média e grande escala.",
+        "Atualmente trabalho como Programador Full Stack na Eufinity Solutions, uma empresa focada em desenvolver soluções completas de retalho e ERP " + 
+        "(Enterprise Resource Planning) para operações de média e grande escala.",
     "jobs.eufinity.b1": "Desenvolvimento full-stack de sistemas ERP, responsável por funcionalidades de back-end e front-end",
     "jobs.eufinity.b2": "Implementação de SAF-T (PT) em conformidade com a legislação fiscal portuguesa",
     "jobs.eufinity.b3": "Integração do software com terminais de pagamento automáticos em vários países",
     "jobs.eufinity.b4": "Suporte técnico, resolução de incidentes e de pedidos de funcionalidades",
 
+    "educations.title": "Educação",
+    "educations.degreeTitle": "Licenciatura em Engenharia Biomédica",
+    "educations.dates": "Out 2020 – Jul 2023",
+
+    "projects.title": "Projectos Pessoais",
+
+    "certificates.title": "Certificados",
+
+    "achievements.title": "Conquistas",
     "achievements.springer.title": "Detecção de Marcos em Radiografias com Deep Learning",
     "achievements.springer.subtitle": "Publicado na Springer",
     "achievements.springer.linkLabel": "Ver publicação",
+
+    "tech.title": "Stack Tecnológica",
+    "tech.languages": "Linguagens",
+    "tech.databases": "Bases de Dados",
+    "tech.otherSkills": "Outras Competências",
 
     "tech.typescript.title": "TypeScript",
     "tech.typescript.description": "Utilizado extensivamente no desenvolvimento full-stack na Eufinity Solutions e em projetos pessoais, com foco em aplicações backend e frontend com forte tipagem.",
@@ -68,6 +102,6 @@ export const pt: Record<I18nKey, string> = {
     "tech.git.description": "Utilizado diariamente em ambientes profissionais e pessoais, envolvendo branches de funcionalidades, pull requests, code reviews e resolução de conflitos em GitHub e GitLab.",
     "tech.etl.title": "ETL",
     "tech.etl.description": "Experiência profissional na concepção e manutenção de pipelines ETL para integração, transformação e sincronização de dados entre sistemas.",
-    "tech.technicalsupport.title": "Suporte Tẽcnico",
+    "tech.technicalsupport.title": "Suporte Técnico",
     "tech.technicalsupport.description": "Experiência profissional prática na resolução de problemas em produção, análise de logs e suporte a clientes em ambientes live na Eufinity Solutions."  
 };
