@@ -23,7 +23,7 @@ import { techInfoById, type TechId, type TechInfoData } from "./data/TechData";
 import { FaSun, FaMoon } from "react-icons/fa";
 import { IconBadge } from "./components/IconBadge";
 import { jobs, type Job } from "./data/JobsData";
-import { projects, type Project } from "./data/ProjectsData";
+import { projects, type ProjectData } from "./data/ProjectsData";
 import { certificates, type Certificate } from "./data/CertificatesData";
 import type { Achievement } from "./components/AchievementPanel";
 import type { AchievementData } from "./data/AchievementsData";
@@ -94,6 +94,20 @@ function jobToPanelProps(
     };
 }
 
+function projectToPanelProps(
+    p: ProjectData,
+    t: (k: I18nKey) => string
+): ProjectDetailsPanelProps {
+    return {
+        title: t(p.titleKey),
+        subtitle: p.subtitleKey ? t(p.subtitleKey) : undefined,
+        description: p.descriptionKey ? t(p.descriptionKey) : undefined,
+        tech: p.tech,
+        githubUrl: p.githubUrl,
+        extraDetails: p.extraDetailsKey?.map(t) ?? [],
+    };
+}
+
 function achievementToProps(
     a: AchievementData,
     t: (k: I18nKey) => string
@@ -108,12 +122,10 @@ function achievementToProps(
 }
 
 const jobsById = new Map<number, Job>(jobs.map((j) => [j.id, j]));
-const projectsById = new Map<number, Project>(projects.map((p) => [p.id, p]));
 const certsById = new Map<number, Certificate>(certificates.map((c) => [c.id, c]));
 
+const projectsById = new Map<number, ProjectData>(projects.map((p) => [p.id, p]));
 const featuredCertificates = certificates.filter((c) => c.featured);
-const featuredProjects = projects.filter((p) => p.featured);
-const homepageProjects = featuredProjects.length > 0 ? featuredProjects : projects.slice(0, 3);
 
 function App() {
     const [theme, setTheme] = useState<Theme>(() => {
@@ -188,8 +200,11 @@ function App() {
     const activeTech: TechInfoData | null = uiState.techId ? techInfoById[uiState.techId] ?? null : null;
 
     const selectedProject: ProjectDetailsPanelProps | null = useMemo(() => {
-        return uiState.projectId ? projectsById.get(uiState.projectId) ?? null : null;
-    }, [uiState.projectId]);
+        if (uiState.panel !== "project") return null;
+        if (!uiState.projectId) return null;
+        const p = projectsById.get(uiState.projectId);
+        return p ? projectToPanelProps(p, t) : null;
+    }, [uiState.panel, uiState.projectId, t]);
 
     const selectedCertificate: Certificate | null = useMemo(() => {
         return uiState.certificateId ? certsById.get(uiState.certificateId) ?? null : null;
@@ -202,6 +217,25 @@ function App() {
         if (!job) return null;
         return jobToPanelProps(job, t);
     }, [uiState.panel, uiState.jobId, t]);
+
+    const translatedProjects = useMemo(() => {
+        return projects.map((p) => ({
+            id: p.id,
+            title: t(p.titleKey),
+            subtitle: p.subtitleKey ? t(p.subtitleKey) : undefined,
+        }));
+    }, [t]);
+
+    const homepageProjects = useMemo(() => {
+        const featured = projects.filter((p) => p.featured);
+        const base = featured.length ? featured : projects.slice(0, 3);
+
+        return base.map((p) => ({
+            id: p.id,
+            title: t(p.titleKey),
+            subtitle: p.subtitleKey ? t(p.subtitleKey) : undefined,
+        }));
+    }, [t]);
 
     const translatedAchievements = useMemo(
         () => achievementsData.map((a) => achievementToProps(a, t)),
@@ -411,10 +445,15 @@ function App() {
                             {activePanel === "experience" && experienceProps &&
                                 <ExperienceDetailsPanel {...experienceProps} t={t} onTechClick={handleTechClick} />}
                             {activePanel === "education" && <EducationDetailsPanel />}
-                            {activePanel === "project" && selectedProject && <ProjectDetailsPanel {...selectedProject} />}
+                            {activePanel === "project" && selectedProject && <ProjectDetailsPanel {...selectedProject} t={t} />}
 
                             {activePanel === "projectsAll" && (
-                                <ProjectPanel projects={projects} onProjectClick={(p) => openProjectById(p.id)} title="Personal Projects" t={t} />
+                                <ProjectPanel
+                                    projects={translatedProjects}
+                                    onProjectClick={(p) => openProjectById(p.id)}
+                                    title={t(K.projects.title)}
+                                    t={t}
+                                />
                             )}
 
                             {activePanel === "certificate" && selectedCertificate && <CertificateDetailsPanel {...selectedCertificate} />}

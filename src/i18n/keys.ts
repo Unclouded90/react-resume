@@ -3,6 +3,7 @@ export const K = {
         lightMode: "ui.lightMode",
         darkMode: "ui.darkMode",
         close: "ui.close",
+        description: "ui.description",
         viewPublication: "ui.viewPublication",
         downloadResume: "ui.downloadResume",
         viewAll: "ui.viewAll",
@@ -13,7 +14,7 @@ export const K = {
             basic: "ui.levels.basic",
             intermediate: "ui.levels.intermediate",
             advanced: "ui.levels.advanced",
-          },
+        },
     },
 
     about: {
@@ -28,7 +29,7 @@ export const K = {
         hobbiesTitle: "about.hobbiesTitle",
         hobbies: "about.hobbies",
         more: "about.more",
-      },
+    },
 
     exp: {
         roleOverview: "exp.roleOverview",
@@ -139,7 +140,7 @@ export const K = {
         },
     },
 
-    educations : {
+    educations: {
         title: "educations.title",
         degreeTitle: "educations.degreeTitle",
         dates: "educations.dates",
@@ -147,6 +148,74 @@ export const K = {
 
     projects: {
         title: "projects.title",
+        readMore: "projects.readMore",
+        hideDetails: "projects.hideDetails",
+        nestjs: {
+            projectTitle: "projects.nestjs.title",
+            subtitle: "projects.nestjs.subtitle",
+            description: "projects.nestjs.description",
+            extra1: "projects.nestjs.extra1",
+            extra2: "projects.nestjs.extra2",
+            extra3: "projects.nestjs.extra3",
+            extra4: "projects.nestjs.extra4",
+            extra5: "projects.nestjs.extra5",
+            extra6: "projects.nestjs.extra6",
+            extra7: "projects.nestjs.extra7",
+            extra8: "projects.nestjs.extra8",
+            extra9: "projects.nestjs.extra9",
+            extra10: "projects.nestjs.extra10",
+            extra11: "projects.nestjs.extra11",
+            extra12: "projects.nestjs.extra12",
+        },
+        portfolio: {
+            projectTitle: "projects.portfolio.title",
+            subtitle: "projects.portfolio.subtitle",
+            description: "projects.portfolio.description",
+            extra1: "projects.portfolio.extra1",
+            extra2: "projects.portfolio.extra2",
+            extra3: "projects.portfolio.extra3",
+            extra4: "projects.portfolio.extra4",
+            extra5: "projects.portfolio.extra5",
+            extra6: "projects.portfolio.extra6",
+            extra7: "projects.portfolio.extra7",
+            extra8: "projects.portfolio.extra8",
+            extra9: "projects.portfolio.extra9",
+        },
+        employee: {
+            projectTitle: "projects.employee.title",
+            subtitle: "projects.employee.subtitle",
+            description: "projects.employee.description",
+        },
+        ticket: {
+            projectTitle: "projects.ticket.title",
+            subtitle: "projects.ticket.subtitle",
+            description: "projects.ticket.description",
+        },
+        currency: {
+            projectTitle: "projects.currency.title",
+            subtitle: "projects.currency.subtitle",
+            description: "projects.currency.description",
+        },
+        tictactoe: {
+            projectTitle: "projects.tictactoe.title",
+            subtitle: "projects.tictactoe.subtitle",
+            description: "projects.tictactoe.description",
+        },
+        pong: {
+            projectTitle: "projects.pong.title",
+            subtitle: "projects.pong.subtitle",
+            description: "projects.pong.description",
+        },
+        zigzag: {
+            projectTitle: "projects.zigzag.title",
+            subtitle: "projects.zigzag.subtitle",
+            description: "projects.zigzag.description",
+        },
+        fruit: {
+            projectTitle: "projects.fruit.title",
+            subtitle: "projects.fruit.subtitle",
+            description: "projects.fruit.description",
+        },
     },
 
     certificates: {

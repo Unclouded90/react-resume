@@ -22,7 +22,10 @@ import { DiMsqlServer } from "react-icons/di";
 import "./CenteredPanel.css";
 import "./TechStackPanel.css";
 import { IconBadge } from "./IconBadge";
-import { techInfoById, type TechId, type TechInfoData } from "../data/TechData";
+import type { TechId, TechInfoData } from "../data/TechData";
+import type { I18nKey } from "../i18n/keys";
+import { K } from "../i18n/keys";
+import { TechMiniCard } from "./TechMiniCard";
 
 export type ProjectDetailsPanelProps = {
     title: string;
@@ -33,44 +36,30 @@ export type ProjectDetailsPanelProps = {
     extraDetails?: string[];
 };
 
+type ProjectDetailsPanelI18nProps = {
+    t: (k: I18nKey) => string;
+};
+
 function getTechIcon(name: string) {
     switch (name) {
-        case "JavaScript":
-            return <SiJavascript />;
-        case "TypeScript":
-            return <SiTypescript />;
-        case "React":
-            return <SiReact />;
-        case "NestJS":
-            return <SiNestjs />;
-        case "PostgreSQL":
-            return <SiPostgresql />;
-        case "TypeORM":
-            return <SiTypeorm />;
-        case "Docker":
-            return <SiDocker />;
-        case "HTML":
-            return <SiHtml5 />;
-        case "CSS":
-            return <SiCss3 />;
-        case "Vite":
-            return <SiVite />;
-        case "Git":
-            return <SiGit />;
-        case "Java":
-            return <FaJava />;
-        case "C++":
-            return <SiCplusplus />;
-        case "C#":
-            return <TbBrandCSharp />;
-        case "Python":
-            return <SiPython />;
-        case "MongoDB":
-            return <SiMongodb />;
-        case "MS SQL Server":
-            return <DiMsqlServer />;
-        default:
-            return null;
+        case "JavaScript": return <SiJavascript />;
+        case "TypeScript": return <SiTypescript />;
+        case "React": return <SiReact />;
+        case "NestJS": return <SiNestjs />;
+        case "PostgreSQL": return <SiPostgresql />;
+        case "TypeORM": return <SiTypeorm />;
+        case "Docker": return <SiDocker />;
+        case "HTML": return <SiHtml5 />;
+        case "CSS": return <SiCss3 />;
+        case "Vite": return <SiVite />;
+        case "Git": return <SiGit />;
+        case "Java": return <FaJava />;
+        case "C++": return <SiCplusplus />;
+        case "C#": return <TbBrandCSharp />;
+        case "Python": return <SiPython />;
+        case "MongoDB": return <SiMongodb />;
+        case "MS SQL Server": return <DiMsqlServer />;
+        default: return null;
     }
 }
 
@@ -81,30 +70,31 @@ export function ProjectDetailsPanel({
     tech = [],
     githubUrl,
     extraDetails = [],
-}: ProjectDetailsPanelProps) {
+    t,
+}: ProjectDetailsPanelProps & ProjectDetailsPanelI18nProps) {
     const [showMore, setShowMore] = useState(false);
     const [activeTech, setActiveTech] = useState<TechInfoData | null>(null);
 
-    const hasExtraDetails = Array.isArray(extraDetails)
-        ? extraDetails.length > 0
-        : !!extraDetails;
+    const hasExtraDetails = extraDetails.length > 0;
 
     const handleTechClick = (id: TechId) => {
-        const info = techInfoById[id];
-        if (info) setActiveTech(info);
+        setActiveTech(null);
+        import("../data/TechData").then(({ techInfoById }) => {
+            setActiveTech(techInfoById[id]);
+        });
     };
-
-    const closeMiniCard = () => setActiveTech(null);
 
     return (
         <div className="centered-panel experience-panel tech-detail-root">
             <div className="exp-card exp-card--header">
                 <h2 className="exp-position">{title}</h2>
+
                 {subtitle && (
                     <p className="exp-company-dates">
                         <span className="exp-company">{subtitle}</span>
                     </p>
                 )}
+
                 {githubUrl && (
                     <a
                         href={githubUrl}
@@ -112,14 +102,14 @@ export function ProjectDetailsPanel({
                         rel="noreferrer"
                         className="exp-header-link"
                     >
-                        GitHub ↗
+                        Github ↗
                     </a>
                 )}
             </div>
 
             {description && (
                 <div className="exp-card">
-                    <h3 className="exp-section-title">Description</h3>
+                    <h3 className="exp-section-title">{t(K.ui.description)}</h3>
                     <p className="exp-text">{description}</p>
 
                     {hasExtraDetails && !showMore && (
@@ -128,7 +118,7 @@ export function ProjectDetailsPanel({
                             onClick={() => setShowMore(true)}
                             type="button"
                         >
-                            Read more...
+                            {t(K.projects.readMore)}
                         </button>
                     )}
                 </div>
@@ -136,40 +126,37 @@ export function ProjectDetailsPanel({
 
             {hasExtraDetails && showMore && (
                 <div className="exp-card exp-card--extra">
-                    {Array.isArray(extraDetails) ? (
-                        <ul className="exp-list">
-                            {extraDetails.map((item, idx) => (
-                                <li key={idx}>{item}</li>
-                            ))}
-                        </ul>
-                    ) : (
-                        <p className="exp-text">{extraDetails}</p>
-                    )}
+                    <ul className="exp-list">
+                        {extraDetails.map((item, idx) => (
+                            <li key={idx}>{item}</li>
+                        ))}
+                    </ul>
 
                     <button
                         className="exp-toggle-btn exp-toggle-btn--hide"
                         onClick={() => setShowMore(false)}
                         type="button"
                     >
-                        Hide details
+                        {t(K.projects.hideDetails)}
                     </button>
                 </div>
             )}
 
             {tech.length > 0 && (
                 <div className="exp-card exp-card--tech">
-                    <h3 className="exp-section-title">Tech</h3>
+                    <h3 className="exp-section-title">{t(K.exp.tech)}</h3>
+
                     <div className="tech-badge-row">
-                        {tech.map((t) => {
-                            const icon = getTechIcon(t);
+                        {tech.map((name) => {
+                            const icon = getTechIcon(name);
                             if (!icon) return null;
 
                             return (
                                 <IconBadge
-                                    key={t}
+                                    key={name}
                                     icon={icon}
-                                    label={t}
-                                    onClick={() => handleTechClick(t as TechId)}
+                                    label={name}
+                                    onClick={() => handleTechClick(name as TechId)}
                                 />
                             );
                         })}
@@ -178,34 +165,11 @@ export function ProjectDetailsPanel({
             )}
 
             {activeTech && (
-                <div className="tech-mini-overlay" onClick={closeMiniCard}>
-                    <div
-                        className="tech-mini-card"
-                        onClick={(e) => e.stopPropagation()}
-                    >
-                        <button
-                            type="button"
-                            className="tech-mini-close"
-                            onClick={closeMiniCard}
-                        >
-                            ✕
-                        </button>
-
-                        <h3 className="tech-mini-title">{activeTech.title}</h3>
-
-                        <div className="tech-mini-level">
-                            <span
-                                className={
-                                    "tech-level-badge tech-level-badge--" + activeTech.level
-                                }
-                            >
-                                {activeTech.levelLabel}
-                            </span>
-                        </div>
-
-                        <p className="tech-mini-text">{activeTech.description}</p>
-                    </div>
-                </div>
+                <TechMiniCard
+                    tech={activeTech}
+                    t={t}
+                    onClose={() => setActiveTech(null)}
+                />
             )}
         </div>
     );
