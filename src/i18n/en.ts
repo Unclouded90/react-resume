@@ -48,6 +48,16 @@ export const en: Record<I18nKey, string> = {
     "educations.title": "Education",
     "educations.degreeTitle": "Bachelor's Degree in Biomedical Engineering",
     "educations.dates": "Oct 2020 – Jul 2023",
+    "educations.highlights": "Highlights",
+    "educations.description": "Undergraduate degree focused on the intersection of engineering, health and technology, " + 
+        "combining strong foundations in mathematics, physics and programming.",
+    "educations.projectLabel": "Undergraduate Project (Graded 19 out of 20) - ",
+    "educations.projectValue": "Development of two neural networks based on semantic segmentation to automatically detect landmarks" + 
+        " in X-ray images, using a dataset of 200 encephalogram images: the UNet architecture and the FPN architecture. The study " + 
+        "also aimed at a direct application in a medical context to diagnose the models and their predictions, with the development " + 
+        "of an automatic metric analysis, based on the encephalograms in the dataset, on the type of Mandibular Occlusion of the patients, " + 
+        "thus allowing a quick and precise response in the identification and classification of a diagnosis.",
+    "educations.hightlightDescription": "Published my Undergraduate Project on Springer",
 
     "projects.title": "Personal Projects",
     "projects.readMore": "Read more...",
@@ -56,9 +66,9 @@ export const en: Record<I18nKey, string> = {
     "projects.nestjs.title": "NestJS API Template",
     "projects.nestjs.subtitle": "API starter with auth, Swagger, TypeORM & Docker",
     "projects.nestjs.description": "A production-ready NestJS API template that includes built-in authentication, OpenAPI (Swagger), TypeORM setup, rate limiting, and other common features." +
-            " It was designed to help people start new projects quickly by focusing on actual business logic instead of boilerplate. Developed collaboratively with two teammates," +
-            " this project represents a blend of our shared ideas, existing knowledge, and new skills acquired throughout the development process. It was an exciting team effort" +
-            " and remains an ongoing project that we continue to refine and improve regularly.",
+        " It was designed to help people start new projects quickly by focusing on actual business logic instead of boilerplate. Developed collaboratively with two teammates," +
+        " this project represents a blend of our shared ideas, existing knowledge, and new skills acquired throughout the development process. It was an exciting team effort" +
+        " and remains an ongoing project that we continue to refine and improve regularly.",
     "projects.nestjs.extra1": "Production-ready NestJS API template focused on reducing boilerplate so new services can start from a solid base instead of from scratch.",
     "projects.nestjs.extra2": "Implements JWT-based authentication with support for access and refresh tokens, multi-session device tracking and protected/public routes via custom decorators.",
     "projects.nestjs.extra3": "Uses a modular architecture with feature-based modules (Auth, User, Health, etc.) and a shared common layer for base classes, decorators, utilities and configuration.",

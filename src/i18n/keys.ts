@@ -144,6 +144,11 @@ export const K = {
         title: "educations.title",
         degreeTitle: "educations.degreeTitle",
         dates: "educations.dates",
+        highlights: "educations.highlights",
+        description: "educations.description",
+        projectLabel: "educations.projectLabel",
+        projectValue: "educations.projectValue",
+        highlightDescription: "educations.hightlightDescription",
     },
 
     projects: {

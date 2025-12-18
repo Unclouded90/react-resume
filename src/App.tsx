@@ -444,7 +444,7 @@ function App() {
                             {activePanel === "tech" && <TechStackDetailsPanel onTechClick={handleTechClick} t={t} />}
                             {activePanel === "experience" && experienceProps &&
                                 <ExperienceDetailsPanel {...experienceProps} t={t} onTechClick={handleTechClick} />}
-                            {activePanel === "education" && <EducationDetailsPanel />}
+                            {activePanel === "education" && <EducationDetailsPanel t={t} onTechClick={handleTechClick}/>}
                             {activePanel === "project" && selectedProject && <ProjectDetailsPanel {...selectedProject} t={t} />}
 
                             {activePanel === "projectsAll" && (

@@ -48,6 +48,15 @@ export const pt: Record<I18nKey, string> = {
     "educations.title": "Educação",
     "educations.degreeTitle": "Licenciatura em Engenharia Biomédica",
     "educations.dates": "Out 2020 – Jul 2023",
+    "educations.highlights": "Destaques",
+    "educations.description": "Licenciatura com foco na interseção entre engenharia, saúde e tecnologia, combinando bases sólidas em matemática, física e programação.",
+    "educations.projectLabel": "Projecto de Licenciatura (Nota de 19 em 20 valores) - ",
+    "educations.projectValue": "Desenvolvimento de duas redes neuronais baseadas em segmentação semântica para deteção automática de pontos de referência " + 
+        "(landmarks) em imagens de raios X, utilizando um conjunto de dados com 200 imagens de encefalogramas: as arquiteturas UNet e FPN. O estudo teve " + 
+        "também como objetivo uma aplicação direta em contexto clínico, permitindo a avaliação dos modelos e das suas previsões, através do desenvolvimento " + 
+        "de uma análise automática de métricas baseada nos encefalogramas do conjunto de dados, focada no tipo de oclusão mandibular dos pacientes, possibilitando " + 
+        "assim uma resposta rápida e precisa na identificação e classificação do diagnóstico.",
+    "educations.hightlightDescription": "Publicação do meu projecto de Licenciatura na Springer",
 
     "projects.title": "Projectos Pessoais",
 
@@ -127,7 +136,7 @@ export const pt: Record<I18nKey, string> = {
     "certificates.title": "Certificados",
 
     "achievements.title": "Conquistas",
-    "achievements.springer.title": "Detecção de Marcos em Radiografias com Deep Learning",
+    "achievements.springer.title": "Detecção de Pontos de Referência em Radiografias com Deep Learning",
     "achievements.springer.subtitle": "Publicado na Springer",
     "achievements.springer.linkLabel": "Ver publicação",
 
