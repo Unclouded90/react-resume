@@ -1,10 +1,16 @@
-import './CenteredPanel.css';
+import "./CenteredPanel.css";
+import type { I18nKey } from "../i18n/keys";
+import { K } from "../i18n/keys";
 
 export type CertificateDetailsPanelProps = {
     title: string;
     subtitle?: string;
     description?: string;
     tools?: string[];
+};
+
+type CertificateDetailsPanelI18nProps = {
+    t: (k: I18nKey) => string;
 };
 
 function splitIntoTwoColumns(items: string[]) {
@@ -17,7 +23,8 @@ export function CertificateDetailsPanel({
     subtitle,
     description,
     tools = [],
-}: CertificateDetailsPanelProps) {
+    t,
+}: CertificateDetailsPanelProps & CertificateDetailsPanelI18nProps) {
     return (
         <div className="centered-panel experience-panel">
             <div className="exp-card exp-card--header">
@@ -29,15 +36,17 @@ export function CertificateDetailsPanel({
                     </p>
                 )}
             </div>
+
             {description && (
                 <div className="exp-card">
-                    <h3 className="exp-section-title">Description</h3>
+                    <h3 className="exp-section-title">{t(K.ui.description)}</h3>
                     <p className="exp-text">{description}</p>
                 </div>
             )}
+
             {tools.length > 0 && (
                 <div className="exp-card exp-card--tech">
-                    <h3 className="exp-section-title">Tools / Topics</h3>
+                    <h3 className="exp-section-title">{t(K.certificates.tools)}</h3>
 
                     {(() => {
                         const [left, right] = splitIntoTwoColumns(tools);

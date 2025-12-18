@@ -51,10 +51,10 @@ export const pt: Record<I18nKey, string> = {
     "educations.highlights": "Destaques",
     "educations.description": "Licenciatura com foco na interseção entre engenharia, saúde e tecnologia, combinando bases sólidas em matemática, física e programação.",
     "educations.projectLabel": "Projecto de Licenciatura (Nota de 19 em 20 valores) - ",
-    "educations.projectValue": "Desenvolvimento de duas redes neuronais baseadas em segmentação semântica para deteção automática de pontos de referência " + 
-        "(landmarks) em imagens de raios X, utilizando um conjunto de dados com 200 imagens de encefalogramas: as arquiteturas UNet e FPN. O estudo teve " + 
-        "também como objetivo uma aplicação direta em contexto clínico, permitindo a avaliação dos modelos e das suas previsões, através do desenvolvimento " + 
-        "de uma análise automática de métricas baseada nos encefalogramas do conjunto de dados, focada no tipo de oclusão mandibular dos pacientes, possibilitando " + 
+    "educations.projectValue": "Desenvolvimento de duas redes neuronais baseadas em segmentação semântica para deteção automática de pontos de referência " +
+        "(landmarks) em imagens de raios X, utilizando um conjunto de dados com 200 imagens de encefalogramas: as arquiteturas UNet e FPN. O estudo teve " +
+        "também como objetivo uma aplicação direta em contexto clínico, permitindo a avaliação dos modelos e das suas previsões, através do desenvolvimento " +
+        "de uma análise automática de métricas baseada nos encefalogramas do conjunto de dados, focada no tipo de oclusão mandibular dos pacientes, possibilitando " +
         "assim uma resposta rápida e precisa na identificação e classificação do diagnóstico.",
     "educations.hightlightDescription": "Publicação do meu projecto de Licenciatura na Springer",
 
@@ -134,6 +134,23 @@ export const pt: Record<I18nKey, string> = {
 
 
     "certificates.title": "Certificados",
+    "certificates.tools": "Ferramentas / Tópicos",
+    "certificates.devops.description": "Certificação profissional atribuída pela IBM, onde adquiri competências relacionadas com DevOps em ambientes de desenvolvimento de software, utilizando metodologias Agile e Scrum. " +
+        "Incluiu formação em tecnologias Cloud Native, automação com Shell Script e utilização de plataformas como GitHub. O programa abordou ainda o desenvolvimento de aplicações baseadas em " +
+        "microserviços, containers (Docker, Kubernetes e OpenShift), tecnologias Serverless e a implementação de automação, bem como ferramentas de CI e CD.",
+    "certificates.backend.description": "Certificação profissional atribuída pela IBM, focada no aprofundamento de conhecimentos em desenvolvimento Back-End. Apliquei técnicas adquiridas na certificação anterior " +
+        "(IBM DevOps and Software Engineering) e desenvolvi competências adicionais com ferramentas como SQL e Django, bem como formação nas áreas de segurança e monitorização de aplicações.",
+    "certificates.spring.description": "Aprofundamento de conhecimentos em Java através de formação completa em Spring Boot 3 e Spring Framework 6, abrangendo Spring Core, Spring MVC, APIs RESTful CRUD, " +
+        "Spring Security (com passwords encriptadas), Hibernate/JPA CRUD e mapeamentos avançados, Spring Data JPA/REST, Thymeleaf e AOP. Desenvolvimento de vários projetos práticos " +
+        "desde raiz, incluindo APIs REST seguras, aplicações MVC CRUD e documentação OpenAPI/Swagger integrada com MySQL.",
+    "certificates.data.description": "Reforço das bases de resolução de problemas através do estudo aprofundado de estruturas de dados e algoritmos. Incluiu análise de complexidade temporal e espacial, " +
+        "implementação de algoritmos clássicos e aplicação prática em vários desafios de programação focados no raciocínio lógico.",
+    "certificates.c.description": "Expansão de conhecimentos em C# e no ecossistema .NET através de projetos práticos, adquirindo experiência em programação orientada a objetos, arquitetura de aplicações " +
+        "e desenvolvimento de interfaces. O curso incluiu ainda introdução a workflows de desenvolvimento de jogos e design de aplicações desktop.",
+    "certificates.python.description": "Construção de uma base sólida em programação Python, desde fundamentos de scripting até trabalho com dados reais. Aquisição de experiência com APIs REST, " +
+        "técnicas de análise de dados e integração com SQL, permitindo o desenvolvimento de aplicações Python de ponta a ponta.",
+    "certificates.machine.description": "Desenvolvimento de uma compreensão prática dos conceitos de Machine Learning utilizando Python, explorando aprendizagem supervisionada e não supervisionada, " +
+        "redes neuronais e fluxos de trabalho comuns em IA. Incluiu treino de modelos, avaliação de desempenho e experimentação com técnicas modernas de ML.",
 
     "achievements.title": "Conquistas",
     "achievements.springer.title": "Detecção de Pontos de Referência em Radiografias com Deep Learning",

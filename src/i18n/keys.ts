@@ -225,6 +225,28 @@ export const K = {
 
     certificates: {
         title: "certificates.title",
+        tools: "certificates.tools",
+        devops: {
+            descripion: "certificates.devops.description",
+        },
+        backend: {
+            description: "certificates.backend.description",
+        },
+        spring: {
+            description:  "certificates.spring.description",
+        },
+        data: {
+            description: "certificates.data.description",
+        },
+        c: {
+            description: "certificates.c.description",
+        },
+        python: {
+            description: "certificates.python.description",
+        },
+        machine: {
+            description: "certificates.machine.description",
+        },
     },
 
     achievements: {

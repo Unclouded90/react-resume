@@ -16,7 +16,7 @@ import {
     type ProjectDetailsPanelProps,
 } from "./components/ProjectDetailsPanel";
 import { CertificatePanel } from "./components/CertificatePanel";
-import { CertificateDetailsPanel } from "./components/CertificateDetailsPanel";
+import { CertificateDetailsPanel, type CertificateDetailsPanelProps } from "./components/CertificateDetailsPanel";
 import { AchievementPanel } from "./components/AchievementPanel";
 import { TechMiniCard } from "./components/TechMiniCard";
 import { techInfoById, type TechId, type TechInfoData } from "./data/TechData";
@@ -24,7 +24,7 @@ import { FaSun, FaMoon } from "react-icons/fa";
 import { IconBadge } from "./components/IconBadge";
 import { jobs, type Job } from "./data/JobsData";
 import { projects, type ProjectData } from "./data/ProjectsData";
-import { certificates, type Certificate } from "./data/CertificatesData";
+import { certificates, type CertificateData } from "./data/CertificatesData";
 import type { Achievement } from "./components/AchievementPanel";
 import type { AchievementData } from "./data/AchievementsData";
 import { achievements as achievementsData } from "./data/AchievementsData";
@@ -122,10 +122,8 @@ function achievementToProps(
 }
 
 const jobsById = new Map<number, Job>(jobs.map((j) => [j.id, j]));
-const certsById = new Map<number, Certificate>(certificates.map((c) => [c.id, c]));
-
+const certsById = new Map<number, CertificateData>(certificates.map((c) => [c.id, c]));
 const projectsById = new Map<number, ProjectData>(projects.map((p) => [p.id, p]));
-const featuredCertificates = certificates.filter((c) => c.featured);
 
 function App() {
     const [theme, setTheme] = useState<Theme>(() => {
@@ -206,9 +204,20 @@ function App() {
         return p ? projectToPanelProps(p, t) : null;
     }, [uiState.panel, uiState.projectId, t]);
 
-    const selectedCertificate: Certificate | null = useMemo(() => {
-        return uiState.certificateId ? certsById.get(uiState.certificateId) ?? null : null;
-    }, [uiState.certificateId]);
+    const selectedCertificate: CertificateDetailsPanelProps | null = useMemo(() => {
+        if (uiState.panel !== "certificate") return null;
+        if (!uiState.certificateId) return null;
+      
+        const c = certsById.get(uiState.certificateId);
+        if (!c) return null;
+      
+        return {
+          title: c.titleKey,
+          subtitle: c.subtitleKey,
+          description: c.descriptionKey ? t(c.descriptionKey) : undefined,
+          tools: c.toolKeys ?? [],
+        };
+      }, [uiState.panel, uiState.certificateId, t]);
 
     const experienceProps: ExperienceDetailsPanelProps | null = useMemo(() => {
         if (uiState.panel !== "experience") return null;
@@ -236,6 +245,16 @@ function App() {
             subtitle: p.subtitleKey ? t(p.subtitleKey) : undefined,
         }));
     }, [t]);
+
+    const featuredCertificates = useMemo(() => {
+        return certificates
+          .filter((c) => c.featured)
+          .map((c) => ({ id: c.id, title: c.titleKey, subtitle: c.subtitleKey }));
+      }, []);
+      
+      const translatedCertificates = useMemo(() => {
+        return certificates.map((c) => ({ id: c.id, title: c.titleKey, subtitle: c.subtitleKey }));
+      }, []);
 
     const translatedAchievements = useMemo(
         () => achievementsData.map((a) => achievementToProps(a, t)),
@@ -444,7 +463,7 @@ function App() {
                             {activePanel === "tech" && <TechStackDetailsPanel onTechClick={handleTechClick} t={t} />}
                             {activePanel === "experience" && experienceProps &&
                                 <ExperienceDetailsPanel {...experienceProps} t={t} onTechClick={handleTechClick} />}
-                            {activePanel === "education" && <EducationDetailsPanel t={t} onTechClick={handleTechClick}/>}
+                            {activePanel === "education" && <EducationDetailsPanel t={t} onTechClick={handleTechClick} />}
                             {activePanel === "project" && selectedProject && <ProjectDetailsPanel {...selectedProject} t={t} />}
 
                             {activePanel === "projectsAll" && (
@@ -456,13 +475,13 @@ function App() {
                                 />
                             )}
 
-                            {activePanel === "certificate" && selectedCertificate && <CertificateDetailsPanel {...selectedCertificate} />}
+                            {activePanel === "certificate" && selectedCertificate && <CertificateDetailsPanel {...selectedCertificate} t={t} />}
 
                             {activePanel === "certificatesAll" && (
                                 <CertificatePanel
-                                    certificates={certificates}
+                                    certificates={translatedCertificates}
                                     onCertificateClick={(c) => openCertificateById(c.id)}
-                                    title="Certificates"
+                                    title={t(K.certificates.title)}
                                     t={t}
                                 />
                             )}

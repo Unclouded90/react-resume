@@ -1,20 +1,21 @@
-import type { CertificateDetailsPanelProps } from "../components/CertificateDetailsPanel";
+import { type I18nKey } from "../i18n/keys";
 
-export type Certificate = CertificateDetailsPanelProps & {
+export type CertificateData = {
     id: number;
+    titleKey: string;
+    subtitleKey?: string;
+    descriptionKey?: I18nKey;
+    toolKeys?: string[];
     featured?: boolean;
 };
 
-export const certificates: Certificate[] = [
+export const certificates: CertificateData[] = [
     {
         id: 1,
-        title: "IBM DevOps and Software Engineering Professional Certificate",
-        subtitle: "Coursera · 2023",
-        description:
-            "Professional certification given by IBM, where I acquired skills related to DevOps in a software development environment using Agile and Scrum " +
-            "methodologies. I was also trained in Cloud Native technologies, Shell Script automation, using platforms such as Github, developing applications " +
-            "using Microservices, learning about Containers (Docker/Kubernetes/OpenShift) and Serverless technologies, as well as implementing automation, CI and CD tools.",
-        tools: ["DevOps",
+        titleKey: "IBM DevOps and Software Engineering Professional Certificate",
+        subtitleKey: "Coursera · 2023",
+        descriptionKey: "certificates.devops.description",
+        toolKeys: ["DevOps",
             "Agile & Scrum",
             "Cloud Native",
             "Shell Scripting",
@@ -30,13 +31,10 @@ export const certificates: Certificate[] = [
     },
     {
         id: 2,
-        title: "IBM Back-End Development Professional Certificate",
-        subtitle: "Coursera · 2023",
-        description:
-            "Professional certification given by IBM, where I deepened my knowledge of Back-End development. I applied the techniques I obtained in the previous " +
-            "certification (IBM DevOps and Software Engineering) and further developed my skills with tools such as SQL, Django, and also obtained training in " +
-            "the area of Application Security and Monitoring.",
-        tools: ["Back-End Development",
+        titleKey: "IBM Back-End Development Professional Certificate",
+        subtitleKey: "Coursera · 2023",
+        descriptionKey: "certificates.backend.description",
+        toolKeys: ["Back-End Development",
             "SQL",
             "Django",
             "Python",
@@ -47,13 +45,10 @@ export const certificates: Certificate[] = [
     },
     {
         id: 3,
-        title: "Spring Boot 3, Spring 6 & Hibernate for Beginners",
-        subtitle: "Udemy · 2023",
-        description:
-            "Enhanced my Java expertise through comprehensive training in Spring Boot 3 and Spring Framework 6, covering Spring Core, Spring MVC, RESTful CRUD APIs, " +
-            "Spring Security (with encrypted passwords), Hibernate/JPA CRUD and advanced mappings, Spring Data JPA/REST, Thymeleaf, and AOP. Developed several real-time " +
-            "projects from scratch, including secure REST APIs, MVC CRUD applications, and full OpenAPI/Swagger documentation integrated with MySQL.",
-        tools: ["Java",
+        titleKey: "Spring Boot 3, Spring 6 & Hibernate for Beginners",
+        subtitleKey: "Udemy · 2023",
+        descriptionKey: "certificates.spring.description",
+        toolKeys: ["Java",
             "Spring Boot 3",
             "Spring Framework 6",
             "Spring Core",
@@ -74,11 +69,10 @@ export const certificates: Certificate[] = [
     },
     {
         id: 4,
-        title: "Java Data Structures & Algorithms",
-        subtitle: "Udemy · 2023",
-        description: "Strengthened foundational problem-solving skills by learning how core data structures and algorithms work under the hood. This included analyzing time and " +
-            "space complexity, implementing classical algorithms, and applying them in multiple coding challenges designed to improve logical reasoning.",
-        tools: [
+        titleKey: "Java Data Structures & Algorithms",
+        subtitleKey: "Udemy · 2023",
+        descriptionKey: "certificates.data.description",
+        toolKeys: [
             "Java",
             "Data Structures",
             "Algorithms",
@@ -86,11 +80,10 @@ export const certificates: Certificate[] = [
     },
     {
         id: 5,
-        title: "Complete C# Masterclass",
-        subtitle: "Udemy · 2023",
-        description: "Expanded my knowledge of C# and the .NET ecosystem through hands-on projects, acquiring practical experience in object-oriented programming, application " +
-            "architecture, and UI development. The course also introduced game development workflows and desktop application design.",
-        tools: [
+        titleKey: "Complete C# Masterclass",
+        subtitleKey: "Udemy · 2023",
+        descriptionKey: "certificates.c.description",
+        toolKeys: [
             "C#",
             ".NET",
             "OOP",
@@ -100,11 +93,10 @@ export const certificates: Certificate[] = [
     },
     {
         id: 6,
-        title: "Python for Everybody",
-        subtitle: "Coursera · 2021",
-        description: "Built a strong foundation in Python programming, covering everything from scripting fundamentals to working with real data. Gained experience with REST APIs, " +
-            "data analysis techniques, and SQL integration, enabling me to work with end-to-end Python applications.",
-        tools: [
+        titleKey: "Python for Everybody",
+        subtitleKey: "Coursera · 2021",
+        descriptionKey: "certificates.python.description",
+        toolKeys: [
             "Python",
             "REST APIs",
             "Data analysis",
@@ -114,11 +106,10 @@ export const certificates: Certificate[] = [
     },
     {
         id: 7,
-        title: "Machine Learning",
-        subtitle: "Coursera · 2021",
-        description: "Developed a working understanding of machine learning concepts using Python, exploring supervised and unsupervised learning, neural networks, and common AI " +
-            "workflows. Gained practical experience training models, evaluating performance, and experimenting with modern ML techniques.",
-        tools: [
+        titleKey: "Machine Learning",
+        subtitleKey: "Coursera · 2021",
+        descriptionKey: "certificates.machine.description",
+        toolKeys: [
             "Python",
             "Machine Learning (Supervised & Unsupervised)",
             "AI fundamentals",
