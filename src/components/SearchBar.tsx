@@ -34,11 +34,10 @@ export function SearchBar({ t, value, onChange, onSubmit }: SearchBarProps) {
                 {value.trim().length > 0 && (
                     <button
                         type="button"
-                        className="searchbar__clear"
+                        className="searchbar__clearIcon"
                         onClick={() => onChange("")}
-                        aria-label={t(K.ui.clear)}
                     >
-                        {t(K.ui.clear)}
+                        ✕
                     </button>
                 )}
 
