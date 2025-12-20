@@ -3,6 +3,7 @@ export const K = {
         lightMode: "ui.lightMode",
         darkMode: "ui.darkMode",
         close: "ui.close",
+        clear: "ui.clear",
         description: "ui.description",
         viewPublication: "ui.viewPublication",
         downloadResume: "ui.downloadResume",

@@ -4,6 +4,7 @@ export const pt: Record<I18nKey, string> = {
     "ui.lightMode": "Modo claro",
     "ui.darkMode": "Modo escuro",
     "ui.close": "Fechar",
+    "ui.clear": "Apagar",
     "ui.description": "Descrição",
     "ui.viewPublication": "Ver publicação",
     "ui.downloadResume": "Download do CV",

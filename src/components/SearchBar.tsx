@@ -31,6 +31,17 @@ export function SearchBar({ t, value, onChange, onSubmit }: SearchBarProps) {
                     autoComplete="off"
                 />
 
+                {value.trim().length > 0 && (
+                    <button
+                        type="button"
+                        className="searchbar__clear"
+                        onClick={() => onChange("")}
+                        aria-label={t(K.ui.clear)}
+                    >
+                        {t(K.ui.clear)}
+                    </button>
+                )}
+
                 <button className="searchbar__submit" type="submit" aria-label="Submit">
                     ↵
                 </button>
