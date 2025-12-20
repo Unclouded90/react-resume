@@ -8,14 +8,17 @@
     --sb-h: 36px;
     --sb-pad-x: 12px;
     --sb-btn: 30px;
+
     width: clamp(240px, 32vw, 360px);
     height: var(--sb-h);
     position: relative;
     display: flex;
     align-items: center;
+
     border-radius: 999px;
-    border: 1px solid rgba(255, 255, 255, 0.14);
-    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid var(--border-color);
+    background: var(--bg-card);
+    color: var(--text-main);
 }
 
 .searchbar__input {
@@ -24,19 +27,21 @@
     border: 0;
     outline: none;
     background: transparent;
-    color: inherit;
+    color: var(--text-main);
+
     padding-left: var(--sb-pad-x);
     padding-right: calc(var(--sb-pad-x) + var(--sb-btn) + 8px);
+
     font-size: 14px;
 }
 
 .searchbar__input::placeholder {
-    color: rgba(255, 255, 255, 0.55);
+    color: var(--text-muted);
 }
 
 .searchbar__pill:focus-within {
-    border-color: rgba(255, 255, 255, 0.28);
-    background: rgba(255, 255, 255, 0.08);
+    border-color: var(--hover-color);
+    background: var(--bg-card-alt);
 }
 
 .searchbar__submit {
@@ -46,21 +51,25 @@
     right: 4px;
     top: 50%;
     transform: translateY(-50%);
+
     border-radius: 999px;
-    border: 1px solid rgba(255, 255, 255, 0.14);
-    background: rgba(255, 255, 255, 0.08);
-    color: inherit;
+    border: 1px solid var(--border-color);
+    background: var(--bg-card);
+    color: var(--text-main);
+
     display: inline-flex;
     align-items: center;
     justify-content: center;
+
     cursor: pointer;
     user-select: none;
 }
 
 .searchbar__submit:hover {
-    background: rgba(255, 255, 255, 0.12);
+    border-color: var(--hover-color);
 }
 
 .searchbar__submit:active {
+    background: var(--active-color);
     transform: translateY(-50%) translateY(1px);
 }

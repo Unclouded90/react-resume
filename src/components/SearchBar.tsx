@@ -25,8 +25,8 @@ export function SearchBar({ t, value, onChange, onSubmit }: SearchBarProps) {
                     className="searchbar__input"
                     value={value}
                     onChange={(e) => onChange(e.target.value)}
-                    placeholder={t(K.search_placeholder)}
-                    aria-label={t(K.search_label)}
+                    placeholder={t(K.search.placeholder)}
+                    aria-label={t(K.search.label)}
                     spellCheck={false}
                     autoComplete="off"
                 />

@@ -1,9 +1,11 @@
 import { useState, useEffect, useMemo, useRef, useCallback } from "react";
 import { AboutMePanel } from "./components/AboutMePanel";
 import { HeaderPanel } from "./components/HeaderPanel";
+import { techGroups } from "./data/TechGroup";
 import { TechStackPanel } from "./components/TechStackPanel";
 import { TechStackDetailsPanel } from "./components/TechStackDetailsPanel";
 import { ExperiencePanel } from "./components/ExperiencePanel";
+import { SearchResultsPanel } from "./components/SearchResultsPanel";
 import {
     ExperienceDetailsPanel,
     type ExperienceDetailsPanelProps,
@@ -46,7 +48,47 @@ type ActivePanel =
     | "projectsAll"
     | "certificate"
     | "certificatesAll"
+    | "search"
     | null;
+
+type SearchResult =
+    | {
+        kind: "tech-group";
+        id: string;
+        title: string;
+        techIds: TechId[];
+    }
+    | {
+        kind: "project";
+        id: number;
+        title: string;
+        subtitle?: string;
+        snippet: string;
+    }
+    | {
+        kind: "experience";
+        id: number;
+        title: string;
+        subtitle: string;
+        snippet: string;
+    }
+    | {
+        kind: "certificate";
+        id: number;
+        title: string;
+        subtitle?: string;
+        snippet: string;
+    }
+    | {
+        kind: "education";
+        title: string;
+        subtitle?: string;
+        snippet: string;
+    }
+    | {
+        kind: "empty";
+    };
+
 
 type UiHistoryState = {
     __ui: true;
@@ -55,6 +97,7 @@ type UiHistoryState = {
     projectId: number | null;
     certificateId: number | null;
     techId: TechId | null;
+    searchQuery: string | null;
 };
 
 const UI_STATE_DEFAULT: UiHistoryState = {
@@ -64,6 +107,7 @@ const UI_STATE_DEFAULT: UiHistoryState = {
     projectId: null,
     certificateId: null,
     techId: null,
+    searchQuery: null,
 };
 
 function getUiState(): UiHistoryState {
@@ -121,6 +165,38 @@ function achievementToProps(
         linkLabel: t(a.linkLabelKey),
     };
 }
+
+function norm(s: string): string {
+    return s.trim().toLowerCase();
+}
+
+function snippetFrom(text: string, queryLower: string, radius = 44): string {
+    const lower = text.toLowerCase();
+    const idx = lower.indexOf(queryLower);
+    if (idx < 0) return text.slice(0, radius * 2) + (text.length > radius * 2 ? "…" : "");
+
+    const start = Math.max(0, idx - radius);
+    const end = Math.min(text.length, idx + queryLower.length + radius);
+
+    return (start > 0 ? "…" : "") + text.slice(start, end) + (end < text.length ? "…" : "");
+}
+
+function techEq(list: readonly string[] | undefined, qLower: string): boolean {
+    if (!list || list.length === 0) return false;
+    return list.some((x) => norm(x) === qLower);
+}
+
+function hasWordEq(text: string, qLower: string): boolean {
+    if (!text) return false;
+    const words = text
+        .toLowerCase()
+        .split(/[^a-z0-9#+]+/g)
+        .filter(Boolean);
+
+    return words.includes(qLower);
+}
+
+const education_tech: readonly string[] = ["Python", "MS SQL Server"];
 
 const jobsById = new Map<number, Job>(jobs.map((j) => [j.id, j]));
 const certsById = new Map<number, CertificateData>(certificates.map((c) => [c.id, c]));
@@ -195,9 +271,204 @@ function App() {
 
     const [searchQuery, setSearchQuery] = useState<string>("");
 
-    const handleSearchSubmit = useCallback(() => {
-        if (searchQuery.trim().length === 0) return;
-    }, [searchQuery]);
+    const searchResults: SearchResult[] = useMemo(() => {
+        if (uiState.panel !== "search" || !uiState.searchQuery) return [];
+
+        const q = norm(uiState.searchQuery);
+        if (!q) return [];
+
+        const techResults: SearchResult[] = techGroups.flatMap((group) => {
+            const matches = group.id === q || group.searchAliases.includes(q);
+            if (!matches) return [];
+
+            const resolvedTitle =
+                typeof group.titleKey === "string"
+                    ? t(group.titleKey as I18nKey)
+                    : t(group.titleKey);
+
+            return [
+                {
+                    kind: "tech-group",
+                    id: group.id,
+                    title: resolvedTitle,
+                    techIds: group.techIds,
+                },
+            ];
+        });
+
+        const projectResults: SearchResult[] = projects.flatMap((p) => {
+            const title = t(p.titleKey);
+            const subtitle = p.subtitleKey ? t(p.subtitleKey) : undefined;
+            const description = p.descriptionKey ? t(p.descriptionKey) : "";
+
+            if (techEq(p.tech, q)) {
+                return [{ kind: "project", id: p.id, title, subtitle, snippet: q }];
+            }
+
+            if (hasWordEq(title, q)) {
+                return [{ kind: "project", id: p.id, title, subtitle, snippet: title }];
+            }
+            if (subtitle && hasWordEq(subtitle, q)) {
+                return [{ kind: "project", id: p.id, title, subtitle, snippet: subtitle }];
+            }
+            if (description && hasWordEq(description, q)) {
+                return [{ kind: "project", id: p.id, title, subtitle, snippet: description }];
+            }
+            return [];
+        });
+
+        const experienceResults: SearchResult[] = jobs.flatMap((job) => {
+            const title = t(job.titleKey);
+            const company = t(job.companyNameKey);
+            const description = t(job.descriptionKey);
+
+            if (techEq(job.tech, q)) {
+                return [{ kind: "experience", id: job.id, title, subtitle: company, snippet: q }];
+            }
+
+            if (hasWordEq(title, q)) {
+                return [{ kind: "experience", id: job.id, title, subtitle: company, snippet: title }];
+            }
+            if (hasWordEq(company, q)) {
+                return [{ kind: "experience", id: job.id, title, subtitle: company, snippet: company }];
+            }
+            if (hasWordEq(description, q)) {
+                return [{ kind: "experience", id: job.id, title, subtitle: company, snippet: description }];
+            }
+            return [];
+        });
+
+        const certificateResults: SearchResult[] = certificates.flatMap((c) => {
+            const title = String(c.titleKey);
+            const subtitle = c.subtitleKey ? String(c.subtitleKey) : undefined;
+            const description = c.descriptionKey ? t(c.descriptionKey) : "";
+
+            const tools: string[] = (c.toolKeys ?? []).map(String);
+
+            const toolHit = tools.find((tool) => hasWordEq(tool, q));
+            if (toolHit) {
+                return [
+                    {
+                        kind: "certificate",
+                        id: c.id,
+                        title,
+                        subtitle,
+                        snippet: snippetFrom(toolHit, q),
+                    },
+                ];
+            }
+
+            if (hasWordEq(title, q)) {
+                return [{ kind: "certificate", id: c.id, title, subtitle, snippet: title }];
+            }
+            if (subtitle && hasWordEq(subtitle, q)) {
+                return [{ kind: "certificate", id: c.id, title, subtitle, snippet: subtitle }];
+            }
+            if (description && hasWordEq(description, q)) {
+                return [{ kind: "certificate", id: c.id, title, subtitle, snippet: description }];
+            }
+            return [];
+        });
+
+        const educationTitle = t(K.educations.title);
+        const educationSubtitle = t(K.educations.degreeTitle);
+        const educationDescription = t(K.educations.description);
+        const educationTechMatch = techEq(education_tech, q);
+
+
+        const educationResults: SearchResult[] =
+            educationTechMatch
+                ? [
+                    {
+                        kind: "education",
+                        title: educationTitle,
+                        subtitle: educationSubtitle,
+                        snippet: q,
+                    },
+                ]
+                : hasWordEq(educationTitle, q)
+                    ? [
+                        {
+                            kind: "education",
+                            title: educationTitle,
+                            subtitle: educationSubtitle,
+                            snippet: snippetFrom(educationTitle, q),
+                        },
+                    ]
+                    : hasWordEq(educationSubtitle, q)
+                        ? [
+                            {
+                                kind: "education",
+                                title: educationTitle,
+                                subtitle: educationSubtitle,
+                                snippet: snippetFrom(educationSubtitle, q),
+                            },
+                        ]
+                        : hasWordEq(educationDescription, q)
+                            ? [
+                                {
+                                    kind: "education",
+                                    title: educationTitle,
+                                    subtitle: educationSubtitle,
+                                    snippet: snippetFrom(educationDescription, q),
+                                },
+                            ]
+                            : [];
+
+        const all: SearchResult[] = [
+            ...techResults,
+            ...projectResults,
+            ...experienceResults,
+            ...certificateResults,
+            ...educationResults,
+        ];
+
+        const seen = new Set<string>();
+        const deduped: SearchResult[] = [];
+
+        for (const r of all) {
+            let key: string;
+
+            switch (r.kind) {
+                case "education":
+                    key = "education";
+                    break;
+                case "tech-group":
+                    key = `tech-group:${r.id}`;
+                    break;
+                case "project":
+                    key = `project:${r.id}`;
+                    break;
+                case "experience":
+                    key = `experience:${r.id}`;
+                    break;
+                case "certificate":
+                    key = `certificate:${r.id}`;
+                    break;
+                case "empty":
+                    key = "empty";
+                    break;
+            }
+
+            if (seen.has(key)) continue;
+            seen.add(key);
+            deduped.push(r);
+        }
+
+        const orderRank: Record<SearchResult["kind"], number> = {
+            "tech-group": 0,
+            "experience": 1,
+            "project": 2,
+            "certificate": 3,
+            "education": 4,
+            "empty": 99,
+        };
+
+        deduped.sort((a, b) => orderRank[a.kind] - orderRank[b.kind]);
+
+        return deduped.length ? deduped : [{ kind: "empty" }];
+
+    }, [uiState.panel, uiState.searchQuery, t]);
 
     const toggleTheme = () => setTheme((prev) => (prev === "dark" ? "light" : "dark"));
 
@@ -296,6 +567,7 @@ function App() {
             projectId: current.projectId,
             certificateId: current.certificateId,
             techId: null,
+            searchQuery: null,
         });
     };
 
@@ -308,6 +580,7 @@ function App() {
             projectId: null,
             certificateId: null,
             techId: null,
+            searchQuery: null,
         });
     };
 
@@ -319,6 +592,7 @@ function App() {
             projectId,
             certificateId: null,
             techId: null,
+            searchQuery: null,
         });
     };
 
@@ -330,8 +604,31 @@ function App() {
             projectId: null,
             certificateId,
             techId: null,
+            searchQuery: null,
         });
     };
+
+    const openSearchPanel = useCallback(
+        (query: string) => {
+            const q = query.trim();
+            if (q.length === 0) return;
+
+            commitUi({
+                __ui: true,
+                panel: "search",
+                jobId: null,
+                projectId: null,
+                certificateId: null,
+                techId: null,
+                searchQuery: q,
+            });
+        },
+        []
+    );
+
+    const handleSearchSubmit = useCallback(() => {
+        openSearchPanel(searchQuery);
+    }, [openSearchPanel, searchQuery]);
 
     const handleTechClick = (id: TechId) => {
         const info = techInfoById[id];
@@ -345,6 +642,7 @@ function App() {
             projectId: current.projectId,
             certificateId: current.certificateId,
             techId: id,
+            searchQuery: current.searchQuery,
         });
     };
 
@@ -457,7 +755,8 @@ function App() {
                                 activePanel === "project" ||
                                 activePanel === "projectsAll" ||
                                 activePanel === "certificate" ||
-                                activePanel === "certificatesAll")
+                                activePanel === "certificatesAll" ||
+                                activePanel === "search")
                                 ? " panel-overlay-content--tallHeader"
                                 : "")
                         }
@@ -500,6 +799,20 @@ function App() {
                                     t={t}
                                 />
                             )}
+
+                            {activePanel === "search" && (
+                                <SearchResultsPanel
+                                    query={uiState.searchQuery ?? ""}
+                                    results={searchResults}
+                                    onTechClick={handleTechClick}
+                                    onOpenProject={openProjectById}
+                                    onOpenExperience={openExperience}
+                                    onOpenCertificate={openCertificateById}
+                                    onOpenEducation={() => openPanel("education")}
+                                    t={t}
+                                />
+                            )}
+
                         </div>
                     </div>
                 </div>

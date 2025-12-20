@@ -56,7 +56,7 @@ export function TechStackDetailsPanel({ onTechClick, t }: TechStackDetailsPanelP
                 <div className="tech-detail-column">
                     <div className="exp-card tech-detail-card tech-detail-card--backend">
                         <div className="tech-section">
-                            <h3>Backend</h3>
+                            <h3>{t(K.tech.backend)}</h3>
                             <div className="tech-badge-row tech-badge-row--detail">
                                 <IconBadge icon={<SiNodedotjs />} label="Node.js" onClick={() => onTechClick?.("Node.js")} />
                                 <IconBadge icon={<SiNestjs />} label="NestJS" onClick={() => onTechClick?.("NestJS")} />
@@ -66,7 +66,7 @@ export function TechStackDetailsPanel({ onTechClick, t }: TechStackDetailsPanelP
 
                     <div className="exp-card tech-detail-card tech-detail-card--orms">
                         <div className="tech-section">
-                            <h3>ORMs</h3>
+                            <h3>{t(K.tech.orms)}</h3>
                             <div className="tech-badge-row tech-badge-row--detail">
                                 <IconBadge icon={<SiTypeorm />} label="TypeORM" onClick={() => onTechClick?.("TypeORM")} />
                                 <IconBadge icon={<SiSequelize />} label="Sequelize.js" onClick={() => onTechClick?.("Sequelize.js")} />
@@ -76,7 +76,7 @@ export function TechStackDetailsPanel({ onTechClick, t }: TechStackDetailsPanelP
 
                     <div className="exp-card tech-detail-card tech-detail-card--devops">
                         <div className="tech-section">
-                            <h3>DevOps</h3>
+                            <h3>{t(K.tech.devops)}</h3>
                             <div className="tech-badge-row tech-badge-row--detail">
                                 <IconBadge icon={<SiDocker />} label="Docker" onClick={() => onTechClick?.("Docker")} />
                                 <IconBadge icon={<SiGit />} label="Git" onClick={() => onTechClick?.("Git")} />
@@ -88,7 +88,7 @@ export function TechStackDetailsPanel({ onTechClick, t }: TechStackDetailsPanelP
                 <div className="tech-detail-column">
                     <div className="exp-card tech-detail-card tech-detail-card--frontend">
                         <div className="tech-section">
-                            <h3>Frontend</h3>
+                            <h3>{t(K.tech.languages)}frontend</h3>
                             <div className="tech-badge-row tech-badge-row--detail">
                                 <IconBadge icon={<SiAngular />} label="Angular" onClick={() => onTechClick?.("Angular")} />
                                 <IconBadge icon={<SiReact />} label="React" onClick={() => onTechClick?.("React")} />

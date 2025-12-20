@@ -17,8 +17,12 @@ export const K = {
         },
     },
 
-    search_placeholder: "search_placeholder",
-    search_label: "search_label",
+    search: {
+        title: "search.title",
+        placeholder: "search.placeholder",
+        label: "search.label",
+        noResults: "search.noResults",
+    },
 
     about: {
         title: "about.title",
@@ -55,6 +59,10 @@ export const K = {
     tech: {
         title: "tech.title",
         languages: "tech.languages",
+        backend: "tech.backend",
+        frontend: "tech.frontend",
+        orms: "tech.orms",
+        devops: "tech.devops",
         databases: "tech.databases",
         other: "tech.otherSkills",
         typescript: {

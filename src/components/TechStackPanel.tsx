@@ -59,7 +59,7 @@ export function TechStackPanel({ onExpand, onTechClick, t }: TechStackPanelProps
                 </div>
 
                 <div className="tech-card">
-                    <h3 className="tech-card-heading">Backend</h3>
+                    <h3 className="tech-card-heading">{t(K.tech.backend)}</h3>
                     <div className="tech-badge-row">
                         <IconBadge
                             icon={<SiNodedotjs />}
@@ -75,7 +75,7 @@ export function TechStackPanel({ onExpand, onTechClick, t }: TechStackPanelProps
                 </div>
 
                 <div className="tech-card">
-                    <h3 className="tech-card-heading">Frontend</h3>
+                    <h3 className="tech-card-heading">{t(K.tech.frontend)}</h3>
                     <div className="tech-badge-row">
                         <IconBadge
                             icon={<SiAngular />}
@@ -91,7 +91,7 @@ export function TechStackPanel({ onExpand, onTechClick, t }: TechStackPanelProps
                 </div>
 
                 <div className="tech-card">
-                    <h3 className="tech-card-heading">ORMs</h3>
+                    <h3 className="tech-card-heading">{t(K.tech.orms)}</h3>
                     <div className="tech-badge-row">
                         <IconBadge
                             icon={<SiTypeorm />}
@@ -123,7 +123,7 @@ export function TechStackPanel({ onExpand, onTechClick, t }: TechStackPanelProps
                 </div>
 
                 <div className="tech-card">
-                    <h3 className="tech-card-heading">DevOps</h3>
+                    <h3 className="tech-card-heading">{t(K.tech.devops)}</h3>
                     <div className="tech-badge-row">
                         <IconBadge
                             icon={<SiDocker />}

@@ -15,8 +15,10 @@ export const en: Record<I18nKey, string> = {
     "ui.levels.intermediate": "Intermediate",
     "ui.levels.advanced": "Advanced",
 
-    "search_placeholder": "Search on the site",
-    "search_label": "Search",
+    "search.title": "Search Results",
+    "search.placeholder": "Search on the site",
+    "search.label": "Search",
+    "search.noResults": "No results for your search.",
 
     "about.title": "About me",
     "about.tagline": "Full Stack Developer · Enjoys solving problems",
@@ -137,23 +139,23 @@ export const en: Record<I18nKey, string> = {
 
     "certificates.title": "Certificates",
     "certificates.tools": "Tools / Topics",
-    "certificates.devops.description": "Professional certification given by IBM, where I acquired skills related to DevOps in a software development environment using Agile and Scrum " + 
-        "methodologies. I was also trained in Cloud Native technologies, Shell Script automation, using platforms such as Github, developing applications " 
+    "certificates.devops.description": "Professional certification given by IBM, where I acquired skills related to DevOps in a software development environment using Agile and Scrum " +
+        "methodologies. I was also trained in Cloud Native technologies, Shell Script automation, using platforms such as Github, developing applications "
         + "using Microservices, learning about Containers (Docker/Kubernetes/OpenShift) and Serverless technologies, as well as implementing automation, CI and CD tools.",
     "certificates.backend.description": "Professional certification given by IBM, where I deepened my knowledge of Back-End development. I applied the techniques I obtained in the previous " +
-            "certification (IBM DevOps and Software Engineering) and further developed my skills with tools such as SQL, Django, and also obtained training in " +
-            "the area of Application Security and Monitoring.",
+        "certification (IBM DevOps and Software Engineering) and further developed my skills with tools such as SQL, Django, and also obtained training in " +
+        "the area of Application Security and Monitoring.",
     "certificates.spring.description": "Enhanced my Java expertise through comprehensive training in Spring Boot 3 and Spring Framework 6, covering Spring Core, Spring MVC, RESTful CRUD APIs, " +
-            "Spring Security (with encrypted passwords), Hibernate/JPA CRUD and advanced mappings, Spring Data JPA/REST, Thymeleaf, and AOP. Developed several real-time " +
-            "projects from scratch, including secure REST APIs, MVC CRUD applications, and full OpenAPI/Swagger documentation integrated with MySQL.",
+        "Spring Security (with encrypted passwords), Hibernate/JPA CRUD and advanced mappings, Spring Data JPA/REST, Thymeleaf, and AOP. Developed several real-time " +
+        "projects from scratch, including secure REST APIs, MVC CRUD applications, and full OpenAPI/Swagger documentation integrated with MySQL.",
     "certificates.data.description": "Strengthened foundational problem-solving skills by learning how core data structures and algorithms work under the hood. This included analyzing time and " +
-            "space complexity, implementing classical algorithms, and applying them in multiple coding challenges designed to improve logical reasoning.",
+        "space complexity, implementing classical algorithms, and applying them in multiple coding challenges designed to improve logical reasoning.",
     "certificates.c.description": "Expanded my knowledge of C# and the .NET ecosystem through hands-on projects, acquiring practical experience in object-oriented programming, application " +
-            "architecture, and UI development. The course also introduced game development workflows and desktop application design.",
+        "architecture, and UI development. The course also introduced game development workflows and desktop application design.",
     "certificates.python.description": "Built a strong foundation in Python programming, covering everything from scripting fundamentals to working with real data. Gained experience with REST APIs, " +
-            "data analysis techniques, and SQL integration, enabling me to work with end-to-end Python applications.",
+        "data analysis techniques, and SQL integration, enabling me to work with end-to-end Python applications.",
     "certificates.machine.description": "Developed a working understanding of machine learning concepts using Python, exploring supervised and unsupervised learning, neural networks, and common AI " +
-            "workflows. Gained practical experience training models, evaluating performance, and experimenting with modern ML techniques.",
+        "workflows. Gained practical experience training models, evaluating performance, and experimenting with modern ML techniques.",
 
     "achievements.title": "Achievements",
     "achievements.springer.title": "Detection of Landmarks in X-Ray Images through Deep Learning",
@@ -162,6 +164,10 @@ export const en: Record<I18nKey, string> = {
 
     "tech.title": "Tech Stack",
     "tech.languages": "Languages",
+    "tech.backend": "Backend",
+    "tech.frontend": "Frontend",
+    "tech.orms": "ORMs",
+    "tech.devops": "DevOps",
     "tech.databases": "Databases",
     "tech.otherSkills": "Other Skills",
 

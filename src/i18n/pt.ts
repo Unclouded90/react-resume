@@ -15,8 +15,10 @@ export const pt: Record<I18nKey, string> = {
     "ui.levels.intermediate": "Intermédio",
     "ui.levels.advanced": "Avançado",
 
-    "search_placeholder": "Pesquisar no site",
-    "search_label": "Pesquisar",
+    "search.title": "Resultados da Pesquisa",
+    "search.placeholder": "Pesquisar no site",
+    "search.label": "Pesquisar",
+    "search.noResults": "Não há resultados para a sua pesquisa.",
 
     "about.title": "Sobre mim",
     "about.tagline": "Full Stack Developer · Gosto de resolver problemas",
@@ -162,6 +164,10 @@ export const pt: Record<I18nKey, string> = {
 
     "tech.title": "Stack Tecnológica",
     "tech.languages": "Linguagens",
+    "tech.backend": "Backend",
+    "tech.frontend": "Frontend",
+    "tech.orms": "ORMs",
+    "tech.devops": "DevOps",
     "tech.databases": "Bases de Dados",
     "tech.otherSkills": "Outras Competências",
 
