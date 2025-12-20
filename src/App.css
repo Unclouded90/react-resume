@@ -215,7 +215,6 @@
     color: var(--text-muted);
 }
 
-
 @media (max-width: 900px) {
     .layout-grid {
         grid-template-columns: 1fr;

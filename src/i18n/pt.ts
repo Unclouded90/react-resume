@@ -15,6 +15,9 @@ export const pt: Record<I18nKey, string> = {
     "ui.levels.intermediate": "Intermédio",
     "ui.levels.advanced": "Avançado",
 
+    "search_placeholder": "Pesquisar no site",
+    "search_label": "Pesquisar",
+
     "about.title": "Sobre mim",
     "about.tagline": "Full Stack Developer · Gosto de resolver problemas",
     "about.languagesLabel": "Idiomas:",

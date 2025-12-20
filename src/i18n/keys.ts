@@ -17,6 +17,9 @@ export const K = {
         },
     },
 
+    search_placeholder: "search_placeholder",
+    search_label: "search_label",
+
     about: {
         title: "about.title",
         tagline: "about.tagline",

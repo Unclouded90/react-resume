@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo, useRef } from "react";
+import { useState, useEffect, useMemo, useRef, useCallback } from "react";
 import { AboutMePanel } from "./components/AboutMePanel";
 import { HeaderPanel } from "./components/HeaderPanel";
 import { TechStackPanel } from "./components/TechStackPanel";
@@ -28,6 +28,7 @@ import { certificates, type CertificateData } from "./data/CertificatesData";
 import type { Achievement } from "./components/AchievementPanel";
 import type { AchievementData } from "./data/AchievementsData";
 import { achievements as achievementsData } from "./data/AchievementsData";
+import { SearchBar } from "./components/SearchBar";
 import { getInitialLocale, setStoredLocale, type Locale } from "./i18n/locales";
 import { createT } from "./i18n";
 import { K, type I18nKey } from "./i18n/keys";
@@ -192,6 +193,12 @@ function App() {
         localStorage.setItem("theme", theme);
     }, [theme]);
 
+    const [searchQuery, setSearchQuery] = useState<string>("");
+
+    const handleSearchSubmit = useCallback(() => {
+        if (searchQuery.trim().length === 0) return;
+    }, [searchQuery]);
+
     const toggleTheme = () => setTheme((prev) => (prev === "dark" ? "light" : "dark"));
 
     const activePanel = uiState.panel;
@@ -207,17 +214,17 @@ function App() {
     const selectedCertificate: CertificateDetailsPanelProps | null = useMemo(() => {
         if (uiState.panel !== "certificate") return null;
         if (!uiState.certificateId) return null;
-      
+
         const c = certsById.get(uiState.certificateId);
         if (!c) return null;
-      
+
         return {
-          title: c.titleKey,
-          subtitle: c.subtitleKey,
-          description: c.descriptionKey ? t(c.descriptionKey) : undefined,
-          tools: c.toolKeys ?? [],
+            title: c.titleKey,
+            subtitle: c.subtitleKey,
+            description: c.descriptionKey ? t(c.descriptionKey) : undefined,
+            tools: c.toolKeys ?? [],
         };
-      }, [uiState.panel, uiState.certificateId, t]);
+    }, [uiState.panel, uiState.certificateId, t]);
 
     const experienceProps: ExperienceDetailsPanelProps | null = useMemo(() => {
         if (uiState.panel !== "experience") return null;
@@ -248,13 +255,13 @@ function App() {
 
     const featuredCertificates = useMemo(() => {
         return certificates
-          .filter((c) => c.featured)
-          .map((c) => ({ id: c.id, title: c.titleKey, subtitle: c.subtitleKey }));
-      }, []);
-      
-      const translatedCertificates = useMemo(() => {
+            .filter((c) => c.featured)
+            .map((c) => ({ id: c.id, title: c.titleKey, subtitle: c.subtitleKey }));
+    }, []);
+
+    const translatedCertificates = useMemo(() => {
         return certificates.map((c) => ({ id: c.id, title: c.titleKey, subtitle: c.subtitleKey }));
-      }, []);
+    }, []);
 
     const translatedAchievements = useMemo(
         () => achievementsData.map((a) => achievementToProps(a, t)),
@@ -347,6 +354,14 @@ function App() {
                 <div className="layout-grid">
                     <section className="layout-topbar">
                         <div className="layout-topbar-inner">
+                            <div className="app__topSearch">
+                                <SearchBar
+                                    t={t}
+                                    value={searchQuery}
+                                    onChange={setSearchQuery}
+                                    onSubmit={handleSearchSubmit}
+                                />
+                            </div>
                             <IconBadge
                                 icon={theme === "dark" ? <FaSun /> : <FaMoon />}
                                 label={theme === "dark" ? t(K.ui.lightMode) : t(K.ui.darkMode)}
