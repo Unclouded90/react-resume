@@ -10,7 +10,7 @@
     --sb-btn: 30px;
     --sb-clear-w: 72px;
 
-    width: clamp(360px, 32vw, 360px);
+    width: clamp(260px, 32vw, 360px);
     height: var(--sb-h);
     position: relative;
     display: flex;
