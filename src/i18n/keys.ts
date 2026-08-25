@@ -54,6 +54,7 @@ export const K = {
             b2: "jobs.eufinity.b2",
             b3: "jobs.eufinity.b3",
             b4: "jobs.eufinity.b4",
+            b5: "jobs.eufinity.b5",
         },
     },
 

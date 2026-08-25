@@ -46,10 +46,11 @@ export const en: Record<I18nKey, string> = {
     "jobs.eufinity.description":
         "Currently working as a Full Stack Developer on Eufinity Solutions, a company focused on developing end-to-end" +
         " retail and ERP (Enterprise Resource Planning) software solutions targeting medium to large-scale retail operations.",
-    "jobs.eufinity.b1": "Full-stack development of ERP systems, responsible for both back-end and front-end features",
-    "jobs.eufinity.b2": "Implementing SAF-T (PT) solutions in full compliance with Portuguese fiscal legislation",
-    "jobs.eufinity.b3": "Integrating our software with automatic payment terminals across multiple countries",
-    "jobs.eufinity.b4": "Providing technical support, addressing and resolving client incidents and feature requests",
+    "jobs.eufinity.b1": "Full-stack development and maintenance of ERP systems, responsible for the development of end-to-end features",
+    "jobs.eufinity.b2": "Integrating our software with automatic payment terminals across multiple countries (eg. Portugal, Cyprus)",
+    "jobs.eufinity.b3": "Implementing SAF-T (PT) solutions in full compliance with Portuguese fiscal legislation",
+    "jobs.eufinity.b4": "Investigated, debugged and resolved application and API issues by analysing code, logs and system behaviour",
+    "jobs.eufinity.b5": "Providing technical support, addressing and resolving client incidents and feature requests",
 
     "educations.title": "Education",
     "educations.degreeTitle": "Bachelor's Degree in Biomedical Engineering",

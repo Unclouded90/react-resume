@@ -17,6 +17,7 @@ import { IconBadge } from "./IconBadge";
 import { type TechId } from "../data/TechData";
 import type { I18nKey } from "../i18n/keys";
 import { K } from "../i18n/keys";
+import { FaJava } from "react-icons/fa";
 
 type TechStackPanelProps = {
     onExpand?: () => void;
@@ -54,6 +55,11 @@ export function TechStackPanel({ onExpand, onTechClick, t }: TechStackPanelProps
                             icon={<SiCplusplus />}
                             label="C++"
                             onClick={onTechClick ? () => onTechClick("C++") : undefined}
+                        />
+                        <IconBadge
+                            icon={<FaJava />}
+                            label="Java"
+                            onClick={onTechClick ? () => onTechClick("Java") : undefined}
                         />
                     </div>
                 </div>

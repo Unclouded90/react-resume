@@ -19,7 +19,7 @@ export const jobs: Job[] = [
         companyUrl: "https://www.eufinity.com/",
         datesKey: K.jobs.eufinity.dates,
         descriptionKey: K.jobs.eufinity.description,
-        bulletKeys: [K.jobs.eufinity.b1, K.jobs.eufinity.b2, K.jobs.eufinity.b3, K.jobs.eufinity.b4],
+        bulletKeys: [K.jobs.eufinity.b1, K.jobs.eufinity.b2, K.jobs.eufinity.b3, K.jobs.eufinity.b4, K.jobs.eufinity.b5],
         tech: [
             "TypeScript",
             "C++",
