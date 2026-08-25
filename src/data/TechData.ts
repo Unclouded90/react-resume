@@ -54,7 +54,7 @@ export const techInfoById: Record<TechId, TechInfoData> = {
     Java: {
         id: "Java",
         titleKey: K.tech.java.title,
-        level: "intermediate",
+        level: "advanced",
         descriptionKey: K.tech.java.description,
     },
     Python: {
