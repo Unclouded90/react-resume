@@ -103,6 +103,10 @@ export const K = {
             title: "tech.angular.title",
             description: "tech.angular.description",
         },
+        springboot: {
+            title: "tech.springboot.title",
+            description: "tech.springboot.description",
+        },
         react: {
             title: "tech.react.title",
             description: "tech.react.description",

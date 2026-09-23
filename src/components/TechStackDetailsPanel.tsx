@@ -9,6 +9,7 @@ import {
     SiNestjs,
     SiPostgresql,
     SiSequelize,
+    SiSpring,
     SiTypeorm,
     SiDocker,
     SiGit,
@@ -59,6 +60,7 @@ export function TechStackDetailsPanel({ onTechClick, t }: TechStackDetailsPanelP
                             <h3>{t(K.tech.backend)}</h3>
                             <div className="tech-badge-row tech-badge-row--detail">
                                 <IconBadge icon={<SiNodedotjs />} label="Node.js" onClick={() => onTechClick?.("Node.js")} />
+                                <IconBadge icon={<SiSpring />} label="Spring Boot" onClick={() => onTechClick?.("Spring Boot")} />
                                 <IconBadge icon={<SiNestjs />} label="NestJS" onClick={() => onTechClick?.("NestJS")} />
                             </div>
                         </div>

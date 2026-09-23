@@ -9,6 +9,7 @@ import {
     SiGit,
     SiReact,
     SiSequelize,
+    SiSpring,
     SiTypeorm,
 } from "react-icons/si";
 import { DiMsqlServer } from "react-icons/di";
@@ -71,6 +72,11 @@ export function TechStackPanel({ onExpand, onTechClick, t }: TechStackPanelProps
                             icon={<SiNodedotjs />}
                             label="Node.js"
                             onClick={onTechClick ? () => onTechClick("Node.js") : undefined}
+                        />
+                        <IconBadge
+                            icon={<SiSpring />}
+                            label="Spring Boot"
+                            onClick={onTechClick ? () => onTechClick("Spring Boot") : undefined}
                         />
                         <IconBadge
                             icon={<SiNestjs />}

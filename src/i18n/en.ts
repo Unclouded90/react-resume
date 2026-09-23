@@ -191,6 +191,8 @@ export const en: Record<I18nKey, string> = {
     "tech.nest.description": "Used in personal projects as the primary backend framework, applying modular architecture, dependency injection, and TypeScript best practices.",
     "tech.angular.title": "Angular",
     "tech.angular.description": "Used professionally for ERP frontends, building robust component-based UIs and working with reactive forms and stateful workflows.",
+    "tech.springboot.title": "Spring Boot",
+    "tech.springboot.description": "Used professionally for backend development and REST APIs, working with the Spring ecosystem including Spring MVC, Spring Data JPA, Hibernate, validation, dependency injection, and application configuration.",
     "tech.react.title": "React",
     "tech.react.description": "Used for this portfolio and for SPA-oriented interfaces focused on reusable components, hooks, and clean UI composition.",
     "tech.html.title": "HTML",

@@ -12,6 +12,7 @@ export type TechId =
     | "Node.js"
     | "NestJS"
     | "Angular"
+    | "Spring Boot"
     | "React"
     | "HTML"
     | "CSS"
@@ -86,6 +87,12 @@ export const techInfoById: Record<TechId, TechInfoData> = {
         titleKey: K.tech.angular.title,
         level: "intermediate",
         descriptionKey: K.tech.angular.description,
+    },
+    "Spring Boot": {
+        id: "Spring Boot",
+        titleKey: K.tech.springboot.title,
+        level: "advanced",
+        descriptionKey: K.tech.springboot.description,
     },
     React: {
         id: "React",

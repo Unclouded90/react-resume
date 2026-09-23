@@ -26,7 +26,7 @@ export const techGroups: readonly TechGroup[] = [
     {
         id: "backend",
         titleKey: K.tech.backend,
-        techIds: ["Node.js", "NestJS"],
+        techIds: ["Node.js", "Spring Boot", "NestJS"],
         searchAliases: ["backend"],
     },
     {
