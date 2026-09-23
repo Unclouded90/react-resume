@@ -4,6 +4,7 @@ import {
     SiCplusplus,
     SiAngular,
     SiNodedotjs,
+    SiSpring,
     SiPostgresql,
     SiMongodb,
     SiGit,
@@ -48,6 +49,8 @@ function getTechIcon(name: string) {
             return <SiNodedotjs />;
         case "Angular":
             return <SiAngular />;
+        case "Spring Boot":
+            return <SiSpring />;
         case "PostgreSQL":
             return <SiPostgresql />;
         case "MS SQL Server":
