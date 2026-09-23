@@ -27,6 +27,7 @@ export const jobs: Job[] = [
             "Java",
             "Node.js",
             "Angular",
+            "Spring Boot",
             "Sequelize.js",
             "PostgreSQL",
             "MS SQL Server",
